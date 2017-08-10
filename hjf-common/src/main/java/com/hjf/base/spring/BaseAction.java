@@ -1,0 +1,157 @@
+package com.hjf.base.spring;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.hjf.base.LogUtil;
+import com.hjf.base.exception.CodeUtil;
+import com.hjf.base.model.MyUserDetails;
+import com.hjf.base.model.PageBean;
+import com.hjf.base.model.PageModel;
+import com.hjf.base.mybatis.Query;
+import com.hjf.common.bean.BaseRespBean;
+import com.hjf.common.enums.ActionType;
+import com.hjf.common.util.JsonUtil;
+import com.hjf.common.util.web.RequestUtils;
+import com.hjf.common.util.web.ResponseUtils;
+
+@Controller  
+public class BaseAction {
+	public Logger log = LogUtil.getLogger();	
+	protected Query query = new Query();
+	public    PageModel pm=new PageModel();
+	public    ModelAndView  page_404=new ModelAndView("error/error_404");
+	/**
+	 * 添加代理商参数
+	 */
+	public Integer   getAgentId( ){
+		Integer agentId=MyUserDetails.getCurUserDetails().getAgentId();
+		 return agentId;
+	}	
+
+	
+	/**
+	 * 记录操作日志
+	 */
+	public void   checkVersion(HttpServletRequest request){
+		 String version=request.getParameter("version");
+		
+	}	
+	
+	
+	/**
+	 * 系统错误返回
+	 */
+	public void   errorMsg(HttpServletResponse response){
+		BaseRespBean brb=new BaseRespBean();
+		brb.fail(CodeUtil.error);
+		String jsonStr=JsonUtil.obj2Json(brb);
+		ResponseUtils.renderJson(response,jsonStr);
+	}		
+	
+	
+	/**
+	 * 系统错误返回
+	 */
+	public void   errorMsg(HttpServletResponse response,Exception e){
+		log.error("系统错误..."+e.getMessage());
+		log.error("系统错误..."+e.getStackTrace());
+		BaseRespBean brb=new BaseRespBean();
+		brb.fail(CodeUtil.error);
+		String jsonStr=JsonUtil.obj2Json(brb);
+		ResponseUtils.renderJson(response,jsonStr);
+	}	
+	/**
+	 * ajax数据请求 返回
+	 */
+	public BaseRespBean   returnMsg(Object resultData)throws Exception{
+		 return new BaseRespBean(resultData);
+	}		
+
+	public void  err_param(HttpServletResponse response,BaseRespBean r) {
+		r.fail(CodeUtil.e_9999);
+		String jsonStr=JsonUtil.obj2Json(r);
+		ResponseUtils.renderJson(response,jsonStr);
+		log.info(jsonStr);
+	} 
+ 
+	
+	/**
+	 * 获取实例化参数
+	 */
+	public Object   getParamsObj(HttpServletRequest request,String[] params,String  objName)throws Exception{
+		 Map paramMap=(HashMap)RequestUtils.getParameter(request, params);
+		 Class<?> obj=Class.forName("org.jxjz.framework.pojo."+objName);
+		 Object o = obj.newInstance(); //创建一个实例
+		 try {
+			 BeanUtils.copyProperties(o, paramMap);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		 return o;
+	}
+	/**
+	 * 获取实例化参数
+	 */
+	public Object   getParamsObj_jyw(HttpServletRequest request,String[] params,String  objName)throws Exception{
+		 Map paramMap=(HashMap)RequestUtils.getParameter(request, params);
+		 Class<?> obj=Class.forName("com.jyw.entity."+objName);
+		 Object o = obj.newInstance(); //创建一个实例
+		 try {
+			 BeanUtils.copyProperties(o, paramMap);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		 return o;
+	}
+	/**
+	 * 获取分页信息
+	 */
+	public PageModel   getPageInfo(String [] params,HttpServletRequest request){
+		Map paramMap=RequestUtils.getParameter(request, params);//取得页面查询参数
+		PageBean.getPageInfo(request,pm);//获取分页参数
+		pm.setParams(paramMap);
+		return pm;
+	}	
+	
+	 
+	 
+	/**
+	 *  检查时提交数据还是请求跳转到jsp页面
+	 */
+	public boolean  pageRequest(HttpServletRequest request){
+		String  reqType =request.getParameter("reqType");//【0 请求数据[执行方法 比如更新update]  1 跳转页面【比如跳转分页layout页面或者添加数据页面】  2 Ajax 请求数据】
+		if (StringUtils.isBlank(reqType)) {
+			return true;
+		}else if(reqType.equals(ActionType.Page.getValue())) {
+			return true;
+		}
+		return false;
+	}	
+	
+	public void  respMsgObj(HttpServletResponse response,Object obj) {
+		String jsonStr=JsonUtil.obj2Json(obj);
+		ResponseUtils.renderJson(response,jsonStr);
+	} 	 
+
+	public Query getQuery() {
+		return query;
+	}
+
+	public void setQuery(Query query) {
+		this.query = query;
+	}	 
+
+			
+}
