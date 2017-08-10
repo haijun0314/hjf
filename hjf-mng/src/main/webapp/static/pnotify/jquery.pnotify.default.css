@@ -42,11 +42,13 @@ margin-left: .2em;
 }
 .ui-pnotify-title {
 display: block;
-margin-bottom: .4em;
-margin-top: 0;
+font-size:18px;
+text-align: center;
 }
 .ui-pnotify-text {
 display: block;
+font-size:18px;
+text-align: center;
 }
 .ui-pnotify-icon, .ui-pnotify-icon span {
 display: block;
@@ -95,8 +97,16 @@ top: auto;
 
 .ui-pnotify.stack-bar-top {
 	right: 450;
-	top: 50;
+	top: 150;
 	width: 40%;
 }
 
+.hjf_alert-info{
+	background-color: #8a6d3b;
+    color: #fff;
+} 
 
+.hjf_alert-error{
+	background-color: #a94442;
+    color: #fff;
+} 

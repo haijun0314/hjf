@@ -86,7 +86,7 @@ public class SysMenuBarServiceImpl extends BaseService implements SysMenuBarServ
 	/**
 	 * 根据id删除菜单
 	 */
-	public void delete(Integer roleid){
+	public void delete(Integer roleid) {
 		sysMenubarDAO.deleteByID(roleid);
 	}
 	

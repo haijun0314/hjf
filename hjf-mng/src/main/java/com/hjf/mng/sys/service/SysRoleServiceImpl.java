@@ -42,7 +42,7 @@ public class SysRoleServiceImpl  extends BaseService implements SysRoleService  
 	/**
 	 * 【根据ID删除角色】
 	 */
-	public void delete(Integer roleId) {
+	public void delete(Integer roleId)throws Exception  {
 		sysRoleMenuDAO.delete(roleId,"deleteByRoleId"); 
 		sysRoleDAO.deleteByID(roleId);
 	}
@@ -80,7 +80,7 @@ public class SysRoleServiceImpl  extends BaseService implements SysRoleService  
 	/**
 	 * 【分配权限【先删除权限，在增加权限】
 	 */
-	public void assignPermission(Integer roleId ,String[] menuids) 	{
+	public void assignPermission(Integer roleId ,String[] menuids) throws Exception 	{
 		if (menuids==null||menuids.length<1) {
 			sysRoleMenuDAO.delete(roleId,"deleteByRoleId"); 
 			return;
@@ -113,23 +113,7 @@ public class SysRoleServiceImpl  extends BaseService implements SysRoleService  
 	
 	
 	
-	/**
-	 * 【查询用户角色    所有角色和用户所属角色】
-	 * 查询所有角色以及该用户拥有的角色 
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List getUserRoles(Integer userid){
-		List userRoleList=sysUserRoleDAO.queryList("loadUserRolesForSelect",userid);
-		for (int i = 0; i <userRoleList.size(); i++) {
-			HashMap sr=(HashMap)userRoleList.get(i);
-			sr.put("isUsed", DefaultStatus.No.getValue());
-			Integer userId=MapUtils.getInteger(sr, "userId");
-			if(userId!=null&&userId>0){
-				sr.put("isUsed", DefaultStatus.Yes.getValue());
-			} 
-		}
-		return  userRoleList;
-	}	
+	 
  
 	/**
 	 * 【查询角色拥有的用户】

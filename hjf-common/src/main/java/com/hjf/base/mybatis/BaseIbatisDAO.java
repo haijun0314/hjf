@@ -67,16 +67,18 @@ public class BaseIbatisDAO {
 		} catch (Exception e) {
 			log.error("执行delete方法发生异常信息.....sqlId="+sqlId+e.getMessage());
 			e.printStackTrace();
-			 return -1;
+			return -1;
 		}
 	}   
     
     /**
 	 *  删除 根据ID编号【整型】
 	 */
-	public void  deleteByID(Integer int_id)  {
-		String sqlId = POSTFIX_DELETE_BYID;
-		delete(int_id, sqlId);
+	public int  deleteByID(Integer int_id)  {
+		String sqlId = this.getNamespace()+POSTFIX_DELETE_BYID;
+		return delete(int_id, sqlId);
+		
+		
 	}	
     
     /**
@@ -120,11 +122,13 @@ public class BaseIbatisDAO {
 	 * @return 保存对象的id
 	 */
 	public int  saveNoSession(BaseModel obj ){
+		String  sqlId=this.getNamespace()+POSTFIX_SAVE ; 
 		try {
 			obj.setCreatedTime(new Date());
-			String  sqlId=this.getNamespace()+POSTFIX_SAVE ; 
 			return save(obj, sqlId);
 		} catch (Exception e) {
+			log.error("执行saveNoSession方法发生异常信息.....sqlId="+sqlId+e.getMessage());
+			e.printStackTrace();
 			e.printStackTrace();
 			return -1;
 		}
@@ -151,19 +155,23 @@ public class BaseIbatisDAO {
 		}
 	}	
 	
+	 
 	/**
 	 *  插入返回主键值
 	 */
-	public Integer  saveWithReturnId(BaseModel bean)  {
-		if(MyUserDetails.userDetails != null){
-			String createdBy = MyUserDetails.getCurUserDetails().getUsername(); 
-			bean.setCreatedBy(createdBy);
+	public BaseModel  saveWithReturnId(BaseModel bean)  {
+		try {
+			bean.setCreatedTime(new Date());
+			String  sqlId=this.getNamespace()+POSTFIX_SAVE_WITHID ; 
+			sqlSessionTemplate.insert(sqlId, bean);
+		} catch (Exception e) {
+			log.error("插入数据发生日常..............."+e.getMessage());
+			 return  null;
 		}
-		bean.setCreatedTime(new Date());
-		String  sqlId=this.getNamespace()+POSTFIX_SAVE_WITHID ; 
-		Integer id=(Integer)sqlSessionTemplate.insert(sqlId, bean);
-		return id;
+
+		return bean;
 	}
+
 	
 	/**
 	 *  添加

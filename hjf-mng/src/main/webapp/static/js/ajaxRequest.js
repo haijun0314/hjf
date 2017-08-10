@@ -245,21 +245,20 @@ var AjaxRequest = {
 
 function resultMsg(type,responseText) {
     var opts = {
-        title: "",
+        //title: "操作结果",
         text: responseText.msg,
         addclass: "stack-bar-top" 
     };
+    //opts.type = "error";
     switch (type) {
     case 'error':
         opts.title = "操作错误";
         opts.type = "error";
         break;
     case 'info':
-        opts.title = "";
         opts.type = "info";
         break;
     case 'success':
-        //opts.title = "操作成功";
         opts.type = "success";
         break;
     }

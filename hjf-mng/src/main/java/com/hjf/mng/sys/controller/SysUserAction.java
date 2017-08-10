@@ -111,11 +111,10 @@ public class SysUserAction extends BaseAction {
 	 * 添加系统用户
 	 */
 	@RequestMapping(params = "add")   
-	public ModelAndView add(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView add( SysUser sysUser ,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if (pageRequest(request)) {
 			return new ModelAndView(add);
 		}else {
-			 SysUser sysUser=(SysUser) getParamsObj(request,new String[] {  "userName", "realName","password","roles","telePhone","email","remark","sex","isSuper"}, "SysUser");
 			 String [] roleStr=request.getParameterValues("roles");
 			 sysUser.setRoles(StringUtil.convertToString(roleStr, ","));
 			 sysUser.setUserType(UserType.SystemUser.getValue());
@@ -125,7 +124,10 @@ public class SysUserAction extends BaseAction {
 					 MsgUtil.operMsg(response,"对不起 该用户名已经存在 请用其他用户名！");
 					 return null;
 				 }
-				sysUserService.addSysUser(sysUser);
+				 r=sysUserService.addSysUser(sysUser);
+				 if (r.isFail()) {
+					 MsgUtil.operFail(response);
+				 }
 			 }catch (Exception e) {
 				 MsgUtil.operFail(response,e);
 				 return null;
@@ -139,7 +141,7 @@ public class SysUserAction extends BaseAction {
 	 * 添加代理商账号
 	 */
 	@RequestMapping(params = "addAgent")   
-	public ModelAndView addAgent(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView addAgent(SysUser sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if (pageRequest(request)) {
 			String userType=request.getParameter("userType");//账户类型 0  系统账户 1  城市管理账户   2  城市普通账户
 			query = new Query();
@@ -151,7 +153,6 @@ public class SysUserAction extends BaseAction {
 			mav.addObject("userType", userType);
 			return mav;
 		}else {
-			 SysUser sysUser=(SysUser) getParamsObj(request,new String[] {  "userName", "realName","password","telePhone","email","remark","agentId","userType","roles"}, "SysUser");
 			 String [] roleStr=request.getParameterValues("roles");
 			 sysUser.setRoles(StringUtil.convertToString(roleStr, ","));
 			 if (sysUser.getUserType().equals(UserType.AgentUser.getValue())) {
@@ -179,21 +180,21 @@ public class SysUserAction extends BaseAction {
 	 * 更新系统用户
 	 */
 	@RequestMapping(params = "update")   
-	public ModelAndView  update(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView  update(SysUser sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if(pageRequest(request)) {
 			String userid=request.getParameter("userId");
-			SysUser sysUser=sysUserService.getSysUserById(new Integer(userid));
-			List roleList = sysRoleService.getUserRoles(new Integer(userid));
+			sysUser=sysUserService.getSysUserById(new Integer(userid));
 			ModelAndView  mav=new ModelAndView(update);
-			mav.addObject("roleList", roleList);
 			mav.addObject("sysUser", sysUser);
 			return mav;
 		}else {
-			SysUser sysUser=(SysUser) getParamsObj(request,new String[] { "userId", "userName", "realName","telePhone","email","remark","isSuper"}, "SysUser");
 			String [] roleStr=request.getParameterValues("roles");
 			 sysUser.setRoles(StringUtil.convertToString(roleStr, ","));
 			try {
-				 sysUserService.update(sysUser);
+				 r=sysUserService.update(sysUser);
+				 if (r.isFail()) {
+					 MsgUtil.operFail(response);
+				 }
 			 }catch (Exception e) {
 				 MsgUtil.operFail(response,e);
 				 return null;
@@ -221,14 +222,18 @@ public class SysUserAction extends BaseAction {
 	
 	/**
 	 * 删除系统用户
-	 * @author liubin
-	 *  createTime 2014-12-3
+	 * @author lihiajun
+	 * createTime: 2014-12-3
+	 * updateTime:2017-08-10 
 	 */
 	@RequestMapping(params = "delete")   
 	public void delete(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try {
 			 String userId=request.getParameter("userId");
-			 sysUserService.delete(new Integer(userId));
+			 r=sysUserService.delete(new Integer(userId));
+			 if (r.isFail()) {
+				 MsgUtil.operFail(response);
+			 }
 		 }catch (Exception e) {
 			 MsgUtil.operFail(response,e);
 			 return;
@@ -240,7 +245,7 @@ public class SysUserAction extends BaseAction {
 	/**
 	 * 启用、停用系统管理员
 	 * @author liubin
-	 *  createTime 2014-12-3
+	 * createTime 2014-12-3
 	 */
 	@RequestMapping(params = "startOrStop")   
 	public void  startOrStop(@ModelAttribute SysUser sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {

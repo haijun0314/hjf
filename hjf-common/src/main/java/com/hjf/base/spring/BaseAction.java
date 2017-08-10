@@ -26,6 +26,7 @@ import com.hjf.common.util.web.ResponseUtils;
 
 @Controller  
 public class BaseAction {
+	public BaseRespBean r=new BaseRespBean();
 	public Logger log = LogUtil.getLogger();	
 	protected Query query = new Query();
 	public    PageModel pm=new PageModel();
@@ -85,21 +86,7 @@ public class BaseAction {
 	} 
  
 	
-	/**
-	 * 获取实例化参数
-	 */
-	public Object   getParamsObj(HttpServletRequest request,String[] params,String  objName)throws Exception{
-		 Map paramMap=(HashMap)RequestUtils.getParameter(request, params);
-		 Class<?> obj=Class.forName("org.jxjz.framework.pojo."+objName);
-		 Object o = obj.newInstance(); //创建一个实例
-		 try {
-			 BeanUtils.copyProperties(o, paramMap);
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-		
-		 return o;
-	}
+ 
 	/**
 	 * 获取实例化参数
 	 */

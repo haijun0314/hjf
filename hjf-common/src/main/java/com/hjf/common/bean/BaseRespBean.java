@@ -14,14 +14,26 @@ public class BaseRespBean {
 	private String msg;  //返回结果说明
 	private List   datas;//返回数据
 	private Object data;  //返回特定数据
+	private boolean   fail;// 操作是否失败  true  失败   false  成功
+	 	
 	
+	public boolean isFail() {
+		return fail;
+	}
+	public void setFail(boolean fail) {
+		this.fail = fail;
+	}
 	public BaseRespBean() {
 		 
 	}
+	public BaseRespBean(String code) {
+		 this.code=code;
+		 this.msg=CodeUtil.getCodeMsg(code);
+	}
+	
 	public BaseRespBean(Object data){
 		this.data=data;
 	}	
-	
 	
 	public void success() {
 		this.code="0000";
@@ -30,6 +42,7 @@ public class BaseRespBean {
 	public void fail(String code) {
 		this.code=code;
 		this.msg=CodeUtil.getCodeMsg(code);
+		this.fail=true;
 	}	
 	public Object getData() {
 		return data;

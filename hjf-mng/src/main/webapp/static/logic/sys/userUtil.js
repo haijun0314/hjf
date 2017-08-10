@@ -1,6 +1,33 @@
 
  
 var UserUtil = {
+		/***************添加系统用户**********************/	
+		addSysUser :function(){
+			 BootstrapDialog.show({
+				 title:'添加系统用户',
+		         message: $('<div></div>').load('/sys/sysUser?add&Ajax=true&'),//加载远程地址
+		         buttons: [{
+		             label: '确定',
+		             icon: 'glyphicon glyphicon-ok',
+		             cssClass: 'btn-primary',
+		             action: function(dialog) {
+		                 if($('#userForm').valid()){
+		                 	AjaxRequest.submitFormForModel("userForm",dialog,searchSubmit);//提交数据表单
+		                 }
+		             }
+		         }, {
+		             label: '取消',
+		             icon: 'glyphicon glyphicon-remove',
+		             cssClass: 'btn-danger',
+		             action: function(dialog) {
+		            	 dialog.close();
+		             }
+		         }]
+		     });
+		},
+		
+		
+		
 		/********************加载登陆用户数据***********************************/
 		loadLoginUser : function() {
 			AjaxRequest.httpPost(
@@ -140,5 +167,5 @@ var UserUtil = {
 		         }]
 		     });
 		},	
-		 
+ 
 };

@@ -12,7 +12,7 @@ public class SysRoleDAO extends BaseIbatisDAO {
 	/**
 	 *  根据角色编号查询角色对应关系
 	 */
-	public List getRoleUsers(Integer roleid){
+	public List getRoleUsers(Integer roleid)throws Exception {
 		return  super.queryList("SysRole.queryRoleUsers",roleid);
 	}	 	
 	

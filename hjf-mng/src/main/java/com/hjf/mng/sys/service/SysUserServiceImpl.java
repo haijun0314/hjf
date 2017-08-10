@@ -10,10 +10,11 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hjf.base.jdbc.JdbcTemplateEx;
+import com.hjf.base.exception.CodeUtil;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.base.mybatis.Query;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.mng.common.security.MyUserDetails;
 import com.hjf.mng.sys.dao.SysRoleDAO;
 import com.hjf.mng.sys.dao.SysUserDAO;
@@ -32,7 +33,6 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	@Resource  SysUserDAO sysUserDAO;
 	@Resource  SysRoleDAO sysRoleDAO;
 	@Resource  SysUserRoleDAO sysUserRoleDAO;
-	@Resource  JdbcTemplateEx jdbcTemplateEx;
 	/**
 	 * 检查是否已经存在
 	 */
@@ -81,41 +81,61 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	/**
 	 * 添加系统用户
 	 */
-	public void addSysUser(SysUser sysUser) {
-		 
+	public BaseRespBean addSysUser(SysUser sysUser) {
 		 sysUser.setCreatedBy(MyUserDetails.getCurUserDetails().getUsername());
-		 Integer userid=(Integer)sysUserDAO.saveWithReturnId(sysUser);
+		 sysUser=(SysUser) sysUserDAO.saveWithReturnId(sysUser);
+		 if (sysUser==null) {
+			log.error("【添加系统账户】  失败sysUser="+sysUser.getUserName());
+			r.fail(CodeUtil.error);
+			return r;
+		 }
 		 String rolestr=sysUser.getRoles();
-		 if (userid!=null&&StringUtils.isNotBlank(rolestr)) {
+		 if (StringUtils.isNotBlank(rolestr)) {
 			String roles[]=StringUtils.split(rolestr,",");
 			for (int j = 0; j < roles.length; j++) {
 				SysRole role=new SysRole();
 				role.setRoleId(new Integer(roles[j]));
 				SysUserRole userRole=new SysUserRole();
 				userRole.setRoleId(role.getRoleId());
-				userRole.setUserId(userid);
+				userRole.setUserId(sysUser.getUserId());
 				sysUserRoleDAO.save(userRole);
 			}
 		}
+		return r;
 	}
 
  
 	
 	/**
 	 * 更新系统用户
-	 * @author liubin
-	 *  createTime 2014-12-3
 	 */
-	public void update(SysUser sysUser) {
-		sysUserDAO.updateById(sysUser);
+	public BaseRespBean update(SysUser sysUser) {
+		int ret=sysUserDAO.updateById(sysUser);
+		if (ret<0) {
+			log.error("【更新系统账户】发生异常;账户编号"+sysUser.getUserId());
+			r.fail(CodeUtil.error);
+			return r;
+		}
+		return r;
 	}	
 	
 	/**
 	 * 删除用户【包括删除关联角色信息】
 	 */
-	public void delete(Integer userid){
-		sysUserRoleDAO.deleteByID(userid, "deleteByUserId");
-		sysUserDAO.deleteByID(userid);
+	public BaseRespBean delete(Integer userid) {
+		int ret= sysUserRoleDAO.deleteByID(userid, "deleteByUserId");
+		if(ret<0){
+			log.error("删除系统账户发生异常;账户编号"+userid);
+			r.fail(CodeUtil.error);
+			return r;
+		}
+		ret=sysUserDAO.deleteByID(userid);
+		if(ret<0){
+			log.error("删除系统账户发生异常;账户编号"+userid);
+			r.fail(CodeUtil.error);
+			return r;
+		}
+		return r;
 	}	
 	/**
 	 * 系统用户详情

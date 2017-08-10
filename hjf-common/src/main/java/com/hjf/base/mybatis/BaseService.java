@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hjf.base.LogUtil;
+import com.hjf.base.exception.CodeUtil;
+import com.hjf.common.bean.BaseRespBean;
 
 @Service
 @Transactional 
 public class BaseService<T, ID extends Serializable>  {
+	public BaseRespBean r=new BaseRespBean(CodeUtil.success);
 	public Logger log=LogUtil.getLogger();
 	public  void errorMsg(Exception e) {
 		log.error("发生系统异常错误。。。错误信息"+e.getMessage());

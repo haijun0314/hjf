@@ -39,11 +39,11 @@
 				container: "alert",
 				notice: "",
 				notice_icon: "icon-exclamation-sign",
-				info: "alert-info",
+				info: "hjf_alert-info",
 				info_icon: "icon-info-sign",
 				success: "alert-success",
 				success_icon: "icon-ok-sign",
-				error: "alert-error",
+				error: "hjf_alert-error",
 				error_icon: "icon-warning-sign",
 				closer: "icon-remove",
 				pin_up: "icon-pause",
@@ -932,7 +932,7 @@
 		// Type of the notice. "notice", "info", "success", or "error".
 		type: "notice",
 		// Set icon to true to use the default icon for the selected style/type, false for no icon, or a string for your own icon class.
-		icon: true,
+		icon: false,
 		// The animation to use when displaying and hiding the notice. "none", "show", "fade", and "slide" are built in to jQuery. Others require jQuery UI. Use an object with effect_in and effect_out to use different effects.
 		animation: "fade",
 		// Speed at which the notice animates in and out. "slow", "def" or "normal", "fast" or number of milliseconds.

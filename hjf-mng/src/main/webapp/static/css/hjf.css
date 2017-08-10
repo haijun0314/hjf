@@ -6,19 +6,19 @@
 	display: none;
 }
 /*
-Ìí¼ÓÊ±±ØÌíµÄºìÉ«*
+æ·»åŠ æ—¶å¿…æ·»çš„çº¢è‰²*
 */
 .star_red{
 	color: #f00;
 }
 /*
-logo_zh-cn.pngÍ¼±ê
+logo_zh-cn.pngå›¾æ ‡
 */
 .logo_zh-cn {
     background: url("../image/logo_zh-cn.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 /*
-·ÖÒ³pager,×ÜÌõÊı
+åˆ†é¡µpager,æ€»æ¡æ•°
 */
 .infobox-data-number{
 	display:block;
@@ -28,25 +28,25 @@ logo_zh-cn.pngÍ¼±ê
 	text-shadow:1px 1px 0 rgba(0,0,0,0.15)
 }
 /*
-logoÍ¼Æ¬
+logoå›¾ç‰‡
 */
 .logo{
 	background-image: url("../image/logo.png");
 }
 /*
-zipFile.javaÖĞÓÃµ½
+zipFile.javaä¸­ç”¨åˆ°
 */
 .nowrap{
 	white-space: nowrap;
 }
 /*
-±¾µØµ¯¿òµÄ±íÍ·ÑùÊ½
+æœ¬åœ°å¼¹æ¡†çš„è¡¨å¤´æ ·å¼
 */
 .modal-header {
 	background:#428bca;
 }
 /*
-×ó²à²Ëµ¥
+å·¦ä¾§èœå•
 */
 .submenu a:hover {
     background: none repeat scroll 0 0 #dfdfdf;
@@ -66,7 +66,7 @@ zipFile.javaÖĞÓÃµ½
 	color:#585858; 
 }
 /*
-ÉÏÃæ²Ëµ¥
+ä¸Šé¢èœå•
 */
 .navbar-btn{
     background-image: none !important;
@@ -93,7 +93,7 @@ zipFile.javaÖĞÓÃµ½
 }
 
 /*
-µ×²¿copyrightµÄÑùÊ½
+åº•éƒ¨copyrightçš„æ ·å¼
 */
 #footer {
     background: none repeat scroll 0 0 #d15b47;
@@ -119,7 +119,7 @@ zipFile.javaÖĞÓÃµ½
 }
 
 /**
- * AjaxÊı¾İ¼ÓÔØÌáÊ¾
+ * Ajaxæ•°æ®åŠ è½½æç¤º
 */
 .progressBar {
 	border: solid 2px #86A5AD;
@@ -142,7 +142,7 @@ zipFile.javaÖĞÓÃµ½
 	z-index: 2001;
 }
 /*
-·Ö¸îÏß  ºìÉ«
+åˆ†å‰²çº¿  çº¢è‰²
 */
 .hr-line {
     border-bottom: 1px solid #c92828;
@@ -205,6 +205,8 @@ zipFile.javaÖĞÓÃµ½
 	letter-spacing:30px
 }
 
+
+ 
  
  
 

@@ -49,7 +49,7 @@
 									<a href="#" class="btn btn-xs btn-success" onclick="UserUtil.resetPassword(${data.userId})"><i class="icon-edit bigger-120"></i>重置密码</a>
 									
 									<a href="#" class="btn btn-xs btn-info"    onclick="UserUtil.update(${data.userId})"><i class="icon-edit bigger-120"></i>编辑</a> 
-									<a href="#" class="btn btn-xs btn-danger"  onclick="UserUtil..deleteUser(${data.userId})"><i class="icon-trash bigger-120"></i>删除</a>
+									<a href="#" class="btn btn-xs btn-danger"  onclick="UserUtil.deleteUser(${data.userId})"><i class="icon-trash bigger-120"></i>删除</a>
 									
 									<c:if test="${data.status==0}">
 									<a  href="#"class="btn btn-xs " onclick="UserUtil.startOrStop(${data.userId},'1')"><i class="glyphicon glyphicon-pause"></i>停用</a>
