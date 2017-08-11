@@ -43,7 +43,14 @@ public class BaseRespBean {
 		this.code=code;
 		this.msg=CodeUtil.getCodeMsg(code);
 		this.fail=true;
-	}	
+	}
+	public void fail() {
+		this.code=CodeUtil.error;
+		this.msg=CodeUtil.getCodeMsg(code);
+		this.fail=true;
+	}
+	
+	
 	public Object getData() {
 		return data;
 	}

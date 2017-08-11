@@ -12,11 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.spring.BaseAction;
 import com.hjf.common.bean.BaseRespBean;
 import com.hjf.common.util.web.SessionUtil;
 import com.hjf.mng.common.security.MenuBarUtil;
-import com.hjf.mng.common.security.MyUserDetails;
 import com.hjf.mng.common.util.ConfigUtil;
 import com.hjf.mng.sys.entity.SysMenubar;
 import com.hjf.mng.sys.entity.SysUser;

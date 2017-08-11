@@ -1,4 +1,4 @@
-<!-- 添加权限页面-->
+<!-- 系统菜单更新页面-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <%	String basePath=request.getContextPath(); %>
@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 /******************表单验证****************************/
 function validate_Form(){
-   var validateForm  = $('#menuBarUpdateForm');
+   var validateForm  = $('#dataForm');
    validateForm.validate({
        
        rules:{
@@ -31,7 +31,7 @@ function validate_Form(){
 </script>
 <div class="row">
 		<div class="col-xs-12">
-			<form action="${contextPath}/sys/security?update&ajax=true&reqType=2" class="form-horizontal" role="form" id="menuBarUpdateForm" name="menuBarUpdateForm">
+			<form action="${contextPath}/sys/security?update&ajax=true&reqType=2" class="form-horizontal" role="form" id="dataForm" name="dataForm">
 				<input  type="hidden" name="menuId" value="${sysMenubar.menuId }"> 
 				<div class="form-group">
 					<label for="menuName"

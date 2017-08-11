@@ -21,6 +21,7 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.base.mybatis.Query;
 import com.hjf.common.enums.DefaultStatus;

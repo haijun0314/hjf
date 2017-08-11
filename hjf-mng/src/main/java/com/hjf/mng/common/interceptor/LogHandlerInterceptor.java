@@ -7,9 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.hjf.base.LogUtil;
+import com.hjf.base.model.MyUserDetails;
 import com.hjf.common.util.URLUtil;
 import com.hjf.common.util.web.SessionUtil;
-import com.hjf.mng.common.security.MyUserDetails;
 import com.hjf.mng.common.util.ConfigUtil;
 
 public class LogHandlerInterceptor extends HandlerInterceptorAdapter {

@@ -4,15 +4,16 @@ import java.util.List;
 
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.Query;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.mng.sys.entity.SysRole;
 
 public interface SysRoleService {
 	//添加角色
-	public void add(SysRole sr) ;
+	public BaseRespBean add(SysRole sr) ;
 	//删除角色
-	public void delete(Integer roleId)throws Exception  ;
+	public BaseRespBean delete(Integer roleId)throws Exception  ;
 	//编辑角色
-	public void update(SysRole sr) ;
+	public BaseRespBean update(SysRole sr) ;
 	//分页查询系统管角色
 	public PageModel getSysRolePageList(PageModel pm);
 	//通用查询角色

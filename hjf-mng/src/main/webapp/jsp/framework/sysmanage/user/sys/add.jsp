@@ -18,11 +18,9 @@ $(document).ready(function(){
 	$('[data-rel=popover]').popover();//Bootstrap 工具提示（popover）插件
 	$('[data-rel=tooltip]').tooltip();//Bootstrap 工具提示（Tooltip）插件
 	validate_Form();//初始化表单验证
-});
-
-$(document).ready(function(){
-	 AjaxRequest.httpPost(
-		"/sys/role?getRoles",
+	
+	AjaxRequest.httpPost(
+		"/sys/role?roleList",
 		{
 			 resource:'1'
 		},
@@ -126,21 +124,12 @@ function validate_Form(){
 				<label for="usertel" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>拥有角色</label>
 				<div class="col-sm-9">
 			        <div class="checkbox">
-			        	<!-- 
-				        <c:forEach var="data" items="${roleList}" >
-				        	<label>
-								<input type="checkbox" class="ace ace-checkbox-2 " name="roles" value="${data.roleId }" >
-								<span class="lbl"> ${data.roleDesc }</span>
-							</label>
-				        </c:forEach>
-				         -->
 				         <div  v-for="role in  roles">  
 				        	<label>
 								<input type="checkbox" v-bind:value="role.roleId" class="ace ace-checkbox-2 " name="roles"   v-bind:class="{ 'required': required }"  >
 								<span class="lbl"> {{role.roleDesc}}</span>
 							</label>
 				         </div>
-				        
 					</div>
 				</div>
 			</div>

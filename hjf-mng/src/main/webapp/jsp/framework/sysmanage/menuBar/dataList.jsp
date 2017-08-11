@@ -2,9 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <script>
-			HJF.pageRequest("${pm.curPage}","${pm.totalPage}","/sys/security?gridView&reqType=1&ajax=true");
+	HJF.pageRequest("${pm.curPage}","${pm.totalPage}","/sys/security?gridView&reqType=1&ajax=true");
 </script>
-
 <div class="row" >
 	<div class="col-xs-12">
 		<div class="table-responsive">
@@ -21,24 +20,23 @@
 				</thead>
 				<tbody>
 					<c:forEach var="data" items="${pm.datas}" varStatus="status" >
-								<tr>
-									<td>${status.index+1}</td>
-									<td>${data.menuName}</td>
-									<td>${data.parentName}</td>
-									<td>${data.menuCode}</td>
-									<td class="hidden-480">${data.location} </td>
-									 
-									<td >
-									<a href="#" class="btn btn-xs btn-info"    onclick="update(${data.menuId})"><i class="icon-edit bigger-120"></i>编辑</a> 
-									<a href="#" class="btn btn-xs btn-danger"  onclick="delete_(${data.menuId})"><i class="icon-trash bigger-120"></i>删除</a>
-									<c:if test="${data.status==0}">
-									<a  href="#"class="btn btn-xs " onclick="updateStatus(${data.menuCode},'1')"><i class="glyphicon glyphicon-pause"></i>停用</a>
-									</c:if>
-									<c:if test="${data.status==1}">
-									<a  href="#"class="btn btn-xs  btn-warning" onclick="updateStatus(${data.menuCode},'0')"><i class="glyphicon glyphicon-play"></i>启用</a>
-									</c:if>
-									</td>
-								</tr>
+						<tr>
+							<td>${status.index+1}</td>
+							<td>${data.menuName}</td>
+							<td>${data.parentName}</td>
+							<td>${data.menuCode}</td>
+							<td class="hidden-480">${data.location} </td>
+							<td >
+							<a href="#" class="btn btn-xs btn-info"    onclick="MenuUtil.update(${data.menuId})"><i class="icon-edit bigger-120"></i>编辑</a> 
+							<a href="#" class="btn btn-xs btn-danger"  onclick="MenuUtil.deleteMenu(${data.menuId})"><i class="icon-trash bigger-120"></i>删除</a>
+							<c:if test="${data.status==0}">
+							<a  href="#"class="btn btn-xs " onclick="MenuUtil.startOrStop(${data.menuCode},'1')"><i class="glyphicon glyphicon-pause"></i>停用</a>
+							</c:if>
+							<c:if test="${data.status==1}">
+							<a  href="#"class="btn btn-xs  btn-warning" onclick="MenuUtil.startOrStop(${data.menuCode},'0')"><i class="glyphicon glyphicon-play"></i>启用</a>
+							</c:if>
+							</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>

@@ -12,10 +12,10 @@ import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Service;
 
+import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.common.util.TimeUtil;
-import com.hjf.mng.common.security.MyUserDetails;
 import com.hjf.mng.sys.entity.OnlineUser;
 @Service
 public class SessionService  extends  BaseService  {

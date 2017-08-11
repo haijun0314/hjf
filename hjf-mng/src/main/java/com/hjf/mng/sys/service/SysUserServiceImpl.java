@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hjf.base.exception.CodeUtil;
+import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.base.mybatis.Query;
 import com.hjf.common.bean.BaseRespBean;
-import com.hjf.mng.common.security.MyUserDetails;
 import com.hjf.mng.sys.dao.SysRoleDAO;
 import com.hjf.mng.sys.dao.SysUserDAO;
 import com.hjf.mng.sys.dao.SysUserRoleDAO;

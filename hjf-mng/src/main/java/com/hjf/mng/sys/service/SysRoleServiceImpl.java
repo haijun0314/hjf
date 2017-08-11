@@ -1,20 +1,19 @@
 package com.hjf.mng.sys.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.collections.MapUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hjf.base.LogUtil;
+import com.hjf.base.exception.CodeUtil;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.base.mybatis.Query;
-import com.hjf.common.enums.DefaultStatus;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.mng.sys.dao.SysRoleDAO;
 import com.hjf.mng.sys.dao.SysRoleMenuDAO;
 import com.hjf.mng.sys.dao.SysUserRoleDAO;
@@ -31,27 +30,45 @@ public class SysRoleServiceImpl  extends BaseService implements SysRoleService  
 	@Resource SysRoleDAO 	 sysRoleDAO;
 	@Resource SysRoleMenuDAO sysRoleMenuDAO;
 	@Resource SysUserRoleDAO sysUserRoleDAO;
-	Logger log=LogUtil.getLogger();
 	/**
 	 * 【添加角色】
 	 */
-	public void add(SysRole sr) {
-		sysRoleDAO.save(sr);
+	public BaseRespBean add(SysRole sr) {
+		int ret=sysRoleDAO.save(sr);
+		if(ret<0){
+			log.error("【添加系统角色失败】"+sr.getRoleDesc());
+			r.fail(CodeUtil.error);
+		}
+		return  r;
 	}
 	
 	/**
 	 * 【根据ID删除角色】
 	 */
-	public void delete(Integer roleId)throws Exception  {
-		sysRoleMenuDAO.delete(roleId,"deleteByRoleId"); 
-		sysRoleDAO.deleteByID(roleId);
+	public BaseRespBean delete(Integer roleId)throws Exception  {
+		int ret=sysRoleMenuDAO.delete(roleId,"deleteByRoleId"); 
+		if(ret<0){
+			log.error("【删除角色失败】roleId="+roleId);
+			r.fail(CodeUtil.error);
+		}
+		ret=sysRoleDAO.deleteByID(roleId);
+		if(ret<0){
+			log.error("【删除角色失败】roleId="+roleId);
+			r.fail(CodeUtil.error);
+		}
+		return  r;
 	}
 	
 	/**
 	 * 【编辑角色】
 	 */
-	public void update(SysRole sr) {
-		sysRoleDAO.updateById(sr);
+	public BaseRespBean update(SysRole sr) {
+		int ret=sysRoleDAO.updateById(sr);
+		if(ret<0){
+			log.error("【更新角色失败】roleId="+sr.getRoleId());
+			r.fail(CodeUtil.error);
+		}
+		return  r;
 	}
 	
 	/**

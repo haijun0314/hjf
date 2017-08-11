@@ -1,4 +1,4 @@
-<!-- 编辑角色页面-->
+<!-- 更新系统角色页面-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <%	String basePath=request.getContextPath(); %>
@@ -12,7 +12,7 @@ $(document).ready(function(){
 
 /******************表单验证****************************/
 function validate_Form(){
-   var validateForm  = $('#sysRoleForm');
+   var validateForm  = $('#dataForm');
    validateForm.validate({
        rules:{
 			roleName:{required:true,minlength: 2},
@@ -33,30 +33,20 @@ function validate_Form(){
 
 	<div class="row">
 		<div class="col-xs-12">
-			<form
-				action="${contextPath}/sys/role?update&ajax=true&reqType=2"
-				class="form-horizontal" role="form" id="sysRoleForm"
-				name="sysRoleForm">
+			<form action="${contextPath}/sys/role?update&ajax=true&reqType=2"	class="form-horizontal" role="form" id="dataForm"name="dataForm">
 				<input  type="hidden" name="roleId" value="${sr.roleId }"> 
-				
 				<div class="form-group">
-					<label for="roleDesc"
-						class="col-sm-3 control-label no-padding-right"> 角色名称</label>
+					<label for="roleDesc" class="col-sm-3 control-label no-padding-right"> 角色名称</label>
 					<div class="col-sm-9">
-						<input type="text" class="col-xs-10 col-sm-7" placeholder=""
-							id="roleDesc" name="roleDesc" value="${sr.roleDesc }">
+						<input type="text" class="col-xs-10 col-sm-7" placeholder="" id="roleDesc" name="roleDesc" value="${sr.roleDesc }">
 					</div>
 					</div>
 					<div class="form-group">
-					<label for="roleName"
-						class="col-sm-3 control-label no-padding-right"> 角色说明</label>
+					<label for="roleName" class="col-sm-3 control-label no-padding-right"> 角色说明</label>
 					<div class="col-sm-9">
-						<input type="text" class="col-xs-10 col-sm-7" placeholder=""
-							id="roleName" name="roleName" value="${sr.roleName }">
+						<input type="text" class="col-xs-10 col-sm-7" placeholder="" id="roleName" name="roleName" value="${sr.roleName }">
 					</div>
 				</div>
-					 
-				
 				<div class="form-group">
 					<label for="remark"
 						class="col-sm-3 control-label no-padding-right"> 备注</label>
@@ -64,7 +54,6 @@ function validate_Form(){
 						<textarea class="form-control limited" placeholder="" id="remark" name="remark" >${sr.remark}</textarea>
 					</div>
 				</div>
-				
 			</form>
 		</div>
 	</div>

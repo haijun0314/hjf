@@ -1,6 +1,6 @@
 <!--  左侧菜单页面   -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script  src="${contextPath}/static/logic/sys/menu.js" type="text/javascript" ></script>
+<script  src="${contextPath}/static/logic/sys/menuUtil.js" type="text/javascript" ></script>
 <style>
 .nav-list li.open > a:after {
     display: block;
@@ -8,28 +8,10 @@
 
 </style>
 <script type="text/javascript">
-/**
-*左侧菜单跳转
-*/
-/********************获得父.子菜单名称以及选中变色****************************/
-function menuRequest( menucode,url,menuName){
-/********************菜单选中变色****************************/
-	var selectMenu=$("#selectMenu").val();
-	$("#"+selectMenu).removeClass("selected");
-	$("#selectMenu").val(menucode);
-	$("#"+menucode).addClass("selected");
-	AjaxRequest.urlRequest(url+'&ajax=true' ,"right");
-/********************获得父.子菜单名称 左上角导航****************************/	
-	var menubrName=$("#"+menucode.substring(0,6)).html();
-	document.getElementById("menu_b").innerHTML=menuName;
-    document.getElementById("menu_a").innerHTML=menubrName;
-}
+
 $(document).ready(function(){
-	/**
-	* 加载左侧菜单   利用Handlebars模板
-	*/
+	/*加载左侧菜单   利用Handlebars模板*/
 	MenuUtil.loadLeftMenus();
-	  
 });	
 </script>
 <!-- 左侧菜单开始  -->
@@ -80,7 +62,7 @@ $(document).ready(function(){
 		<ul  class="submenu" id="{{menuCode}}">
 		{{#each menuList}}
 				<li id="{{menuCode}}">
-					<a style="cursor:pointer" onclick="menuRequest('{{menuCode}}','{{location}}','{{menuName}}')">
+					<a style="cursor:pointer" onclick="MenuUtil.menuRequest('{{menuCode}}','{{location}}','{{menuName}}')">
 						<font  class="menu-name">{{menuName}}</font> 
 					</a>
 				</li>

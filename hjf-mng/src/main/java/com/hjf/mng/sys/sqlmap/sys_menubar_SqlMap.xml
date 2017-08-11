@@ -88,7 +88,7 @@
 	    where menuId = #{menuId}
   </update>
   <!-- 根据Id更新 -->
-  <update id="updateStatus" parameterType="SysMenubar" >
+  <update id="startOrStop" parameterType="SysMenubar" >
 	    update sys_menubar
 	   <trim prefix="set" prefixOverrides=",">  
 	     <if test="@MyOgnl@isNotEmpty(status)">

@@ -31,14 +31,14 @@ public class RoleAction extends BaseAction {
 	String dataList	   ="framework/sysmanage/role/dataList";
 	String add	       ="framework/sysmanage/role/add";
 	String update	   ="framework/sysmanage/role/update";
-	String permission = "framework/sysmanage/role/permission";
+	String permission  ="framework/sysmanage/role/permission";
 	String detail      ="framework/sysmanage/role/detail";
 	/**
 	 *  角色查询页面【页面显示】
 	 */
 	@RequestMapping(params = "gridView")   
 	public ModelAndView gridView(HttpServletResponse response,Model model,HttpServletRequest request) throws Exception {
-		pm=getPageInfo( new String[] {"roleDesc", "status", "endTime", "startTime"}, request);
+		pm=getPageInfo( new String[] {}, request);
 		pm=sysRoleService.getSysRolePageList(pm);//查询数据	
 		ModelAndView mav=null;
 		if (pageRequest(request)) { 
@@ -54,18 +54,20 @@ public class RoleAction extends BaseAction {
 	 * 添加系统角色
 	 */
 	@RequestMapping(params = "add")   
-	public ModelAndView  add(@ModelAttribute SysRole sysRole ,  Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView  add(SysRole sysRole ,  Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if (pageRequest(request)) {
 			ModelAndView  mav=new ModelAndView(add);
 			return mav;
 		}else {
 			try {
-				sysRoleService.add(sysRole);
+				r=sysRoleService.add(sysRole);
+				if(r.isFail()){
+					MsgUtil.operFail(response);
+				}
 			} catch (Exception e) {
 				 MsgUtil.operFail(response,e);
 				return null; 
 			}
-			
 			MsgUtil.operSuccess( response);
 			return null;
 		}
@@ -92,14 +94,13 @@ public class RoleAction extends BaseAction {
  
 	/**
 	 * 执行更新系统角色
-	 * author libin
+	 * author lihaijun
 	 * createTime   2014-12-8
 	 */
 	@RequestMapping(params = "update")   
-	public ModelAndView  update_sysRole(@ModelAttribute SysRole sr,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView  update(@ModelAttribute SysRole sr,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if (pageRequest(request)) {
-			 String Roleid=request.getParameter("roleId"); 
-			 SysRole sysRole=sysRoleService.getSysRole(new Integer(Roleid));
+			 SysRole sysRole=sysRoleService.getSysRole(sr.getRoleId());
 			 ModelAndView  mav=new ModelAndView(update);
 			 mav.addObject("sr", sysRole);
 			 return mav;
@@ -116,7 +117,7 @@ public class RoleAction extends BaseAction {
 	}		
 	/**
 	 * 分配权限
-	 * author libin
+	 * author lihaijun
 	 * createTime   2014-12-8
 	 */
 	@RequestMapping(params = "permission")   
@@ -177,8 +178,8 @@ public class RoleAction extends BaseAction {
 	/**
 	 * 查询系统角色
 	 */
-	@RequestMapping(params = "getRoles")   
-	public void  getRoles(Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	@RequestMapping(params = "roleList")   
+	public void  roleList(Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String  resource =request.getParameter("resource");
 		query = new Query();
 		query.append("resource",resource);//角色来源  1 总部 2 城市 

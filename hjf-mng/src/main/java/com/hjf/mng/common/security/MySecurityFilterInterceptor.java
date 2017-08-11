@@ -26,6 +26,8 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
+import com.hjf.base.model.MyUserDetails;
+
 
 
 /**

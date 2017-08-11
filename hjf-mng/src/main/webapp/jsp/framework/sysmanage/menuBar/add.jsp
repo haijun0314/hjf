@@ -1,4 +1,4 @@
-<!-- 添加权限页面-->
+<!-- 系统菜单添加页面-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <script src="${contextPath}/static/logic/sys/menu.js" type="text/javascript"></script>
@@ -20,7 +20,7 @@ function changeUrl(){
 }
 /******************表单验证****************************/
 function validate_Form(){
-   var validateForm  = $('#menuBarForm');
+   var validateForm  = $('#dataForm');
    validateForm.validate({
        errorElement: 'span', 
        errorClass: 'help-inline',
@@ -59,7 +59,7 @@ function validate_Form(){
  <body>
 	<div class="row">
 		<div class="col-xs-12">
-			<form action="${contextPath}/sys/security?add&ajax=true&reqType=2"class="form-horizontal" role="form" id="menuBarForm"name="menuBarForm">
+			<form action="${contextPath}/sys/security?add&ajax=true&reqType=2"class="form-horizontal" role="form" id="dataForm"name="dataForm">
 				<div class="form-group">
 					<label for="menuname"
 						class="col-sm-3 control-label no-padding-right">上级菜单</label>

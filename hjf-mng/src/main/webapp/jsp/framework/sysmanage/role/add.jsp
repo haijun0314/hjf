@@ -1,4 +1,4 @@
-<!-- 添加角色页面-->
+<!-- 添加系统角色页面-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <script type="text/javascript">
@@ -13,7 +13,7 @@ function checkExist(){
 }
 /******************表单验证****************************/
 function validate_Form(){
-   var validateForm  = $('#roleForm');
+   var validateForm  = $('#dataForm');
    validateForm.validate({
        
        rules:{
@@ -34,7 +34,7 @@ function validate_Form(){
 </script>
 <div class="row">
 	<div class="col-xs-12">
-		<form action="${contextPath}/sys/role?add&ajax=true&reqType=2" class="form-horizontal" role="form"  id="roleForm" name="roleForm">
+		<form action="${contextPath}/sys/role?add&ajax=true&reqType=2" class="form-horizontal" role="form"  id="dataForm" name="dataForm">
 			
 			<div class="form-group">
 				<label for="roleDesc" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>角色名称</label>

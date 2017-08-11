@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.base.mybatis.Query;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.common.enums.DefaultStatus;
 import com.hjf.common.enums.MenuType;
 import com.hjf.mng.common.security.MenuBarUtil;
@@ -24,7 +25,7 @@ import com.hjf.mng.sys.entity.SysMenubar;
 @Service
 @Transactional
 public class SysMenuBarServiceImpl extends BaseService implements SysMenuBarService {
-	@Resource SysMenubarDAO sysMenubarDAO;
+	@Resource  SysMenubarDAO sysMenubarDAO;
 	@Resource  SysRoleMenuDAO sysRoleMenuDAO;
 	/**
 	 * 分页查询系统菜单
@@ -40,26 +41,13 @@ public class SysMenuBarServiceImpl extends BaseService implements SysMenuBarServ
 			}
 			smb.setParentName(smbP.getMenuName());
 		}
-		
 		return pm;
 	}	
-	/**
-	 * 查询系统导航菜单
-	 */
-	public List getBannerMenuBarList(){
-		Query query=new Query();
-		query.append("menulevel", MenuType.Banner);
-		List<SysMenubar> menuBaList=sysMenubarDAO.queryList(query);
-		return menuBaList;	
-	}	
-	
-	 
-	
 	 
 	/**
 	 * 增加功能
 	 */
-	public int add(SysMenubar smb){
+	public BaseRespBean add(SysMenubar smb){
 		List menuBarList=sysMenubarDAO.queryList(new Query());
 		smb.setTitle(smb.getMenuName());
 		String authoritytype=smb.getAuthorityType();
@@ -69,7 +57,12 @@ public class SysMenuBarServiceImpl extends BaseService implements SysMenuBarServ
 			SysMenubar psmb=(SysMenubar) sysMenubarDAO.getObjById(smb.getParentId());
 			smb=MenuBarUtil.createNewMenubar(smb, psmb, menuBarList);
 		}
-		return sysMenubarDAO.save(smb);
+		int ret= sysMenubarDAO.save(smb);
+		if (ret<0) {
+			log.error("【添加系统菜单失败】"+smb.getMenuName());
+			r.fail();
+		}
+		return r;
 	}
 	 
 	 
@@ -86,8 +79,13 @@ public class SysMenuBarServiceImpl extends BaseService implements SysMenuBarServ
 	/**
 	 * 根据id删除菜单
 	 */
-	public void delete(Integer roleid) {
-		sysMenubarDAO.deleteByID(roleid);
+	public BaseRespBean delete(Integer menuId) {
+		int ret=sysMenubarDAO.deleteByID(menuId);
+		if (ret<0) {
+			log.error("【更新系统菜单失败】menuId="+menuId);
+			r.fail();
+		}
+		return r;
 	}
 	
 	/**
@@ -116,9 +114,13 @@ public class SysMenuBarServiceImpl extends BaseService implements SysMenuBarServ
 	/**
 	 * 更新(更新方法)
 	 */
-	public void update(SysMenubar smb) {
-		sysMenubarDAO.updateById(smb);
-		
+	public BaseRespBean update(SysMenubar smb) {
+		int ret=sysMenubarDAO.update(smb, "startOrStop");
+		if (ret<0) {
+			log.error("【更新系统菜单失败】"+smb.getMenuId());
+			r.fail();
+		}
+		return r;
 	}
 	 
 }

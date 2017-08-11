@@ -1,4 +1,4 @@
-<!-- 系统用户管理页面 -->
+<!-- 系统菜单管理页面 -->
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <!DOCTYPE html>
@@ -7,76 +7,6 @@
 </head>	
 	
 <script>
-$(document).ready(function(){
-	 
-	 
-});
-/***************添加菜单**********************/	
-function add(){
-	 BootstrapDialog.show({
-		 title:'添加菜单',
-         message: $('<div></div>').load('/sys/security?add&Ajax=true'),//加载远程地址
-         buttons: [{
-             label: '确定',
-             icon: 'glyphicon glyphicon-ok',
-             cssClass: 'btn-primary',
-             action: function(dialog) {
-                 if($('#menuBarForm').valid()){
-                 	AjaxRequest.submitFormForModel("menuBarForm",dialog,searchSubmit);//提交数据表单
-                 }
-             }
-         }, {
-             label: '取消',
-             icon: 'glyphicon glyphicon-remove',
-             cssClass: 'btn-danger',
-             action: function(dialog) {
-            	 dialog.close();
-             }
-         }]
-     });
-}
-/***************更新菜单**********************/	
-function update(menuid){
-	 BootstrapDialog.show({
-		 title:'更新菜单',
-         message: $('<div></div>').load('sys/security?update&Ajax=true&menuid='+menuid),//加载远程地址
-         buttons: [{
-             label: '确定',
-             icon: 'glyphicon glyphicon-ok',
-             cssClass: 'btn-primary',
-             action: function(dialog) {
-                 if($('#menuBarUpdateForm').valid()){
-                 	AjaxRequest.submitFormForModel("menuBarUpdateForm",dialog,searchSubmit);//提交数据表单
-                 }
-             }
-         }, {
-             label: '取消',
-             icon: 'glyphicon glyphicon-remove',
-             cssClass: 'btn-danger',
-             action: function(dialog) {
-            	 dialog.close();
-             }
-         }]
-     });
-}
-/***************删除菜单***************************/
-function delete_(menuid){
-	bootbox.confirm("确认要删除数据吗?", function(result) {
-		if(result) {
-			var  url ="${contextPath}/sys/security?delete&menuid="+menuid;
-			AjaxRequest.urlRequestWithMsg(url,searchSubmit) ;
-			}
-		});
-}
-/***************启用，停用服务类型**********************/
-function updateStatus(menucode,operType){
-	bootbox.confirm("确认要改变该菜单状态吗?", function(result) {
-		if(result) {
-			var  url ="${contextPath}/sys/security?updateStatus&menucode="+menucode+"&operType="+operType;
-				AjaxRequest.urlRequestWithMsg(url,searchSubmit()) ;
-			}
-		});
-}
 	 	  
 /***************请求查询***************************/
 function searchSubmit(type){

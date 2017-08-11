@@ -6,9 +6,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.spring.BaseAction;
 import com.hjf.common.util.web.SessionUtil;
-import com.hjf.mng.common.security.MyUserDetails;
 import com.hjf.mng.common.util.ConfigUtil;
 import com.hjf.mng.sys.entity.SysUser;
 import com.hjf.mng.sys.service.SysUserService;

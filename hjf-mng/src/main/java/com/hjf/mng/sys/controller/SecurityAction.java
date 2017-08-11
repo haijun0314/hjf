@@ -42,7 +42,7 @@ public class SecurityAction extends BaseAction{
 	String update       ="framework/sysmanage/menuBar/update";
  
 	 /**
-	  *菜单管理页面【导航菜单查询】
+	  * 菜单管理页面【导航菜单查询】
 	  */
 	@RequestMapping(params="gridView")   
 	public ModelAndView gridView(Model model,HttpServletRequest request,HttpServletResponse response) {
@@ -61,7 +61,6 @@ public class SecurityAction extends BaseAction{
 	}
 	 /**
 	  * 分配权限展示
-	  * createTime   2014-12-16
 	  */
 	@RequestMapping(params="treeView")   
 	public void treeView(Model model,HttpServletRequest request,HttpServletResponse response) {
@@ -90,7 +89,6 @@ public class SecurityAction extends BaseAction{
 	 
 	/**
 	 * 更新菜单【执行操作】
-	 * createTime   2014-12-19
 	 */
 	@RequestMapping(params = "update")
 	public ModelAndView update(@ModelAttribute SysMenubar sysMenubar, HttpServletRequest request,HttpServletResponse response)throws Exception {
@@ -104,7 +102,11 @@ public class SecurityAction extends BaseAction{
 		}
 		else {
 			try {
-				sysMenuBarService.update(sysMenubar);
+				r=sysMenuBarService.update(sysMenubar);
+				if (r.isFail()) {
+					MsgUtil.operFail(response);
+					return null;
+				}
 				mySecurityMetadataSource.loadResourceDefine();
 			 }catch (Exception e) {
 				 MsgUtil.operFail(response,e);
@@ -117,7 +119,6 @@ public class SecurityAction extends BaseAction{
 
 	/**
 	 * 添加菜单【执行添加操作】
-     * createTime   2014-12-18
 	 */
 	@RequestMapping(params = "add")
 	public ModelAndView add(@ModelAttribute SysMenubar smb, Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {
@@ -136,8 +137,8 @@ public class SecurityAction extends BaseAction{
 					smb.setParentId(new Integer(parentId) );
 				}
 				smb.setAuthorityType("2");
-				int ret=sysMenuBarService.add(smb);
-				if (ret<0) {
+				r=sysMenuBarService.add(smb);
+				if (r.isFail()) {
 					MsgUtil.operFail(response);
 					return null;
 				}
@@ -166,7 +167,6 @@ public class SecurityAction extends BaseAction{
  
 	/**
 	 * 删除【要验证是否被使用 】
-	 * createTime   2014-12-19
 	 */
 	@RequestMapping(params = "delete")
 	public void delete(@ModelAttribute SysMenubar smb,HttpServletRequest request,HttpServletResponse response)throws Exception {
@@ -189,22 +189,11 @@ public class SecurityAction extends BaseAction{
 		 
 	/**
 	 * 启用、停用菜单
-	 * @author liubin
-	 *  createTime 2015-1-5
 	 */
-	@RequestMapping(params = "updateStatus")   
-	public void  updateStatus(@ModelAttribute SysMenubar sysMenubar,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	@RequestMapping(params = "startOrStop")   
+	public void  startOrStop(@ModelAttribute SysMenubar menuBar,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try {
-			 String menuCode=request.getParameter("menuCode");
-			 String opertype=request.getParameter("operType");
-			 SysMenubar sysMenubars=new SysMenubar();
-			 if (opertype.equals(StartOrStop.Start.getValue())) {
-				 sysMenubars.setStatus(StartOrStop.Start.getValue());
-			 }else {
-				 sysMenubars.setStatus(StartOrStop.Stop.getValue());
-			}
-			 sysMenubars.setMenuCode(menuCode);
-			 sysMenuBarService.update(sysMenubars);
+			 sysMenuBarService.update(menuBar);
 			 mySecurityMetadataSource.loadResourceDefine();
 		 }catch (Exception e) {
 			 MsgUtil.operFail(response,e);
