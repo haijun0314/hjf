@@ -97,10 +97,15 @@ public class SysRoleServiceImpl  extends BaseService implements SysRoleService  
 	/**
 	 * 【分配权限【先删除权限，在增加权限】
 	 */
-	public void assignPermission(Integer roleId ,String[] menuids) throws Exception 	{
+	public BaseRespBean assignPermission(Integer roleId ,String[] menuids) {
 		if (menuids==null||menuids.length<1) {
-			sysRoleMenuDAO.delete(roleId,"deleteByRoleId"); 
-			return;
+			int ret=sysRoleMenuDAO.delete(roleId,"deleteByRoleId"); 
+			if(ret<0){
+				log.error("【分配权限【先删除权限 失败】"+roleId);
+				r.fail(CodeUtil.error);
+				return r;
+			}
+			return r;
 		}
 		sysRoleMenuDAO.delete(roleId,"deleteByRoleId"); 
 		if (menuids!=null&&menuids.length>0) {
@@ -109,9 +114,15 @@ public class SysRoleServiceImpl  extends BaseService implements SysRoleService  
 				SysRoleMenu srm=new SysRoleMenu();
 				srm.setMenuId(new Integer(menuid));
 				srm.setRoleId(roleId);
-				sysRoleMenuDAO.save(srm);
+				int ret=sysRoleMenuDAO.save(srm);
+				if(ret<0){
+					log.error("【分配权限【增加权限 失败】"+roleId);
+					r.fail(CodeUtil.error);
+					return r;
+				}
 			}
 		}
+		return r;
 	}
 	/**
 	 * 【查询所有角色】
@@ -127,10 +138,6 @@ public class SysRoleServiceImpl  extends BaseService implements SysRoleService  
 		SysRole sysRole = (SysRole) sysRoleDAO.getObjById(roleId);
 		return sysRole;
 	}	
-	
-	
-	
-	 
  
 	/**
 	 * 【查询角色拥有的用户】

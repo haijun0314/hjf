@@ -178,7 +178,7 @@ public class BaseIbatisDAO {
 	 */
 	public int  save(BaseModel bean,String sql)  {
 		if(MyUserDetails.userDetails != null){
-			String createdBy = MyUserDetails.getCurUserDetails().getUsername(); 
+			String createdBy = MyUserDetails.userDetails.getUsername(); 
 			bean.setCreatedBy(createdBy);
 		}
 		bean.setCreatedTime(new Date());
@@ -196,6 +196,8 @@ public class BaseIbatisDAO {
 	}	
 	
 	 
+	
+	
 	
 	
 	/**

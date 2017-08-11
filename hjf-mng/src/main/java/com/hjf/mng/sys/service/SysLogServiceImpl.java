@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.mng.sys.dao.SysLogDAO;
-import com.hjf.mng.sys.dao.SysUserDAO;
 import com.hjf.mng.sys.entity.SysLog;
 
 /**
@@ -23,18 +22,11 @@ import com.hjf.mng.sys.entity.SysLog;
 public class SysLogServiceImpl extends BaseService implements SysLogService {
 	@Resource SysLogDAO sysLogDAO;
 	private List logList=new ArrayList();
-	@Resource SysUserDAO sysUserDAO;
-	/**
-	 * 数据导出
-	 */
-	public List getExpData(PageModel pm){
-		return sysLogDAO.queryExpList(pm);
-	}	
-	
+	 
 	/**
 	 * 增加系统日志到缓存
 	 */
-	public void addCacheLog(SysLog syslog){
+	public void cacheLog(SysLog syslog){
 		this.logList.add(syslog);
 	}	
 	/**
@@ -44,7 +36,7 @@ public class SysLogServiceImpl extends BaseService implements SysLogService {
 		if (logList==null||logList.size()<1)return;
 		for (int i = 0; i < logList.size(); i++) {
 			SysLog syslog=(SysLog)logList.get(i);
-			log.info("添加系统操作日志"+syslog.getLogMessage());
+			log.info("【添加系统操作日志】"+syslog.getLogMessage());
 			sysLogDAO.saveNoSession(syslog);
 		}
 		logList.clear();
@@ -61,7 +53,6 @@ public class SysLogServiceImpl extends BaseService implements SysLogService {
 	 * 根据id查询日志信息
 	 */
 	public SysLog getSysLogById(Integer logId) {
-		
 		return (SysLog) sysLogDAO.getObjById(logId);
 	}
 }

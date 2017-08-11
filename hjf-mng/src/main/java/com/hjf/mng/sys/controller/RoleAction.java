@@ -14,9 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hjf.base.mybatis.Query;
 import com.hjf.base.spring.BaseAction;
+import com.hjf.common.enums.LogType;
+import com.hjf.common.enums.ResultType;
 import com.hjf.common.util.JsonUtil;
 import com.hjf.common.util.MsgUtil;
 import com.hjf.common.util.web.ResponseUtils;
+import com.hjf.mng.common.util.SysLogUtil;
 import com.hjf.mng.sys.entity.SysRole;
 import com.hjf.mng.sys.service.SysRoleService;
  
@@ -62,12 +65,15 @@ public class RoleAction extends BaseAction {
 			try {
 				r=sysRoleService.add(sysRole);
 				if(r.isFail()){
+					SysLogUtil.addlSysLog(request,"添加系统角色【"+sysRole.getRoleDesc()+"】失败",ResultType.Fail);
 					MsgUtil.operFail(response);
 				}
 			} catch (Exception e) {
+				SysLogUtil.addlSysLog(request,"添加系统角色【"+sysRole.getRoleDesc()+"】失败",ResultType.Fail);
 				 MsgUtil.operFail(response,e);
 				return null; 
 			}
+			SysLogUtil.addlSysLog(request,"添加系统角色【"+sysRole.getRoleDesc()+"】成功",ResultType.Success);
 			MsgUtil.operSuccess( response);
 			return null;
 		}
@@ -84,11 +90,17 @@ public class RoleAction extends BaseAction {
 				 MsgUtil.operFail(response,null,"对不起！该角色已经被使用 删除失败！");
 				 return;
 			 }
-			 sysRoleService.delete(new Integer(roleid));
+			 r=sysRoleService.delete(new Integer(roleid));
+			if(r.isFail()){
+				SysLogUtil.addlSysLog(request,"删除系统角色【"+roleid+"】失败",ResultType.Fail);
+				MsgUtil.operFail(response);
+			}
 		 }catch (Exception e) {
+			 SysLogUtil.addlSysLog(request,"删除系统角色【"+roleid+"】失败",ResultType.Fail);
 			 MsgUtil.operFail(response,e);
 			 return;
 		 }
+		SysLogUtil.addlSysLog(request,"删除系统角色【"+roleid+"】成功",ResultType.Success);
 		MsgUtil.operSuccess( response);
 	}
  
@@ -98,21 +110,27 @@ public class RoleAction extends BaseAction {
 	 * createTime   2014-12-8
 	 */
 	@RequestMapping(params = "update")   
-	public ModelAndView  update(@ModelAttribute SysRole sr,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView  update(@ModelAttribute SysRole sysRole,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if (pageRequest(request)) {
-			 SysRole sysRole=sysRoleService.getSysRole(sr.getRoleId());
+			 sysRole=sysRoleService.getSysRole(sysRole.getRoleId());
 			 ModelAndView  mav=new ModelAndView(update);
 			 mav.addObject("sr", sysRole);
 			 return mav;
 		}else {
 			try {
-				 sysRoleService.update(sr);
+				 r=sysRoleService.update(sysRole);
+				 if(r.isFail()){
+					SysLogUtil.addlSysLog(request,"更新系统角色【"+sysRole.getRoleDesc()+"】失败",ResultType.Fail);
+					MsgUtil.operFail(response);
+				 }
 			 }catch (Exception e) {
+				 SysLogUtil.addlSysLog(request,"更新系统角色【"+sysRole.getRoleDesc()+"】失败",ResultType.Fail);
 				 MsgUtil.operFail(response,e);
 				 return null;
 			 }
+			SysLogUtil.addlSysLog(request,"更新系统角色【"+sysRole.getRoleDesc()+"】成功",ResultType.Success);
 			MsgUtil.operSuccess( response);
-			 return null;
+			return null;
 		}
 	}		
 	/**
@@ -131,11 +149,17 @@ public class RoleAction extends BaseAction {
 			try {
 				String idstr=request.getParameter("ids");
 				String [] ids=StringUtils.split(idstr,"-");
-				sysRoleService.assignPermission(new Integer(roleId) ,ids);
+				r=sysRoleService.assignPermission(new Integer(roleId) ,ids);
+				if(r.isFail()){
+					SysLogUtil.addlSysLog(request,"分配权限【"+roleId+"】失败",ResultType.Fail);
+					MsgUtil.operFail(response);
+				}
 			 }catch (Exception e) {
+				 SysLogUtil.addlSysLog(request,"分配权限【"+roleId+"】失败",ResultType.Fail);
 				 MsgUtil.operFail(response,e);
 				 return null;
 			 }
+			SysLogUtil.addlSysLog(request,"分配权限【"+roleId+"】成功",ResultType.Success);
 			MsgUtil.operSuccess( response);
 			 return null;
 		}

@@ -10,10 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hjf.base.exception.CodeUtil;
+import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.spring.BaseAction;
+import com.hjf.common.enums.ResultType;
 import com.hjf.common.util.web.ResponseUtils;
 import com.hjf.common.util.web.SessionUtil;
 import com.hjf.mng.common.util.ConfigUtil;
+import com.hjf.mng.common.util.SysLogUtil;
 import com.hjf.mng.sys.service.SysUserService;
 /**
  * 登录跳转

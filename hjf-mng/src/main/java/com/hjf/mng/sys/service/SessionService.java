@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.common.util.TimeUtil;
 import com.hjf.mng.sys.entity.OnlineUser;
 @Service
@@ -53,23 +54,30 @@ public class SessionService  extends  BaseService  {
 	 /**
 	  *退出在线用户
 	  */
-	public void kickOutOnlineUser(Integer userid) {
-		log.info("【剔除在线用户】  userid..."+userid);
-	    List<Object> userList=sessionRegistry.getAllPrincipals();  
-	    log.info("【剔除在线用户】  当前在线人数"+userList.size()+"人");
-	    for(int i=0; i<userList.size(); i++){  
-	    	MyUserDetails userTemp=(MyUserDetails) userList.get(i);      
-	        if(userTemp.getUserid().equals(userid)){   
-	            List<SessionInformation> sessionInformationList =sessionRegistry.getAllSessions(userTemp, false);  
-	            if (sessionInformationList!=null) {   
-	                for (int j=0; j<sessionInformationList.size(); j++) {  
-	                    sessionInformationList.get(j).expireNow();  
-	                   sessionRegistry.removeSessionInformation(sessionInformationList.get(j).getSessionId());  
-	                   userTemp=null;
-	                }  
-	            }  
-	        }  
-	    }
+	public BaseRespBean kickOutOnlineUser(Integer userid) {
+		 try {
+			log.info("【剔除在线用户】  userid..."+userid);
+		    List<Object> userList=sessionRegistry.getAllPrincipals();  
+		    log.info("【剔除在线用户】  当前在线人数"+userList.size()+"人");
+		    for(int i=0; i<userList.size(); i++){  
+		    	MyUserDetails userTemp=(MyUserDetails) userList.get(i);      
+		        if(userTemp.getUserid().equals(userid)){   
+		            List<SessionInformation> sessionInformationList =sessionRegistry.getAllSessions(userTemp, false);  
+		            if (sessionInformationList!=null) {   
+		                for (int j=0; j<sessionInformationList.size(); j++) {  
+		                    sessionInformationList.get(j).expireNow();  
+		                   sessionRegistry.removeSessionInformation(sessionInformationList.get(j).getSessionId());  
+		                   userTemp=null;
+		                }  
+		            }  
+		        }  
+		    } 
+		 }catch (Exception e){
+			 log.error("【剔除在线用户】  发生异常"+e.getMessage());
+			 r.fail();
+			 return r;
+		 }
+	    return  r;
 	}	
 	
 	

@@ -1,12 +1,11 @@
 package com.hjf.base.spring;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -31,24 +30,7 @@ public class BaseAction {
 	protected Query query = new Query();
 	public    PageModel pm=new PageModel();
 	public    ModelAndView  page_404=new ModelAndView("error/error_404");
-	/**
-	 * 添加代理商参数
-	 */
-	public Integer   getAgentId( ){
-		Integer agentId=MyUserDetails.getCurUserDetails().getAgentId();
-		 return agentId;
-	}	
-
-	
-	/**
-	 * 记录操作日志
-	 */
-	public void   checkVersion(HttpServletRequest request){
-		 String version=request.getParameter("version");
-		
-	}	
-	
-	
+	 
 	/**
 	 * 系统错误返回
 	 */
@@ -58,6 +40,9 @@ public class BaseAction {
 		String jsonStr=JsonUtil.obj2Json(brb);
 		ResponseUtils.renderJson(response,jsonStr);
 	}		
+
+ 
+	
 	
 	
 	/**
@@ -84,24 +69,7 @@ public class BaseAction {
 		ResponseUtils.renderJson(response,jsonStr);
 		log.info(jsonStr);
 	} 
- 
-	
- 
-	/**
-	 * 获取实例化参数
-	 */
-	public Object   getParamsObj_jyw(HttpServletRequest request,String[] params,String  objName)throws Exception{
-		 Map paramMap=(HashMap)RequestUtils.getParameter(request, params);
-		 Class<?> obj=Class.forName("com.jyw.entity."+objName);
-		 Object o = obj.newInstance(); //创建一个实例
-		 try {
-			 BeanUtils.copyProperties(o, paramMap);
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-		
-		 return o;
-	}
+  
 	/**
 	 * 获取分页信息
 	 */

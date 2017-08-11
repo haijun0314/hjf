@@ -20,7 +20,7 @@ public class SysLog extends BaseModel {
 	private Date    logTime;//操作时间
 	private String  logIp;
 	private String  module;
-	private String  operResult;//存在结果 1 成功 2  失败
+	private String  operResult;//操作结果 1 成功 2  失败
 	private String  method;
 	private String  action;
 	private LogType logType;//操作类型    0 新增    1 修改    2 删除    3 查询    4 上传    5 下载  6 登录   可以自定义
@@ -32,8 +32,7 @@ public class SysLog extends BaseModel {
 	
 	
 	/** minimal constructor */
-	public SysLog(LogType logType,String logMessage,String operResult) {
-		this.logType = logType;
+	public SysLog(String  operResult,String logMessage) {
 		this.logMessage=logMessage;
 		this.operResult=operResult;
 	}

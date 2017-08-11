@@ -23,7 +23,7 @@ public interface SysRoleService {
 	//【查询角色拥有的用户】
 	public List getRoleUsers(Integer roleId);
 	//分配权限 
-	public void assignPermission(Integer roleid ,String[] menuids)throws Exception  ;
+	public BaseRespBean assignPermission(Integer roleid ,String[] menuids);
 	//检测角色是否被使用
 	public boolean checkIsBindSysUser(Integer roleId);
 	//【检查是否已经存在】

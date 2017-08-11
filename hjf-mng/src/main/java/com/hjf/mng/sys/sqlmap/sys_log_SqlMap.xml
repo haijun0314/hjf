@@ -5,14 +5,12 @@
 <mapper namespace="SysLog" >
 	<!-- 提取公共WHERE -->
 	<sql id="common_sql_where">    
-	      <where>
 	      	<if test="@MyOgnl@isNotEmpty(params.operResult)">
-	      	 operResult = #{params.operResult}
+	      	 and operResult = #{params.operResult}
 	      	</if>
 	      	<if test="@MyOgnl@isNotEmpty(params.logMessage)">
-	      	 logMessage like concat('%', #{params.logMessage}, '%')
-	      	 	</if>  
-	      </where>
+	      	and  logMessage like concat('%', #{params.logMessage}, '%')
+	      	</if>  
 	</sql>
 	  
   

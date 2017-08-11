@@ -9,7 +9,7 @@
 <script>
 /***************请求查询***************************/
 function searchSubmit(type){
-	   HJF.searchSubmit("/sys/role?gridView",type);
+	   HJF.searchSubmit("/sys/role?gridView");
 }	
 </script>	
  

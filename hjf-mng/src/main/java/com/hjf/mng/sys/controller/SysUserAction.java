@@ -19,11 +19,13 @@ import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.mybatis.Query;
 import com.hjf.base.spring.BaseAction;
 import com.hjf.common.enums.DefaultStatus;
+import com.hjf.common.enums.ResultType;
 import com.hjf.common.enums.StartOrStop;
 import com.hjf.common.enums.UserType;
 import com.hjf.common.util.MsgUtil;
 import com.hjf.common.util.StringUtil;
 import com.hjf.mng.common.util.ConfigUtil;
+import com.hjf.mng.common.util.SysLogUtil;
 import com.hjf.mng.sys.entity.SysMenubar;
 import com.hjf.mng.sys.entity.SysUser;
 import com.hjf.mng.sys.service.SessionService;
@@ -79,13 +81,21 @@ public class SysUserAction extends BaseAction {
 	 */
 	@RequestMapping(params = "kickOutUser")   
 	public void kickOurUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		 String userId=request.getParameter("userId");
 		try {
-			 String userId=request.getParameter("userId");
-			 sessionService.kickOutOnlineUser(new Integer(userId));
+			 r=sessionService.kickOutOnlineUser(new Integer(userId));
+			if(r.isFail()){
+				SysLogUtil.addlSysLog(request," 踢出用户【"+userId+"】失败",ResultType.Fail);
+				MsgUtil.operFail(response);
+			}
+			 
 		 }catch (Exception e) {
+			 log.error("【剔除在线用户】  发生异常"+e.getMessage());
+			 SysLogUtil.addlSysLog(request," 踢出用户【"+userId+"】失败",ResultType.Fail);
 			 MsgUtil.operFail(response,e);
 			 return;
 		 }
+		SysLogUtil.addlSysLog(request, " 踢出用户【"+userId+"】失败", ResultType.Success);  
 		MsgUtil.operSuccess(response);
 	}	
 	 
@@ -126,55 +136,60 @@ public class SysUserAction extends BaseAction {
 				 }
 				 r=sysUserService.addSysUser(sysUser);
 				 if (r.isFail()) {
+					 SysLogUtil.addlSysLog(request, "【添加系统用户】"+sysUser.getUserName()+"失败", ResultType.Fail);
 					 MsgUtil.operFail(response);
 				 }
 			 }catch (Exception e) {
+				 SysLogUtil.addlSysLog(request, "【添加系统用户】"+sysUser.getUserName()+"失败", ResultType.Fail);
+				 log.error("【添加系统用户】  发生异常"+e.getMessage());
 				 MsgUtil.operFail(response,e);
 				 return null;
 			 }
+			
+			SysLogUtil.addlSysLog(request, "【添加系统用户】"+sysUser.getUserName()+"成功", ResultType.Success);
 			MsgUtil.operSuccess( response);
 			return null;
 		}
 	}
 	
-	/**
-	 * 添加代理商账号
-	 */
-	@RequestMapping(params = "addAgent")   
-	public ModelAndView addAgent(SysUser sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		if (pageRequest(request)) {
-			String userType=request.getParameter("userType");//账户类型 0  系统账户 1  城市管理账户   2  城市普通账户
-			query = new Query();
-			query.append("resource", 2);//角色来源  1 总部 2 代理商
-			query.append("status", 0);
-			List roleList=sysRoleService.getSysRoleList(query);
-			ModelAndView  mav=new ModelAndView(addAgent);
-			mav.addObject("roleList", roleList);
-			mav.addObject("userType", userType);
-			return mav;
-		}else {
-			 String [] roleStr=request.getParameterValues("roles");
-			 sysUser.setRoles(StringUtil.convertToString(roleStr, ","));
-			 if (sysUser.getUserType().equals(UserType.AgentUser.getValue())) {
-				 sysUser.setAgentId(getAgentId());
-				 sysUser.setIsSuper(DefaultStatus.No.getValue());
-				 sysUser.setPassword(ConfigUtil.sys_user_defaultPassword);
-			 }
-			try {
-				 boolean isexist=sysUserService.checkUserName(sysUser.getUserName());
-				 if (isexist) {
-					 MsgUtil.operMsg(response,"对不起 该用户名已经存在 请用其他用户名！");
-					 return null;
-				 }
-				sysUserService.addSysUser(sysUser);
-			 }catch (Exception e) {
-				 MsgUtil.operFail(response,e);
-				 return null;
-			 }
-			MsgUtil.operSuccess( response);
-			return null;
-		}
-	}	
+//	/**
+//	 * 添加代理商账号
+//	 */
+//	@RequestMapping(params = "addAgent")   
+//	public ModelAndView addAgent(SysUser sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {
+//		if (pageRequest(request)) {
+//			String userType=request.getParameter("userType");//账户类型 0  系统账户 1  城市管理账户   2  城市普通账户
+//			query = new Query();
+//			query.append("resource", 2);//角色来源  1 总部 2 代理商
+//			query.append("status", 0);
+//			List roleList=sysRoleService.getSysRoleList(query);
+//			ModelAndView  mav=new ModelAndView(addAgent);
+//			mav.addObject("roleList", roleList);
+//			mav.addObject("userType", userType);
+//			return mav;
+//		}else {
+//			 String [] roleStr=request.getParameterValues("roles");
+//			 sysUser.setRoles(StringUtil.convertToString(roleStr, ","));
+//			 if (sysUser.getUserType().equals(UserType.AgentUser.getValue())) {
+//				 sysUser.setAgentId(getAgentId());
+//				 sysUser.setIsSuper(DefaultStatus.No.getValue());
+//				 sysUser.setPassword(ConfigUtil.sys_user_defaultPassword);
+//			 }
+//			try {
+//				 boolean isexist=sysUserService.checkUserName(sysUser.getUserName());
+//				 if (isexist) {
+//					 MsgUtil.operMsg(response,"对不起 该用户名已经存在 请用其他用户名！");
+//					 return null;
+//				 }
+//				sysUserService.addSysUser(sysUser);
+//			 }catch (Exception e) {
+//				 MsgUtil.operFail(response,e);
+//				 return null;
+//			 }
+//			MsgUtil.operSuccess( response);
+//			return null;
+//		}
+//	}	
 	
 	/**
 	 * 更新系统用户
@@ -189,17 +204,20 @@ public class SysUserAction extends BaseAction {
 			return mav;
 		}else {
 			String [] roleStr=request.getParameterValues("roles");
-			 sysUser.setRoles(StringUtil.convertToString(roleStr, ","));
+			sysUser.setRoles(StringUtil.convertToString(roleStr, ","));
 			try {
 				 r=sysUserService.update(sysUser);
 				 if (r.isFail()) {
+					 SysLogUtil.addlSysLog(request, "【更新系统用户】"+sysUser.getUserName()+"失败", ResultType.Fail);
 					 MsgUtil.operFail(response);
 				 }
 			 }catch (Exception e) {
+				 SysLogUtil.addlSysLog(request, "【更新系统用户】"+sysUser.getUserName()+"失败", ResultType.Fail);
 				 MsgUtil.operFail(response,e);
 				 return null;
 			 }
-			MsgUtil.operSuccess( response);
+			 SysLogUtil.addlSysLog(request, "【更新系统用户】"+sysUser.getUserName()+"成功", ResultType.Success);
+			 MsgUtil.operSuccess( response);
 			 return null;
 		}
 	}
@@ -207,10 +225,9 @@ public class SysUserAction extends BaseAction {
 	 * 详情页面
 	 */
 	@RequestMapping(params = "detail")   
-	public ModelAndView  detail(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView  detail(SysUser  sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try {
-			String userId=request.getParameter("userId");
-			SysUser sysUser=sysUserService.detail(new Integer(userId));
+			sysUser=sysUserService.detail(sysUser.getUserId());
 			ModelAndView  mav=new ModelAndView(detail);
 			mav.addObject("sysUser", sysUser);
 			return mav;
@@ -222,22 +239,22 @@ public class SysUserAction extends BaseAction {
 	
 	/**
 	 * 删除系统用户
-	 * @author lihiajun
-	 * createTime: 2014-12-3
-	 * updateTime:2017-08-10 
 	 */
 	@RequestMapping(params = "delete")   
 	public void delete(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String userId=request.getParameter("userId");
 		try {
-			 String userId=request.getParameter("userId");
 			 r=sysUserService.delete(new Integer(userId));
 			 if (r.isFail()) {
+				 SysLogUtil.addlSysLog(request, "【删除系统用户】"+userId+"失败", ResultType.Fail);
 				 MsgUtil.operFail(response);
 			 }
 		 }catch (Exception e) {
+			 SysLogUtil.addlSysLog(request, "【删除系统用户】"+userId+"失败", ResultType.Fail);
 			 MsgUtil.operFail(response,e);
 			 return;
 		 }
+		 SysLogUtil.addlSysLog(request, "【删除系统用户】"+userId+"成功", ResultType.Success);
 		MsgUtil.operSuccess( response);
 	}
 		
@@ -249,39 +266,48 @@ public class SysUserAction extends BaseAction {
 	 */
 	@RequestMapping(params = "startOrStop")   
 	public void  startOrStop(@ModelAttribute SysUser sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		 sysUser=sysUserService.detail(sysUser.getUserId());
+		 String logm="";
+		 if (sysUser.getStatus().equals("0")) {
+			 logm="启用系统账户"+sysUser.getUserName();
+		 }else{
+			 logm="停用系统账户"+sysUser.getUserName();
+		 }
 		try {
-			 String userid=request.getParameter("userId");
-			 String opertype=request.getParameter("operType");
-			 if (opertype.equals(StartOrStop.Start.getValue())) {
-				 sysUser.setStatus(StartOrStop.Start.getValue());
-			 }else {
-				 sysUser.setStatus(StartOrStop.Stop.getValue());
-			}
-			 sysUser.setUserId(new Integer(userid));
-			 sysUserService.update(sysUser);
+			 r=sysUserService.update(sysUser);
+			 if (r.isFail()) {
+				 SysLogUtil.addlSysLog(request, logm+"失败", ResultType.Fail);
+				 MsgUtil.operFail(response);
+			 }
 		 }catch (Exception e) {
+			 SysLogUtil.addlSysLog(request, logm+"失败", ResultType.Fail);
 			 MsgUtil.operFail(response,e);
 			 return;
 		 }
-		MsgUtil.operSuccess( response);
+		 SysLogUtil.addlSysLog(request, logm+"成功", ResultType.Success);
+		 MsgUtil.operSuccess( response);
 	}	
 	
 	/**
 	 *  管理员密码重置
-	 *  @author liubin
-	 *  createTime 2014-12-3
 	 */
 	@RequestMapping(params = "resetPassword")   
 	public void  resetPassword(@ModelAttribute SysUser sysUser,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
 		try {
-			 String userid=request.getParameter("userId");
-			 sysUser.setUserId(new Integer(userid));
 			 sysUser.setPassword(ConfigUtil.sys_user_defaultPassword);
-			 sysUserService.update(sysUser);
+			 r=sysUserService.update(sysUser);
+			 sysUser=sysUserService.detail(sysUser.getUserId());
+			 if (r.isFail()) {
+				 SysLogUtil.addlSysLog(request, sysUser.getUserName()+"管理员密码重置失败", ResultType.Fail);
+				 MsgUtil.operFail(response);
+			 }
 		 }catch (Exception e) {
+			 SysLogUtil.addlSysLog(request, sysUser.getUserName()+"管理员密码重置失败", ResultType.Fail);
 			 MsgUtil.operFail(response,e);
 			 return;
 		 }
+		SysLogUtil.addlSysLog(request, sysUser.getUserName()+"管理员密码重置成功", ResultType.Success);
 		MsgUtil.operSuccess( response);
 	}	
 	
@@ -303,25 +329,25 @@ public class SysUserAction extends BaseAction {
 			MsgUtil.operMsg( response,"该登陆名称可以使用");
 		}
 	}
-	/**
-	 * 城市管理员查询页面【页面显示】
-	 * @author liubin
-	 * createTime 2014-12-3
-	 */
-	@RequestMapping(params = "gridViewAgent")   
-	public ModelAndView gridViewAgent(HttpServletRequest request,HttpServletResponse response)  throws Exception{
-		pm=getPageInfo(new String[] {"userName", "status"},request);
-		pm.append("agentId", getAgentId());
-		pm=sysUserService.getUserPageList(pm);//查询数据
-		ModelAndView mav=null;
-		if (pageRequest(request)) {
-			 mav=new ModelAndView(layoutAgent);
-		}else { 
-			 mav=new ModelAndView(dataListAgent);
-		}
-		mav.addObject("pm", pm);
-		return mav; 
-	} 
+//	/**
+//	 * 城市管理员查询页面【页面显示】
+//	 * @author liubin
+//	 * createTime 2014-12-3
+//	 */
+//	@RequestMapping(params = "gridViewAgent")   
+//	public ModelAndView gridViewAgent(HttpServletRequest request,HttpServletResponse response)  throws Exception{
+//		pm=getPageInfo(new String[] {"userName", "status"},request);
+//		pm.append("agentId", getAgentId());
+//		pm=sysUserService.getUserPageList(pm);//查询数据
+//		ModelAndView mav=null;
+//		if (pageRequest(request)) {
+//			 mav=new ModelAndView(layoutAgent);
+//		}else { 
+//			 mav=new ModelAndView(dataListAgent);
+//		}
+//		mav.addObject("pm", pm);
+//		return mav; 
+//	} 
 	
 	
 	
@@ -344,12 +370,18 @@ public class SysUserAction extends BaseAction {
 			}
 				sysUser.setPassword(newPassword);
 				sysUser.setUserId(MyUserDetails.getCurUserDetails().getUserid());
-				sysUserService.update(sysUser);
+				r=sysUserService.update(sysUser);
+				 if (r.isFail()) {
+					 SysLogUtil.addlSysLog(request, "系统账户"+MyUserDetails.getCurUserDetails().getUsername()+"修改登录密码失败", ResultType.Fail);
+					 MsgUtil.operFail(response);
+				 }
 				MyUserDetails.getCurUserDetails().setPassword(newPassword);
 			}catch(Exception e){
+				SysLogUtil.addlSysLog(request, "系统账户"+MyUserDetails.getCurUserDetails().getUsername()+"修改登录密码失败", ResultType.Fail);
 				MsgUtil.operFail(response,e);
 				return null;
 			}
+			SysLogUtil.addlSysLog(request, "系统账户"+MyUserDetails.getCurUserDetails().getUsername()+"修改登录密码成功", ResultType.Success);
 			MsgUtil.operSuccess( response);
 			return null;
 		}

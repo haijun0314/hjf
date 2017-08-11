@@ -99,10 +99,10 @@ var UserUtil = {
 				});
 		},
 		/***************启用，停用服务类型**********************/
-		 startOrStop:function(userId,operType){
+		 startOrStop:function(userId,status){
 			bootbox.confirm("确认要改变该状态吗?", function(result) {
 				if(result) {
-					var  url ="/sys/sysUser?startOrStop&userId="+userId+"&operType="+operType;
+					var  url ="/sys/sysUser?startOrStop&userId="+userId+"&status="+status;
 					AjaxRequest.urlRequestWithMsg(url,searchSubmit) ;
 					}
 				});
