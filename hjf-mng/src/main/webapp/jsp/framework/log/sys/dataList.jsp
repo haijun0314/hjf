@@ -40,7 +40,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<jsp:include page="../../common/pager.jsp"></jsp:include>
+			<jsp:include page="../../../common/pager.jsp"></jsp:include>
 		</div>
 	</div>
 </div>

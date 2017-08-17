@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "Account">
+	 
+	<!--查询列表数据  -->
+	<select id="queryPagelist" parameterType="PageModel" resultType="java.util.HashMap">
+		select  *
+		from  account a where 1=1
+		<if test="@MyOgnl@isNotEmpty(params.keyword)">
+		 AND a.telephone  like CONCAT('%', #{params.keyword}, '%')   OR 
+			a.accountName like CONCAT('%', #{params.keyword}, '%')
+		</if> 
+		order  by  createdTime  desc
+		limit #{startRow},#{pageSize}
+	</select> 
+	
+	<!-- 查询列表数据 lp -->
+	<select id="queryCount" parameterType="PageModel" resultType="java.lang.Integer">
+		select count(*)
+		from  account a
+		where 1=1
+		<if test="@MyOgnl@isNotEmpty(params.keyword)">
+		 AND a.telephone  like CONCAT('%', #{params.keyword}, '%')   OR 
+			a.accountName like CONCAT('%', #{params.keyword}, '%')
+		</if> 
+	</select>
+
+	<!-- 查询id查询 -->
+	<select id="findById" parameterType="java.lang.Integer" resultType="Account" >
+	    select * from account  where    accountId=#{accountId} and  delFlag=0  
+	</select>	 
+
+	 
+	<!-- 用户密码登录   -->
+	<select id="findByTelephone" parameterType="java.lang.String" resultType="Account">
+		select * from account where  telephone=#{telephone}   and  delFlag=0  
+	</select>	
+	 
+	 
+	<!-- 更新账户 -->
+	<update id="updateById" parameterType="Account" >
+	   update account 
+  	   	   <trim prefix="set"  suffixOverrides="," >
+  	   	   	 <if test="@MyOgnl@isNotEmpty(updatedTime)">
+	   		 	updatedTime=#{updatedTime},
+	   		 </if>
+  	   	   	 <if test="@MyOgnl@isNotEmpty(cityName)">
+	   		 	cityName=#{cityName},
+	   		 </if>
+  	   	   	 <if test="@MyOgnl@isNotEmpty(cityNameFull)">
+	   		 	cityNameFull=#{cityNameFull},
+	   		 </if>
+  	   	   	 <if test="@MyOgnl@isNotEmpty(cityCode)">
+	   		 	cityCode=#{cityCode},
+	   		 </if>
+  	   	   	 <if test="@MyOgnl@isNotEmpty(address)">
+	   		 	address=#{address},
+	   		 </if>	
+  	   	   	 
+  	   	   	 <if test="@MyOgnl@isNotEmpty(headPic)">
+	   		 	headPic=#{headPic},
+	   		 </if>
+	    	 <if test="@MyOgnl@isNotEmpty(password)">
+	   		 	password=#{password},
+	   		 </if>	
+	   </trim>
+	   where accountId = #{accountId}
+	</update> 
+</mapper>

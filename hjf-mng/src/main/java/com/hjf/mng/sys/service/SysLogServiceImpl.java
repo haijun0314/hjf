@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
+import com.hjf.mng.sys.dao.SysLogClientDAO;
 import com.hjf.mng.sys.dao.SysLogDAO;
 import com.hjf.mng.sys.entity.SysLog;
 
@@ -21,8 +22,16 @@ import com.hjf.mng.sys.entity.SysLog;
 @Transactional
 public class SysLogServiceImpl extends BaseService implements SysLogService {
 	@Resource SysLogDAO sysLogDAO;
+	@Resource SysLogClientDAO sysLogClientDAO;
 	private List logList=new ArrayList();
 	 
+	//分页查询客户端日志
+	public PageModel getClientLogPageList(PageModel pm){
+		return sysLogClientDAO.queryPageList(pm);
+	}	
+	
+	
+	
 	/**
 	 * 增加系统日志到缓存
 	 */

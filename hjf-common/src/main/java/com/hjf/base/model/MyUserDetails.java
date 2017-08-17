@@ -65,15 +65,7 @@ public class  MyUserDetails implements UserDetails {
 	 */
 	public static MyUserDetails userDetails=null;
 	public static MyUserDetails getCurUserDetails() {
-		if (userDetails!=null) {
-			//return userDetails;
-		}
-		Object o=SecurityContextHolder .getContext().getAuthentication().getPrincipal();
-		if (o==null||o.equals("anonymousUser")) {
-			return null;
-		}else{
-			userDetails = (MyUserDetails) SecurityContextHolder .getContext().getAuthentication().getPrincipal();
-		}
+		userDetails = (MyUserDetails) SecurityContextHolder .getContext().getAuthentication().getPrincipal();
 		return userDetails;
 	}	
 	

@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hjf.base.spring.BaseAction;
-import com.hjf.common.enums.StartOrStop;
 import com.hjf.common.util.JsonUtil;
-import com.hjf.common.util.MsgUtil;
+import com.hjf.common.util.web.MsgUtil;
 import com.hjf.common.util.web.ResponseUtils;
 import com.hjf.mng.common.security.MenuBarUtil;
 import com.hjf.mng.common.security.MySecurityMetadataSource;
@@ -193,7 +192,7 @@ public class SecurityAction extends BaseAction{
 	@RequestMapping(params = "startOrStop")   
 	public void  startOrStop(@ModelAttribute SysMenubar menuBar,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try {
-			 sysMenuBarService.update(menuBar);
+			 sysMenuBarService.startOrStop(menuBar);
 			 mySecurityMetadataSource.loadResourceDefine();
 		 }catch (Exception e) {
 			 MsgUtil.operFail(response,e);

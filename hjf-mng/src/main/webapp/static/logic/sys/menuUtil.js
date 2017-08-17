@@ -102,7 +102,7 @@ var MenuUtil = {
                  cssClass: 'btn-primary',
                  action: function(dialog) {
                      if($('#dataForm').valid()){
-                     	AjaxRequest.submitFormForModel("menuBarUpdateForm",dialog,searchSubmit);//提交数据表单
+                     	AjaxRequest.submitFormForModel("dataForm",dialog,searchSubmit);//提交数据表单
                      }
                  }
              }, {

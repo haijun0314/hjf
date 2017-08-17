@@ -1,7 +1,7 @@
 <!-- 系统菜单添加页面-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/common/taglibs.jsp"%>
-<script src="${contextPath}/static/logic/sys/menu.js" type="text/javascript"></script>
+<script src="${contextPath}/static/logic/sys/menuUtil.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	validate_Form();//初始化表单验证

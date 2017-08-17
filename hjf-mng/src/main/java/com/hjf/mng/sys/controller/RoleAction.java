@@ -14,10 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hjf.base.mybatis.Query;
 import com.hjf.base.spring.BaseAction;
-import com.hjf.common.enums.LogType;
 import com.hjf.common.enums.ResultType;
 import com.hjf.common.util.JsonUtil;
-import com.hjf.common.util.MsgUtil;
+import com.hjf.common.util.web.MsgUtil;
 import com.hjf.common.util.web.ResponseUtils;
 import com.hjf.mng.common.util.SysLogUtil;
 import com.hjf.mng.sys.entity.SysRole;

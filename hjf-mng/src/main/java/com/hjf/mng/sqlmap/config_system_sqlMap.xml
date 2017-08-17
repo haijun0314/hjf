@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ConfigSystem" >
+	<!--查询系统配置  -->
+	<select id="findById" parameterType="java.lang.Integer" resultType="ConfigSystem">
+		select *  from config_system  
+	</select>
+	
+	<!-- 更新系统配置 -->
+	<update id="updateById" parameterType="ConfigSystem" >
+	   update config_system 
+  	   	 <trim prefix="set"  suffixOverrides="," >
+  	   	   	 
+	   	</trim>
+	</update> 
+	 
+	 
+
+ 
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysLogClient" >
+ 
+	<!-- 提取公共WHERE -->
+	<sql id="common_sql_where">    
+	      	<if test="@MyOgnl@isNotEmpty(params.startTime)">
+	      		and log.logTime  &gt;= #{params.startTime}
+	      	</if>
+	      	<if test="@MyOgnl@isNotEmpty(params.endTime)">
+	      		and log.logTime &lt; #{params.endTime}
+	      	</if>
+	      	<if test="@MyOgnl@isNotEmpty(params.content)">
+	      	    and  log.content like concat('%', #{params.content}, '%')
+	      	    
+	      	    
+	      	</if>  
+	</sql>
+	  
+  
+  <!-- 查询数量 -->
+  <select id="queryCount" parameterType="PageModel" resultType="java.lang.Integer" >
+    	 select count(*) 
+    	 from sys_log_client log,account a  
+    	 where a.accountId=log.accountId
+		<include refid="common_sql_where"/>   
+  </select>
+  <!-- 查询分页数据 -->
+  <select id="queryPagelist"  parameterType="PageModel"  resultType="java.util.HashMap">
+   		 select log.* ,a.accountName
+    	 from sys_log_client log,account a  
+    	 where a.accountId=log.accountId
+		<include refid="common_sql_where"/>   
+   		 order  by  logTime  desc
+   		 limit #{startRow},#{pageSize}
+  </select> 
+</mapper>

@@ -11,6 +11,8 @@ public interface SysLogService {
 	public void persistenceCacheLog();
 	//分页查询系统管日志
 	public PageModel getSysLogPageList(PageModel pm);
+	//分页查询客户端日志
+	public PageModel getClientLogPageList(PageModel pm);
 	//根据id查询日志信息
 	public SysLog getSysLogById(Integer logId);
 }

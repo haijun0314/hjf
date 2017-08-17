@@ -8,12 +8,17 @@
 	 	 <typeAlias alias="myOngl" type="com.hjf.base.mybatis.Ognl" />
 		 <typeAlias alias="Query" type="com.hjf.base.mybatis.Query" />
 		 <typeAlias alias="PageModel" type="com.hjf.base.model.PageModel" />
+		 <typeAlias alias="SysLogClient" type="com.hjf.mng.sys.entity.SysLogClient" />
 		 <typeAlias alias="SysLog" type="com.hjf.mng.sys.entity.SysLog" />
 		 <typeAlias alias="SysMenubar" type="com.hjf.mng.sys.entity.SysMenubar" />
 		 <typeAlias alias="SysRoleMenu" type="com.hjf.mng.sys.entity.SysRoleMenu" />
 		 <typeAlias alias="SysRole" type="com.hjf.mng.sys.entity.SysRole" />
 		 <typeAlias alias="SysUserRole" type="com.hjf.mng.sys.entity.SysUserRole" />
 		 <typeAlias alias="SysUser" type="com.hjf.mng.sys.entity.SysUser" />
+		 
+		 <typeAlias alias="Account" type="com.hjf.mng.entity.Account" />
+		 <typeAlias alias="ConfigSystem" type="com.hjf.mng.entity.ConfigSystem" />
+		 
 	</typeAliases> 
 	<typeHandlers>
 		<typeHandler javaType="com.hjf.common.enums.DefaultStatus" handler="com.hjf.common.enums.handler.BaseEnumHandler"/>
@@ -38,8 +43,21 @@
 		 <mapper resource="com/hjf/mng/sys/sqlmap/sys_menubar_SqlMap.xml" />
 		 <mapper resource="com/hjf/mng/sys/sqlmap/sys_role_menu_SqlMap.xml" />
 		 <mapper resource="com/hjf/mng/sys/sqlmap/sys_log_SqlMap.xml" />
+		 <mapper resource="com/hjf/mng/sys/sqlmap/sys_log_client_sqlMap.xml" />
 	     <mapper resource="com/hjf/mng/sys/sqlmap/sys_user_SqlMap.xml" />
 	     
+	     <!-- 业务数据 -->
+		 <mapper resource="com/hjf/mng/sqlmap/account_SqlMap.xml" />	    
+	     <mapper resource="com/hjf/mng/sqlmap/config_system_sqlMap.xml" />	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	     
 	</mappers>
 

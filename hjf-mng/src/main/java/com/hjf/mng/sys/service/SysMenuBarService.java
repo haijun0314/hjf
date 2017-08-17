@@ -24,4 +24,6 @@ public interface SysMenuBarService {
 	public SysMenubar getSysMenuBar(Integer menuid);
 	//更新功能(更新方法)
 	public BaseRespBean update(SysMenubar smb);
+	//启用、停用菜单
+	public BaseRespBean startOrStop(SysMenubar smb);
 }

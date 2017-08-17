@@ -115,12 +115,30 @@ public class SysMenuBarServiceImpl extends BaseService implements SysMenuBarServ
 	 * 更新(更新方法)
 	 */
 	public BaseRespBean update(SysMenubar smb) {
-		int ret=sysMenubarDAO.update(smb, "startOrStop");
+		int ret=sysMenubarDAO.updateById(smb);
 		if (ret<0) {
 			log.error("【更新系统菜单失败】"+smb.getMenuId());
 			r.fail();
 		}
 		return r;
 	}
+	
+	
+	/**
+	 * 启用、停用菜单
+	 */
+	public BaseRespBean startOrStop(SysMenubar smb) {
+		int ret=sysMenubarDAO.update(smb,"startOrStop");
+		if (ret<0) {
+			log.error("【启用、停用菜单失败】"+smb.getMenuId());
+			r.fail();
+		}
+		return r;
+	}
+	
+	
+	
+	
+	
 	 
 }
