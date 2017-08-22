@@ -1,18 +1,18 @@
  
 var data={
-	noteList:[]	,
+	carouseList:[]	,
 	page	:0
 }
  
 var index=new Vue({
-  el: '#app_index',
+  el: '#wrapper',
   data:data
 })
 
-loadData=function(){
-	var url="note?noteList&page="+data.page;
+loadCarouses=function(){
+	var url="market?carouses";
 	AjaxUtils.loadData(url,'',function(respData){
-		data.noteList=respData.datas;
+		data.carouseList=respData.datas;
 	});
 }
-loadData();
+loadCarouses();

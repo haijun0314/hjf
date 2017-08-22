@@ -5,8 +5,6 @@
             this.seckillInit();
             this.suggestInit();
             this.browserDetectiveInit();
-            this.appDownloadInit();
-            this.lazyLoadInit()
         },
         isInViewport: function(a) {
             if (!a || 1 !== a.nodeType) return ! 1;
@@ -46,39 +44,7 @@
             },
             !1)
         },
-        appDownloadInit: function() {
-            var a = this;
-            b(".landing .top span").on("click",
-            function() {
-                a.appDownload(window.landingUrlConfig)
-            });
-            b(".landing-app-download").on("click",
-            function() {
-                a.appDownload(window.landingAppUrlConfig)
-            });
-            b("#closeLanding").on("click",
-            function() {
-                b(".landing").remove();
-                a.tempClose("landing")
-            });
-            b(".app-download-wrapper").find(".full").each(function(c, e) {
-                b(this).on("click",
-                function() {
-                    a.appDownload(window.appUrlConfig[0])
-                })
-            });
-            b(".app-download-wrapper").find(".half").each(function(c, e) {
-                b(this).on("click",
-                function() {
-                    a.appDownload(window.appUrlConfig[c % 2])
-                })
-            });
-            b(".close-app-download").on("click",
-            function() {
-                b(this).parent().remove();
-                a.tempClose(b(this).parent().data("pos"))
-            })
-        },
+        
         openApp: function(a, b) {
             var e = Date.now(),
             d = document.createElement("IFRAME");
@@ -101,13 +67,7 @@
             },
             0)
         },
-        appDownload: function(a) {
-            var b = this; ! a.app_url && (a.app_url = "dangdang://");
-            this.openApp(a.app_url,
-            function() {
-                b.browser.versions.android ? location.href = a.android_url: b.browser.versions.ios && (location.href = a.iphone_url)
-            })
-        },
+        
         slideInit: function(a) {
             var b = this;
             a.on("scrollStart",
@@ -148,7 +108,8 @@
                     preventDefault: !0
                 });
                 a.pageNum = 0;
-                a.pageSize = b(".J_top_slider li").length;
+                a.pageSize = b(".J_top_slider li").length;//正确
+                a.pageSize = 5;//暂时解决轮播图问题
                 this.slideInit(a)
             }
         },
@@ -189,20 +150,7 @@
                 speed: 1
             })).start()
         },
-        lazyLoadInit: function() {
-            window.rec_last_page = 0;
-            var a = this;
-            b(".lazy").each(function() {
-                a.isInViewport(this) && a.images(b(this))
-            });
-            window.onscroll = function() {
-                f.goTop();
-                b(".lazy").each(function() {
-                    a.images(b(this))
-                });
-                0 == b(".rec-prds").length && !0 != b(".rec-prds-wrapper").data("lazyLoad") && b(window).scrollTop() + window.innerHeight > b(".rec-prds-wrapper").offset().top - 150 && (b(".rec-prds-wrapper").data("lazyLoad", !0), a.recPrdsInit())
-            }
-        },
+         
         recPrdsInit: function() {
             this.recPrdsWrapperTpl = '<h2 class="title">\u63a8\u8350\u5546\u54c1</h2><div class="rec-prds"><ul></ul></div>';
             this.recPrdsTpl = ['<li data-page-nubmer="<%= pageNum %>" >\n<a href="<%= callback_url %>">', '<img class="lazy" src="' + window.proxyAssets + '/coreimages/bg_pic.png" imgsrc="<%= image_url %>" alt="">', '<div class="rec-prds-detail">\n<p class="rec-prds-name"><%= name%></p>\n<p class="price">\n    <span class="rob">\n        <span class="sign">&yen;</span>\n        <span class="num"><%=price%></span>\n        <span class="tail"></span>\n    </span>\n</p>\n</div>\n</a>\n</li>'].join("\n");
@@ -301,24 +249,13 @@
             var a = document.documentElement,
             b = a.clientWidth;
             b && (b /= 320, 2 < b && (b = 2), a.style.fontSize = 20 * b + "px")
-        },
-        goTop: function() {
-            var a = document.body.scrollTop || document.documentElement.scrollTop,
-            c = b(window).height(),
-            e = b(".fixed_box"),
-            d = b(".top")[0];
-            a > c ? e.show() : e.hide();
-            this.isInViewport(d) && e.hide()
         }
+        
     };
     b(document).ready(function() {
         f.fontSizeInit();
         FastClick.attach(document.body);
         f.init();
-        window.submit_search = function() {
-            "" == b("#keyword").val() && b("#keyword").val("\u5c3e\u54c1\u6c47");
-            return ! 0
-        }
     });
     window.onresize = function() {
         f.fontSizeInit()

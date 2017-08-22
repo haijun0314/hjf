@@ -26,7 +26,6 @@
      var proxyAssets = "/h5touchassets";
      var index_url = "";
 </script>
-
 <!-- 首页搜索区  -->
 <header id="search" dd_name="首页搜索区">
     <div class="dd-logo">
@@ -34,7 +33,7 @@
     </div>
     <div class="search_box">
         <div class="search">
-            <form id="index_search_form" method="get" action="" target="_parent" onsubmit="return submit_search();">
+            <form id="index_search_form" method="get" action="" target="_parent">
                 <div class="text_box">
                     <input id="keyword" name="keyword" type="text" placeholder="请输入您的宝贝" class="keyword text" onkeydown="this.style.color=&#39;#404040&#39;" autocomplete="off">
                 </div>
@@ -47,46 +46,23 @@
     <div class="search_list"></div>
 </header>
 
-<!-- 首页焦点轮播区  -->
 <section id="wrapper">
+	<!-- 首页焦点轮播区  -->
 	<section class="top-slider-wrapper" dd_name="首页焦点轮播区">
 	  <section data-widget="topSlider" class="J_top_slider index-slider">
 	    <ul class="top-slider" style="width: 500%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-2588px, 0px) translateZ(0px);">
-	          <li style="width:20%">
-	      <a href="" dd_name="焦点轮播图1">
-	                        <img src="/static/images/lxqj-0929-700-270.jpg" alt="预留">
-	                </a>
-	      </li>
-	          <li style="width:20%">
-	      <a href="" dd_name="焦点轮播图2">
-	                        <img class="" alt="预留" src="/static/images/108-700-270.jpg">
-	                </a>
-	      </li>
-	          <li style="width:20%">
-	      <a href="" dd_name="焦点轮播图3">
-	                        <img class="" alt="预留" src="/static/images/nbewxj-1008-700x270.jpg">
-	                </a>
-	      </li>
-	          <li style="width:20%">
-	      <a href="" dd_name="焦点轮播图4">
-	                        <img class="" alt="预留" src="/static/images/700270jinse922.jpg">
-	                </a>
-	      </li>
-	          <li style="width:20%">
-	      <a href="" dd_name="焦点轮播图5">
-	                        <img class="" alt="预留" src="/static/images/700-270-0801.jpg">
-	                </a>
-	      </li>
-	        </ul>
+	      <li style="width:20%"  v-for="carouse in  carouseList"> <a href="" dd_name="焦点轮播图1"> <img :src="carouse.pic">  </a>  </li>
+	    </ul>
 	    <div class="top-slider-indicator">
-	               <span class="dot"></span>
-	                     <span class="dot"></span>
-	                     <span class="dot"></span>
-	                     <span class="dot"></span>
-	                     <span class="dot on"></span>
-	              </div>
+	 		<span class="dot"></span>
+	        <span class="dot"></span>
+	        <span class="dot"></span>
+	        <span class="dot"></span>
+	        <span class="dot on"></span>
+	    </div>
 	  </section>
 	</section>
+	<!-- 首页功能区 -->
 	<ul class="index-nav" dd_name="首页功能区">
 			<li><a href="" dd_name="分类"><img class="" src="/static/images/fenlei.png"><span>分类</span></a></li>
 			<li><a href="" dd_name="立减5元"><img class="" src="/static/images/xiazai-0605.png"><span>立减5元</span></a></li>
@@ -96,14 +72,13 @@
 			<li><a href="" dd_name="童书榜"><img class="" src="/static/images/tognshubang-0604.png"><span>促销榜</span></a></li>
 			<li><a href="" dd_name="9块9"><img class="" src="/static/images/9.9.png"><span>优惠商品</span></a></li>
 			<li><a href="" dd_name="电子书"><img class="" src="/static/images/dianzihsu.png"><span>更多商品</span></a></li>
-		</ul>
+	</ul>
     <section class="seckilling" dd_name="首页秒杀区">
         <div class="seckilling-box"> 
             <div class="seckilling-title">
             <span class="seckilling-name">秒购</span>
             <span class="seckilling-icon"></span> 
             <div class="seckilling-content" data-widget="countdown" data-end-time="1444381201" data-left-time="12191" data-is-begin="0">
-
             </div> 
         </div> 
         <div class="seckilling-con" id="seckill_index"> 
@@ -207,7 +182,7 @@
     </section>
     <section class="floor" dd_name="">
     	<h2>
-	        <a class="title">推荐商品</a>
+	        <a class="title_1">推荐商品</a>
 	        <a href="" class="more" dd_name="更多">更多</a>
         </h2>
 		<dl>
@@ -218,7 +193,7 @@
 	</section>
     <section class="floor" dd_name="">
    		<h2>
-	        <a class="title">优惠商品</a>
+	        <a class="title_1">优惠商品</a>
 	        <a href="" class="more" dd_name="更多">更多</a>
         </h2>
 		<dl>
@@ -229,7 +204,7 @@
 	</section>
     <section class="floor" dd_name="">
     	<h2>
-         <a class="title">热卖商品</a>
+         <a class="title_1">热卖商品</a>
          <a href="" class="more" dd_name="更多">更多</a>
     	</h2>
 		<dl>
@@ -240,7 +215,7 @@
 	</section>
     <section class="floor" dd_name="">
 	    <h2>
-	         <a class="title">最新商品</a>
+	         <a class="title_1">最新商品</a>
 	         <a href="" class="more" dd_name="更多">更多</a>
 	 	</h2>
 		<dl>
@@ -249,8 +224,10 @@
     	    <dd><a href=""><img class="" src="/static/images/88590011636295_y.jpg"></a></dd>
 	    </dl>
 	</section>
-
 </section>
+
+
+
 <footer class="footer new">
     <nav class="b-nav">
         <p>
@@ -267,6 +244,7 @@
 <script src="static/logic/mod_countdown.js"></script>
 <script src="static/logic/mod_suggest.js"></script>
 <script src="static/logic/mod_index.js"></script>
+
     <!--主体部分 结束-->
 	<!--底部固定导航 开始-->
 	<div class="weui-tabbar">
@@ -287,7 +265,8 @@
 			<p class="weui-tabbar__label">我的</p>
 		</a>
 	</div>
- <script src="static/logic/index.js"></script>
+<script src="static/logic/index.js"></script>
+
 </body>
 
 </html>

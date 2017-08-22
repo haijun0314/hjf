@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<script src="static/js/head.js"></script>
+	
+  </head>
+  <script type="text/javascript">
+  	SysUtil.checkLogin();
+  </script>
+  
+  
+<body ontouchstart>
+	<div id="app_index">
+				<div class="bd detailtop" id="prolist" v-for="carouse in  carouseList">
+			<a href="#">
+				<div class="weui_cells_title"> {{carouse.content}}</div>
+			</a>
+		
+		</div>
+	</div>
+ <script src="static/logic/index.js"></script>
+</body>
+
+</html>
+
+

@@ -11,7 +11,7 @@
 		 <typeAlias alias="Account" type="com.hjf.app.entity.Account" />
 		 <typeAlias alias="Note" type="com.hjf.app.entity.Note" />
 		 <typeAlias alias="SysLogClient" type="com.hjf.app.entity.SysLogClient" />
-		 
+		 <typeAlias alias="MarketCarousel" type="com.hjf.app.entity.MarketCarousel" />
 	</typeAliases> 
 	<typeHandlers>
 		<typeHandler javaType="com.hjf.common.enums.DefaultStatus" handler="com.hjf.common.enums.handler.BaseEnumHandler"/>
@@ -30,11 +30,10 @@
 		说明：如果xxMapper.xml配置文件放在和xxMapper.java统一目录下，mappers也可以省略，因为org.mybatis.spring.mapper.MapperFactoryBean默认会去查找与xxMapper.java相同目录和名称的xxMapper.xml
 	-->
 	<mappers>
-	 
 		 <mapper resource="com/hjf/app/sqlmap/account_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/note_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/sys_log_client_sqlMap.xml" />
-	     
+	     <mapper resource="com/hjf/app/sqlmap/market_carousel_sqlMap.xml" />
 	     
 	</mappers>
 
