@@ -109,7 +109,6 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
 		//静态资源
 		filterAuthorities.add("login");
 		filterAuthorities.add("test");
-		filterAuthorities.add("note");
 	}	
 	
 }

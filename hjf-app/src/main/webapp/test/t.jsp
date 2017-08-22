@@ -1,336 +1,281 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>jQuery WeUI</title>
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-">
-
-<link rel="stylesheet" href="/static/css/weui.min.css">
-<link rel="stylesheet" href="/static/css/jquery-weui.css">
-<link rel="stylesheet" href="/test/css/demos.css">
-
-  </head>
-
-  <body ontouchstart>
-
-    <header class='demos-header'>
-      <h1 class="demos-title">jQuery WeUI</h1>
-      <p class='demos-sub-title'>轻量强大的UI库，不仅仅是 WeUI</p>
-    </header>
-
-    <div class="weui-grids">
-      <a href="test/weui/buttons.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_button.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Button
-        </p>
-      </a>
-      <a href="test/weui/cell.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_cell.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          List
-        </p>
-      </a>
-      <a href="test/weui/form.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_cell.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Form
-        </p>
-      </a>
-      <a href="test/weui/flex.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_cell.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Flex
-        </p>
-      </a>
-      <a href="test/weui/toast.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_toast.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Toast
-        </p>
-      </a>
-      <a href="test/weui/dialog.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_dialog.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Dialog
-        </p>
-      </a>
-      <a href="test/weui/progress.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_progress.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Progress
-        </p>
-      </a>
-      <a href="test/weui/msg.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_msg.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Msg
-        </p>
-      </a>
-      <a href="test/weui/article.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_article.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Article
-        </p>
-      </a>
-      <a href="test/weui/action-sheet.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_actionSheet.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          ActionSheet
-        </p>
-      </a>
-      <a href="test/weui/icons.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_icons.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Icons
-        </p>
-      </a>
-      <a href="test/weui/panel.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_panel.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Panel
-        </p>
-      </a>
-      <a href="test/weui/navbar.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_tab.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Navbar
-        </p>
-      </a>
-      <a href="test/weui/tabbar.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_tab.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Tabbar
-        </p>
-      </a>
-      <a href="test/weui/searchbar.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_search_bar.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          SearchBar
-        </p>
-      </a>
-      <a href="test/weui/toptip.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_msg.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Toptip
-        </p>
-      </a>
-      <a href="test/weui/loadmore.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_new.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Loadmore
-        </p>
-      </a>
-      <a href="test/weui/slider.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_new.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Slider
-        </p>
-      </a>
-      <a href="test/weui/uploader.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_new.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Uploader
-        </p>
-      </a>
-      <a href="test/weui/badge.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_new.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Badge
-        </p>
-      </a>
-      <a href="test/weui/footer.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_new.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Footer
-        </p>
-      </a>
-      <a href="test/weui/preview.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_new.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Preview
-        </p>
-      </a>
-      <a href="test/weui/gallery.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_new.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Gallery
-        </p>
-      </a>
-    </div>
-
-    <div class="demos-header">
-      <h2 class='demos-second-title'>拓展组件</h2>
-      <p class='demos-sub-title'>jQuery WeUI 专属组件</p>
-    </div>
-
-    <div class="weui-grids">
-      <a href="test/weui/ptr.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_ptr.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          下拉刷新
-        </p>
-      </a>
-      <a href="test/weui/infinite.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_up.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          滚动加载
-        </p>
-      </a>
-      <a href="test/weui/picker.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_picker.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Picker
-        </p>
-      </a>
-      <a href="test/weui/calendar.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_calendar.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Calendar
-        </p>
-      </a>
-      <a href="test/weui/city-picker.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_city.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          City Picker
-        </p>
-      </a>
-      <a href="test/weui/datetime-picker.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_datetime.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Datetime
-        </p>
-      </a>
-      <a href="test/weui/swiper.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_swiper.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Swiper
-        </p>
-      </a>
-      <a href="test/weui/noti.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_msg.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Notification
-        </p>
-      </a>
-      <a href="test/weui/select.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_select.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Select
-        </p>
-      </a>
-      <a href="test/weui/popup.html" class="weui-grid js_grid">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_panel.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Popup
-        </p>
-      </a>
-      <a href="test/weui/photo-browser.html" class="weui-grid js_grid open-popup">
-        <div class="weui-grid__icon">
-          <img src="images/icon_nav_photo.png" alt="">
-        </div>
-        <p class="weui-grid__label">
-          Photos
-        </p>
-      </a>
-    </div>
-
-    <div class="weui-footer">
-      <p class="weui-footer__links">
-        <a href="test/weui/http://jqweui.com" class="weui-footer__link">jQuery-WeUI 首页</a>
-      </p>
-      <p class="weui-footer__text">Copyright © 2016 jqweui.io</p>
-    </div>
-
-    <style>
-      .weui-footer {
-        margin: 25px 0 10px 0;
-      }
-    </style>
-
-
-    <script src="/static/js/jquery-2.1.4.js"></script>
-<script src="/static/js/fastclick.js"></script>
-<script>
-  $(function() {
-    FastClick.attach(document.body);
-  });
+<html class="mdd-index" style="font-size: 40px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>首页</title>
+    <meta name="charset" content="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="application-name" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="version" content="ddtouch">
+    <meta http-equiv="Cache-Control" content="must-revalidate,no-cache">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/app.css?v=20150605">
+</head>
+<body>
+<script type="text/javascript">
+     var proxyAssets = "/h5touchassets";
+     var index_url = "";
 </script>
-<script src="/static/js/jquery-weui.js"></script>
 
-  </body>
 
-</html>
+<header id="search" dd_name="首页搜索区">
+    <div class="dd-logo">
+    <a href="" dd_name="logo跳转"></a>
+    </div>
+    <div class="search_box">
+        <div class="search">
+            <form id="index_search_form" method="get" action="" target="_parent" onsubmit="return submit_search();">
+                <div class="text_box">
+                    <input id="keyword" name="keyword" type="text" placeholder="请输入您的宝贝" class="keyword text" onkeydown="this.style.color=&#39;#404040&#39;" autocomplete="off">
+                </div>
+                <input type="submit" value="" class="submit" dd_name="搜索">
+                <input type="hidden" value="d256b1d537fe186e53c0444399341c24" name="sid">
+            </form>
+        </div>
+      </div>
+    <div class="header-category"><a href="" dd_name="跳转分类"><em>分类</em></a></div>
+    <div class="search_list"></div>
+</header>
+<section id="wrapper">
+<section class="top-slider-wrapper" dd_name="首页焦点轮播区">
+  <section data-widget="topSlider" class="J_top_slider index-slider">
+    <ul class="top-slider" style="width: 500%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-2588px, 0px) translateZ(0px);">
+          <li style="width:20%">
+      <a href="" dd_name="焦点轮播图1">
+                        <img src="/static/images/lxqj-0929-700-270.jpg" alt="预留">
+                </a>
+      </li>
+          <li style="width:20%">
+      <a href="" dd_name="焦点轮播图2">
+                        <img class="" alt="预留" src="/static/images/108-700-270.jpg">
+                </a>
+      </li>
+          <li style="width:20%">
+      <a href="" dd_name="焦点轮播图3">
+                        <img class="" alt="预留" src="/static/images/nbewxj-1008-700x270.jpg">
+                </a>
+      </li>
+          <li style="width:20%">
+      <a href="" dd_name="焦点轮播图4">
+                        <img class="" alt="预留" src="/static/images/700270jinse922.jpg">
+                </a>
+      </li>
+          <li style="width:20%">
+      <a href="" dd_name="焦点轮播图5">
+                        <img class="" alt="预留" src="/static/images/700-270-0801.jpg">
+                </a>
+      </li>
+        </ul>
+    <div class="top-slider-indicator">
+               <span class="dot"></span>
+                     <span class="dot"></span>
+                     <span class="dot"></span>
+                     <span class="dot"></span>
+                     <span class="dot on"></span>
+              </div>
+  </section>
+</section>
+	<ul class="index-nav" dd_name="首页功能区">
+			<li><a href="" dd_name="分类"><img class="" src="/static/images/fenlei.png"><span>分类</span></a></li>
+			<li><a href="" dd_name="立减5元"><img class="" src="/static/images/xiazai-0605.png"><span>立减5元</span></a></li>
+			<li><a href="" dd_name="购物车"><img class="" src="/static/images/gouwuche.png"><span>购物车</span></a></li>
+			<li><a href="" dd_name=""><img class="" src="/static/images/wodedangdang-h5.png"><span>个人信息</span></a></li>
+			<li><a href="" dd_name="好书榜"><img class="" src="/static/images/haoshubang.png"><span>热卖榜</span></a></li>
+			<li><a href="" dd_name="童书榜"><img class="" src="/static/images/tognshubang-0604.png"><span>促销榜</span></a></li>
+			<li><a href="" dd_name="9块9"><img class="" src="/static/images/9.9.png"><span>优惠商品</span></a></li>
+			<li><a href="" dd_name="电子书"><img class="" src="/static/images/dianzihsu.png"><span>更多商品</span></a></li>
+		</ul>
+    <section class="seckilling" dd_name="首页秒杀区">
+        <div class="seckilling-box"> 
+            <div class="seckilling-title">
+            <span class="seckilling-name">秒购</span>
+            <span class="seckilling-icon"></span> 
+            <div class="seckilling-content" data-widget="countdown" data-end-time="1444381201" data-left-time="12191" data-is-begin="0">
 
+            </div> 
+        </div> 
+        <div class="seckilling-con" id="seckill_index"> 
+            <ul class="clearfix">
+                                                <li>
+                        <a href="" dd_name="秒杀品1">
+                            <p class="pic"><img class="" src="/static/images/1199158435-1_b.jpg"></p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">1.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                            </p>
+                         </a>
+                     </li>
+                                                                <li>
+                        <a href="" dd_name="秒杀品2">
+                            <p class="pic"><img class="" src="/static/images/1317267830-1_b.jpg"></p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">1.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                                <!--<span class="discount">折</span>-->
+                            </p>
+                         </a>
+                     </li>
+                <li>
+                    <a href="" dd_name="秒杀品3">
+                        <p class="pic"><img class="" src="/static/images/1231286936-1_b.jpg"></p>
+                        <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">1.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                            <!--<span class="discount">折</span>-->
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="" dd_name="秒杀品3">
+                        <p class="pic"><img class="" src="/static/images/4.jpg"></p>
+                        <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">1.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                            <!--<span class="discount">折</span>-->
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="" dd_name="秒杀品3">
+                        <p class="pic"><img class="" src="/static/images/5.jpg"></p>
+                        <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">1.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                            <!--<span class="discount">折</span>-->
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="" dd_name="秒杀品3">
+                        <p class="pic"><img class="" src="/static/images/6.jpg"></p>
+                        <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">1.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                            <!--<span class="discount">折</span>-->
+                        </p>
+                    </a>
+                </li>
+                                        </ul>
+        </div>
+        </div>
+    </section>
+    <section class="banner" dd_name="楼间推荐区">
+         <section data-widget="bannerSlider" class="J_banner_slider banner-slider" id="bannerSlider_99659" dd_name="轮播推荐区99659">
+        <ul class="banner-slider" style="width: 200%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-647px, 0px) translateZ(0px);">
+                  <li style="width:50%">
+          <a href="" dd_name="轮播推荐1"><img class="" src="/static/images/10banner-620X1501.jpg"></a>
+          </li>
+                  <li style="width:50%">
+          <a href="" dd_name="轮播推荐2"><img class="" src="/static/images/lppz600-150.jpg"></a>
+          </li>
+                </ul>
+        <div class="banner-slider-indicator">
+                           <span class="dot"></span>
+                                     <span class="dot on"></span>
+                          </div>
+      </section>
+        </section>
+    <section class="floor" dd_name="">
+    <h2>
+         <a class="title">推荐商品</a>
+                  <a href="" class="more" dd_name="更多">更多</a>
+             </h2>
+	<dl>
+		    	    <dt><a href="" dd_name=""><img class="" src="/static/images/DHC-h51.jpg"></a></dt>
+	    
+		    	    <dd><a href=""><img class="" src="/static/images/liangpinpuzih53.jpg"></a></dd>
+	    
+		    	    <dd><a href=""><img class="" src="/static/images/doujiangjih52.jpg"></a></dd>
+	    
+	    </dl>
+	</section>
+    <section class="floor" dd_name="">
+    <h2>
+         <a class="title">优惠商品</a>
+                  <a href="" class="more" dd_name="更多">更多</a>
+             </h2>
+	<dl>
+		    	    <dt><a href=""><img class="" src="/static/images/h5-k1-1008-nbewxj2015.jpg"></a></dt>
+	    
+		    	    <dd><a href=""><img class="" src="/static/images/h5-k3-1008-xsqxk.jpg"></a></dd>
+	    
+		    	    <dd><a href=""><img class="" src="/static/images/h5-k2-1008-slbdmj.jpg"></a></dd>
+	    
+	    </dl>
+	</section>
+    <section class="floor" dd_name="">
+    <h2>
+         <a class="title">热卖商品</a>
+                  <a href="" class="more" dd_name="更多">更多</a>
+             </h2>
+	<dl>
+		    	    <dt><a href="" dd_name=""><img class="" src="/static/images/310x449ts929.jpg"></a></dt>
+	    
+		    	    <dd><a href=""><img class="" src="/static/images/309x224ts0929_01.jpg"></a></dd>
+
+		    	    <dd><a href=""><img class="" src="/static/images/309x224ts0929_02.jpg"></a></dd>
+
+	    </dl>
+	</section>
+
+
+
+
+    <section class="floor" dd_name="">
+    <h2>
+         <a class="title">最新商品</a>
+                  <a href="" class="more" dd_name="更多">更多</a>
+             </h2>
+	<dl>
+		    	    <dt><a href="" dd_name=""><img class="" src="/static/images/h5-w1-1009.jpg"></a></dt>
+	    
+		    	    <dd><a href=""><img class="" src="/static/images/ww_h5_9.30.jpg"></a></dd>
+	    
+		    	    <dd><a href=""><img class="" src="/static/images/88590011636295_y.jpg"></a></dd>
+	    
+	    </dl>
+	</section>
+
+</section>
+<footer class="footer new">
+    <nav class="b-nav">
+        <p>
+            <a href="" ontouchstart="">提建议</a>
+            <a class="red" href="" ontouchstart="">触屏版</a>
+            <a href="" ontouchstart="">电脑版</a>
+            <a href="" ontouchstart="">帮&nbsp;&nbsp;助</a>
+        </p>
+    </nav>
+</footer>
+<script src="p/zepto.min.js"></script>
+<script src="p/iscroll5.min.js"></script>
+<script src="p/fastclick.min.js"></script>
+<script src="p/mod_countdown.min.js"></script>
+<script src="p/mod_suggest.min.js"></script>
+<script src="p/mdd_index.min.js"></script>
+
+
+</body>
 

@@ -52,14 +52,12 @@ public class RegisterServiceImpl extends BaseService  implements RegisterService
 		try {
 			//创建账户
 			Account a=AccountUtil.createAccount(q);
-			int accountId=accountService.addAccount(a);
-			if (accountId<0) {
+			a=accountService.addAccount(a);
+			if (a==null||a.getAccountId()==null) {
 				r.fail(CodeUtil.e_1005);
 				log.info("【账户注册】失败"+q.getTelephone());
 				return r;
 			}
-			a.setAccountId(accountId);;
-			r.setAccountId(accountId);
 			AccountUtil.createToken(a);
 			SessionUtil.setSession(ConfigUtil.sys_session_isLocal,ConfigUtil.Session_Login_User, a);
 			CookieUtil.setCookie(ConfigUtil.Cookie_Login_User, a.getUserToken());

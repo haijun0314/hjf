@@ -78,8 +78,7 @@ public class AccountServiceImpl   extends BaseService implements AccountService 
 	/**
 	 * 【添加账户】
 	 */
-	public int addAccount(Account a)	{
-		int id=accountDAO.saveWithReturnId(a);
-		return id;
+	public Account addAccount(Account a)	{
+		return (Account) accountDAO.saveWithReturnId(a);
 	}	
 }

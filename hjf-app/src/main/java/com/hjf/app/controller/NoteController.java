@@ -29,7 +29,7 @@ public class NoteController extends BaseAction{
 	 */
 	@RequestMapping(params = "addNote")   
 	public void addNote(HttpServletRequest request,HttpServletResponse response) {
-		checkVersion(request);
+		 
 		try {
 			BaseRespBean   r=new BaseRespBean();
 			NoteReqBean    q=new NoteReqBean();
@@ -52,7 +52,7 @@ public class NoteController extends BaseAction{
 	 */
 	@RequestMapping(params = "detail")   
 	public void detail(HttpServletRequest request,HttpServletResponse response) {
-		checkVersion(request);
+		
 		try {
 			NoteDetailRespBean   r=new NoteDetailRespBean();
 			NoteReqBean    q=new NoteReqBean();
@@ -75,7 +75,7 @@ public class NoteController extends BaseAction{
 	 */
 	@RequestMapping(params = "myNoteList")   
 	public void myNoteList(HttpServletRequest request,HttpServletResponse response) {
-		checkVersion(request);
+		
 		try {
 			BaseRespBean   r=new BaseRespBean();
 			PageBean      pb=new PageBean(request);
@@ -95,7 +95,7 @@ public class NoteController extends BaseAction{
 	 */
 	@RequestMapping(params = "noteList")   
 	public void noteList(HttpServletRequest request,HttpServletResponse response) {
-		checkVersion(request);
+		
 		try {
 			BaseRespBean   r=new BaseRespBean();
 			PageBean      pb=new PageBean(request);

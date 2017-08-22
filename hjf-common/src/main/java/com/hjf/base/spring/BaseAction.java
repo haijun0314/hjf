@@ -40,9 +40,6 @@ public class BaseAction {
 		String jsonStr=JsonUtil.obj2Json(brb);
 		ResponseUtils.renderJson(response,jsonStr);
 	}		
-
- 
-	
 	
 	
 	/**

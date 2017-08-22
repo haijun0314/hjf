@@ -19,5 +19,5 @@ public interface AccountService {
 	//【查看账户信息】
 	public Account getAccountByTelephone(String telephone)	;	
 	//【添加账户】
-	public int addAccount(Account a)	;
+	public Account addAccount(Account a)	;
 }
