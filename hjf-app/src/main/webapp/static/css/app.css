@@ -27,31 +27,7 @@ a {
     background:#f2f2f2
 }
 body{background-color: #eee;padding: 0;min-width: 300px; max-width: 667px;margin: 0 auto;}
-/*index app downlond*/
-.app-download-wrapper{overflow:hidden;position: relative;}
-.app-download.half{display:block;float:left;width:50%;}
-.app-download.half img{width:100%;height:auto;}
-.app-download img{width: 100%;}
-.close-app-download{position:absolute;right:.5rem;top:.5rem;display:inline-block;width: 1.25rem;height:1.25rem;background:url(../images/close-app-download.png) no-repeat center center;background-size: 1.25rem 1.25rem}
-/*guide page*/
-.landing{position: fixed;width:100%;height:101%;top:0;left:0;z-index:99;overflow:hidden;background-color: #fff;background-size:cover;transform: translate3d(0,0,0);-webkit-transform: translate3d(0,0,0);}
-.landing em{display:block;}
-.landing .top{height:75%;width:100%;font-size:.9rem;overflow:hidden;position:relative;background-color: #fff;background: url(../images/landing-bg.png) center center no-repeat; background-size: cover;}
-.landing .top p{display:block;height:7.25rem;width:8.5rem;margin:0 auto;position:absolute;top:50%;left:50%;}
-.landing .top span{display:block;height:100%;width:100%;background:url(../images/landing-logo.png) center top no-repeat;background-size:4.7rem 4.7rem;position:relative;margin-top:-3.625rem;margin-left:-4.25rem;}
-.landing .top span a{display:block;width:100%;text-align:center;position:absolute;bottom:0;left:0;height:1.9rem;line-height:1.9rem;border:1px solid #3c3c46;color:#3c3c46;border-radius:.95rem;}
-.landing .bottom{height:25%;width:100%;font-size:.8rem;color:#fff;overflow:hidden;position:relative;bottom:0;left:0;}
-.landing .bottom .left,.landing .bottom .right{display:block;position:relative;overflow: visible;}
-.landing .bottom .left{width:70%;left:0;z-index:2;}
-.landing .bottom .right{width:80%;left:30%;z-index:1;}
-.landing .bottom .left em,.landing .bottom .right em{position:absolute;top:0;border-radius:15rem;}
-.landing .bottom .left em{width:20.625rem;height:20.625rem;background-color:#ff6057;right:0;}
-.landing .bottom .right em{width:20.625rem;height:20.625rem;background-color:#ff463c;left:0;}
-.landing .bottom .link{position:absolute;top:50%;left:0;height:100%;width:100%;}
-.landing .bottom ul{position:relative;margin-top:-.5rem;z-index:3;overflow:hidden;}
-.landing .bottom ul li{height:100%;float:left;width:50%;display:block;text-align:center;}
-.landing .bottom ul li a{display:inline-block;color:white;line-height:2rem;}
-
+ 
 header{background-color:#ffffff; width: 100%;position:relative;height:2.2rem;border-bottom: solid 1px #e4e4e4;}
 .dd-logo {vertical-align: middle;position:absolute;top:0;left:0;height:2.2rem;width:2.5rem;
 }

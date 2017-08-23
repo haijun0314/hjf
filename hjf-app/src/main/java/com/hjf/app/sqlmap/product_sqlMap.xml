@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Product" >
+  
+	<select id="findById" parameterType="java.lang.Integer" resultType="Product">
+		select  *  from product where  productId=#{productId} 
+	</select>	 
+	<!--减少库存-->
+	<update id="reduceStore" parameterType="Product">
+		update  product set store=store-1
+		<if test="@MyOgnl@isNotEmpty(status)">
+			,  status =#{status}
+		</if>
+		where productId=#{productId}
+	</update>
+	<!--增加库存-->
+	<update id="addStore" parameterType="Product">
+		update  product set store=store+1
+		<if test="@MyOgnl@isNotEmpty(status)">
+			,status =#{status}
+		</if>
+		where productId=#{productId}
+	</update>
+	<!-- 搜索商品 -->
+	<select id="search" parameterType="PageBean" resultType="java.util.HashMap">
+		select  p.productId,p.productName,p.productNO,p.pic,p.pics,price, marketPrice
+		from  product p 
+		where    p.delFlag=0 and status=0 and store>0
+		<if test="@MyOgnl@isNotEmpty(params.productType)">
+			and  productType =#{params.productType}
+		</if>
+		<if test="@MyOgnl@isNotEmpty(params.brandId)">
+			and  brandId =#{params.brandId}
+		</if>
+		<if test="@MyOgnl@isNotEmpty(params.categoryId)">
+			and  categoryId =#{params.categoryId}
+		</if>
+		 
+		<if test="@MyOgnl@isNotEmpty(params.keyWord)">
+			and  productName like CONCAT('%',#{params.keyWord},'%')  
+		</if>
+		order  by  p.createdTime desc
+		limit #{startRow},#{pageSize}
+	</select>   
+  
+ 	 
+</mapper>

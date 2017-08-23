@@ -70,18 +70,6 @@ html,body{font-size:20px;}
 .t-nav ul li .category{background-image:url(../coreimages/h-category.png);}
 .t-nav ul li .cart{background-image:url(../coreimages/h-cart.png);}
 .t-nav ul li .user{background-image:url(../coreimages/h-user.png);}
-/** 底部导航 **/
-.footer{width:100%;overflow:hidden;padding:0 0 1.5rem;background-color:#fff;}
-.footer .status-bar{background: #fff;height:2.2rem;line-height:2.2rem;overflow: hidden;color:#4d525d;border-bottom:1px solid #e5e5e5;border-top:1px solid #e5e5e5;font-size:.7rem;}
-.footer .status-bar a{float: left;display: inline-block;margin-left:1rem;color: #4D525D;}
-.footer .status-bar .nickname{max-width: 50%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;color: #4D525D;}
-.footer .status-bar .top{float: right;padding: 0 .4rem 0 1rem;background:transparent url(../coreimages/goto-top-new.png) .2rem center no-repeat;background-size:.475rem .575rem;font-size:.6rem;padding-left:.8rem;}
-.footer .b-nav{margin:.25rem .5rem;}
-.footer .b-nav p{text-align:center;}
-.footer .b-nav p a{font-size:.65rem;padding:0 .25rem;line-height:1.3rem;color: #323232;}
-.footer .b-nav p a.red{color:#fe435d;}
-.footer .b-nav p a:active, .footer .b-nav p a:hover, .footer .b-nav p a:focus{color:#fe463c;}
-.footer .copyright p{text-align:center;color: #999;font-size:.6rem;}
 /* common pop */
 .popup{display:none;width:100%;height:100%;position:fixed;top:0;left:0;z-index:10;}
 .popup .box{display:table;width:100%;height:100%;text-align:center;}

@@ -12,6 +12,11 @@
 		 <typeAlias alias="Note" type="com.hjf.app.entity.Note" />
 		 <typeAlias alias="SysLogClient" type="com.hjf.app.entity.SysLogClient" />
 		 <typeAlias alias="MarketCarousel" type="com.hjf.app.entity.MarketCarousel" />
+ 		 <typeAlias alias="Product" type="com.hjf.app.entity.Product" />
+		 <typeAlias alias="ProductBrand" type="com.hjf.app.entity.ProductBrand" />
+		 <typeAlias alias="ProductCategory" type="com.hjf.app.entity.ProductCategory" />		 
+		 
+	
 	</typeAliases> 
 	<typeHandlers>
 		<typeHandler javaType="com.hjf.common.enums.DefaultStatus" handler="com.hjf.common.enums.handler.BaseEnumHandler"/>
@@ -34,7 +39,9 @@
 		 <mapper resource="com/hjf/app/sqlmap/note_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/sys_log_client_sqlMap.xml" />
 	     <mapper resource="com/hjf/app/sqlmap/market_carousel_sqlMap.xml" />
-	     
+		 <mapper resource="com/hjf/app/sqlmap/product_brand_sqlMap.xml" />
+		 <mapper resource="com/hjf/app/sqlmap/product_category_sqlMap.xml" />
+		 <mapper resource="com/hjf/app/sqlmap/product_sqlMap.xml" />
 	</mappers>
 
 </configuration>  

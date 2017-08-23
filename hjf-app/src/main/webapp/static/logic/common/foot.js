@@ -1,0 +1,18 @@
+document.writeln("<div class=\'weui-tabbar\'>");
+document.writeln("	    <a href=\'/\' class=\'weui-tabbar__item \'>");
+document.writeln("		    <div class=\'weui-tabbar__icon\'> <i class=\'sstfont sst-shouye\'></i> </div>");
+document.writeln("		    <p class=\'weui-tabbar__label\'>首 页</p>");
+document.writeln("	    </a>");
+document.writeln("		<a href=\'/news/index.html\' class=\'weui-tabbar__item \'>");
+document.writeln("			<div class=\'weui-tabbar__icon\'> <i class=\'sstfont sst-xuetang\'></i> </div>");
+document.writeln("			<p class=\'weui-tabbar__label\'>分类</p>");
+document.writeln("		</a>");
+document.writeln("		<a href=\'/dashi/index.html\' class=\'weui-tabbar__item \'>");
+document.writeln("			<div class=\'weui-tabbar__icon\'> <i class=\'sstfont sst-dashizaixian\'></i> </div>");
+document.writeln("			<p class=\'weui-tabbar__label\'>购物车</p>");
+document.writeln("		</a>");
+document.writeln("		<a href=\'/shop/index/index.html\' class=\'weui-tabbar__item \'>");
+document.writeln("			<div class=\'weui-tabbar__icon\'> <i class=\'sstfont sst-shangcheng\'></i> </div>");
+document.writeln("			<p class=\'weui-tabbar__label\'>我的</p>");
+document.writeln("		</a>");
+document.writeln("	</div>");
