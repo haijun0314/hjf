@@ -22,7 +22,16 @@
   </script>
   
   
-<body>
+<body class="weui-pull-to-refresh">
+  <div class="weui-pull-to-refresh__layer">
+    <div class='weui-pull-to-refresh__arrow'></div>
+    <div class='weui-pull-to-refresh__preloader'></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新</div>
+  </div>
+
+
 <script type="text/javascript">
      var proxyAssets = "/h5touchassets";
      var index_url = "";
@@ -111,7 +120,7 @@
 	    </dl>
 	</section>
     
-	<section class="seckilling" dd_name="有好货">
+	<section class="seckilling infinite" dd_name="有好货">
 	    <div class="seckilling-box"> 
 	        <div class="seckilling-title">
 	        <span class="seckilling-name">有好货</span>
@@ -130,82 +139,44 @@
 	                        </p>
 	                     </a>
 	                 </li>
-	                                                            <li>
-	                    <a href="" dd_name="秒杀品2">
-	                        <p class="pic"><img class="" src="/static/images/1317267830-1_b.jpg"></p>
-	                        <p class="price">
-	                            <span class="rob">
-	                                <span class="sign">¥</span>
-	                                <span class="num">1.00</span>
-	                                <span class="tail"></span>
-	                            </span>
-	                            <!--<span class="discount">折</span>-->
-	                        </p>
-	                     </a>
-	                 </li>
-	            <li>
-	                <a href="" dd_name="秒杀品3">
-	                    <p class="pic"><img class="" src="/static/images/1231286936-1_b.jpg"></p>
-	                    <p class="price">
-	                            <span class="rob">
-	                                <span class="sign">¥</span>
-	                                <span class="num">1.00</span>
-	                                <span class="tail"></span>
-	                            </span>
-	                        <!--<span class="discount">折</span>-->
-	                    </p>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="" dd_name="秒杀品3">
-	                    <p class="pic"><img class="" src="/static/images/4.jpg"></p>
-	                    <p class="price">
-	                            <span class="rob">
-	                                <span class="sign">¥</span>
-	                                <span class="num">1.00</span>
-	                                <span class="tail"></span>
-	                            </span>
-	                        <!--<span class="discount">折</span>-->
-	                    </p>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="" dd_name="秒杀品3">
-	                    <p class="pic"><img class="" src="/static/images/5.jpg"></p>
-	                    <p class="price">
-	                            <span class="rob">
-	                                <span class="sign">¥</span>
-	                                <span class="num">1.00</span>
-	                                <span class="tail"></span>
-	                            </span>
-	                        <!--<span class="discount">折</span>-->
-	                    </p>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="" dd_name="秒杀品3">
-	                    <p class="pic"><img class="" src="/static/images/6.jpg"></p>
-	                    <p class="price">
-	                            <span class="rob">
-	                                <span class="sign">¥</span>
-	                                <span class="num">1.00</span>
-	                                <span class="tail"></span>
-	                            </span>
-	                        <!--<span class="discount">折</span>-->
-	                    </p>
-	                </a>
-	            </li>
 	         </ul>
 	    </div>
 	    </div>
 	</section>
-	
-	
-	
 </section>
 
 
-<div style="height: 54px"> </div>
+<div class="weui-loadmore">
+  <i class="weui-loading"></i>
+  <span class="weui-loadmore__tips">正在加载</span>
+</div>
+<!-- body 顶部加上如下代码 -->
+<div style="height: 54px" id="content-padded"> </div>
+
+<script type="text/javascript">
+/*********下拉刷新*************/
+$(document.body).pullToRefresh().on("pull-to-refresh", function() {
+     setTimeout(function() {
+    	IndexUtils.loadIndexData();
+       $(document.body).pullToRefreshDone();
+     }, 2000);
+});
+ 
+ 
+/**********滚动刷新*************/ 
+ var loading = false;  //状态标记
+ $(document.body).infinite().on("infinite", function() {
+   if(loading) return;
+   loading = true;
+   setTimeout(function() {
+	   //IndexUtils.loadPrds();
+     loading = false;
+   }, 1500);   //模拟延迟
+ });
+ 
+ 
+</script>
+ 
  
 <script src="static/js/zepto.min.js"></script>
 <script src="static/js/iscroll5.min.js"></script>

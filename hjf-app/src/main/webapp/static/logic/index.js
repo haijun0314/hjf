@@ -38,16 +38,22 @@ var IndexUtils = {
 	},
 	/*********加载普通商品*****************/
 	loadPrds:function(){
-		var url="product?search";
+		var url="product?search&pageSize=24";
 		AjaxUtils.loadData(url,'',function(respData){
 			data.prdsList=respData.datas;
 		});
+	},
+	
+	/*********加载首页数据*****************/
+	loadIndexData:function(){
+		IndexUtils.loadCarouses();
+		IndexUtils.loadRecPrds();
+		IndexUtils.loadHotPrds();
+		IndexUtils.loadPrds();
 	}
-	
-	
 }
-IndexUtils.loadCarouses();
-IndexUtils.loadRecPrds();
-IndexUtils.loadHotPrds();
-IndexUtils.loadPrds();
+IndexUtils.loadIndexData();
+
+
+
 

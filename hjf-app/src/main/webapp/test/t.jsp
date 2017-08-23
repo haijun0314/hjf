@@ -1,281 +1,47 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html class="mdd-index" style="font-size: 40px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>首页</title>
-    <meta name="charset" content="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="application-name" content="">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="version" content="ddtouch">
-    <meta http-equiv="Cache-Control" content="must-revalidate,no-cache">
-    <link rel="stylesheet" href="/static/css/common.css">
-    <link rel="stylesheet" href="/static/css/app.css?v=20150605">
-</head>
-<body>
-<script type="text/javascript">
-     var proxyAssets = "/h5touchassets";
-     var index_url = "";
-</script>
-
-
-<header id="search" dd_name="首页搜索区">
-    <div class="dd-logo">
-    <a href="" dd_name="logo跳转"></a>
-    </div>
-    <div class="search_box">
-        <div class="search">
-            <form id="index_search_form" method="get" action="" target="_parent" onsubmit="return submit_search();">
-                <div class="text_box">
-                    <input id="keyword" name="keyword" type="text" placeholder="请输入您的宝贝" class="keyword text" onkeydown="this.style.color=&#39;#404040&#39;" autocomplete="off">
-                </div>
-                <input type="submit" value="" class="submit" dd_name="搜索">
-                <input type="hidden" value="d256b1d537fe186e53c0444399341c24" name="sid">
-            </form>
-        </div>
-      </div>
-    <div class="header-category"><a href="" dd_name="跳转分类"><em>分类</em></a></div>
-    <div class="search_list"></div>
-</header>
-<section id="wrapper">
-<section class="top-slider-wrapper" dd_name="首页焦点轮播区">
-  <section data-widget="topSlider" class="J_top_slider index-slider">
-    <ul class="top-slider" style="width: 500%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-2588px, 0px) translateZ(0px);">
-          <li style="width:20%">
-      <a href="" dd_name="焦点轮播图1">
-                        <img src="/static/images/lxqj-0929-700-270.jpg" alt="预留">
-                </a>
-      </li>
-          <li style="width:20%">
-      <a href="" dd_name="焦点轮播图2">
-                        <img class="" alt="预留" src="/static/images/108-700-270.jpg">
-                </a>
-      </li>
-          <li style="width:20%">
-      <a href="" dd_name="焦点轮播图3">
-                        <img class="" alt="预留" src="/static/images/nbewxj-1008-700x270.jpg">
-                </a>
-      </li>
-          <li style="width:20%">
-      <a href="" dd_name="焦点轮播图4">
-                        <img class="" alt="预留" src="/static/images/700270jinse922.jpg">
-                </a>
-      </li>
-          <li style="width:20%">
-      <a href="" dd_name="焦点轮播图5">
-                        <img class="" alt="预留" src="/static/images/700-270-0801.jpg">
-                </a>
-      </li>
-        </ul>
-    <div class="top-slider-indicator">
-               <span class="dot"></span>
-                     <span class="dot"></span>
-                     <span class="dot"></span>
-                     <span class="dot"></span>
-                     <span class="dot on"></span>
-              </div>
-  </section>
-</section>
-	<ul class="index-nav" dd_name="首页功能区">
-			<li><a href="" dd_name="分类"><img class="" src="/static/images/fenlei.png"><span>分类</span></a></li>
-			<li><a href="" dd_name="立减5元"><img class="" src="/static/images/xiazai-0605.png"><span>立减5元</span></a></li>
-			<li><a href="" dd_name="购物车"><img class="" src="/static/images/gouwuche.png"><span>购物车</span></a></li>
-			<li><a href="" dd_name=""><img class="" src="/static/images/wodedangdang-h5.png"><span>个人信息</span></a></li>
-			<li><a href="" dd_name="好书榜"><img class="" src="/static/images/haoshubang.png"><span>热卖榜</span></a></li>
-			<li><a href="" dd_name="童书榜"><img class="" src="/static/images/tognshubang-0604.png"><span>促销榜</span></a></li>
-			<li><a href="" dd_name="9块9"><img class="" src="/static/images/9.9.png"><span>优惠商品</span></a></li>
-			<li><a href="" dd_name="电子书"><img class="" src="/static/images/dianzihsu.png"><span>更多商品</span></a></li>
-		</ul>
-    <section class="seckilling" dd_name="首页秒杀区">
-        <div class="seckilling-box"> 
-            <div class="seckilling-title">
-            <span class="seckilling-name">秒购</span>
-            <span class="seckilling-icon"></span> 
-            <div class="seckilling-content" data-widget="countdown" data-end-time="1444381201" data-left-time="12191" data-is-begin="0">
-
-            </div> 
-        </div> 
-        <div class="seckilling-con" id="seckill_index"> 
-            <ul class="clearfix">
-                                                <li>
-                        <a href="" dd_name="秒杀品1">
-                            <p class="pic"><img class="" src="/static/images/1199158435-1_b.jpg"></p>
-                            <p class="price">
-                                <span class="rob">
-                                    <span class="sign">¥</span>
-                                    <span class="num">1.00</span>
-                                    <span class="tail"></span>
-                                </span>
-                            </p>
-                         </a>
-                     </li>
-                                                                <li>
-                        <a href="" dd_name="秒杀品2">
-                            <p class="pic"><img class="" src="/static/images/1317267830-1_b.jpg"></p>
-                            <p class="price">
-                                <span class="rob">
-                                    <span class="sign">¥</span>
-                                    <span class="num">1.00</span>
-                                    <span class="tail"></span>
-                                </span>
-                                <!--<span class="discount">折</span>-->
-                            </p>
-                         </a>
-                     </li>
-                <li>
-                    <a href="" dd_name="秒杀品3">
-                        <p class="pic"><img class="" src="/static/images/1231286936-1_b.jpg"></p>
-                        <p class="price">
-                                <span class="rob">
-                                    <span class="sign">¥</span>
-                                    <span class="num">1.00</span>
-                                    <span class="tail"></span>
-                                </span>
-                            <!--<span class="discount">折</span>-->
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="" dd_name="秒杀品3">
-                        <p class="pic"><img class="" src="/static/images/4.jpg"></p>
-                        <p class="price">
-                                <span class="rob">
-                                    <span class="sign">¥</span>
-                                    <span class="num">1.00</span>
-                                    <span class="tail"></span>
-                                </span>
-                            <!--<span class="discount">折</span>-->
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="" dd_name="秒杀品3">
-                        <p class="pic"><img class="" src="/static/images/5.jpg"></p>
-                        <p class="price">
-                                <span class="rob">
-                                    <span class="sign">¥</span>
-                                    <span class="num">1.00</span>
-                                    <span class="tail"></span>
-                                </span>
-                            <!--<span class="discount">折</span>-->
-                        </p>
-                    </a>
-                </li>
-                <li>
-                    <a href="" dd_name="秒杀品3">
-                        <p class="pic"><img class="" src="/static/images/6.jpg"></p>
-                        <p class="price">
-                                <span class="rob">
-                                    <span class="sign">¥</span>
-                                    <span class="num">1.00</span>
-                                    <span class="tail"></span>
-                                </span>
-                            <!--<span class="discount">折</span>-->
-                        </p>
-                    </a>
-                </li>
-                                        </ul>
-        </div>
-        </div>
-    </section>
-    <section class="banner" dd_name="楼间推荐区">
-         <section data-widget="bannerSlider" class="J_banner_slider banner-slider" id="bannerSlider_99659" dd_name="轮播推荐区99659">
-        <ul class="banner-slider" style="width: 200%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-647px, 0px) translateZ(0px);">
-                  <li style="width:50%">
-          <a href="" dd_name="轮播推荐1"><img class="" src="/static/images/10banner-620X1501.jpg"></a>
-          </li>
-                  <li style="width:50%">
-          <a href="" dd_name="轮播推荐2"><img class="" src="/static/images/lppz600-150.jpg"></a>
-          </li>
-                </ul>
-        <div class="banner-slider-indicator">
-                           <span class="dot"></span>
-                                     <span class="dot on"></span>
-                          </div>
-      </section>
-        </section>
-    <section class="floor" dd_name="">
-    <h2>
-         <a class="title">推荐商品</a>
-                  <a href="" class="more" dd_name="更多">更多</a>
-             </h2>
-	<dl>
-		    	    <dt><a href="" dd_name=""><img class="" src="/static/images/DHC-h51.jpg"></a></dt>
-	    
-		    	    <dd><a href=""><img class="" src="/static/images/liangpinpuzih53.jpg"></a></dd>
-	    
-		    	    <dd><a href=""><img class="" src="/static/images/doujiangjih52.jpg"></a></dd>
-	    
-	    </dl>
-	</section>
-    <section class="floor" dd_name="">
-    <h2>
-         <a class="title">优惠商品</a>
-                  <a href="" class="more" dd_name="更多">更多</a>
-             </h2>
-	<dl>
-		    	    <dt><a href=""><img class="" src="/static/images/h5-k1-1008-nbewxj2015.jpg"></a></dt>
-	    
-		    	    <dd><a href=""><img class="" src="/static/images/h5-k3-1008-xsqxk.jpg"></a></dd>
-	    
-		    	    <dd><a href=""><img class="" src="/static/images/h5-k2-1008-slbdmj.jpg"></a></dd>
-	    
-	    </dl>
-	</section>
-    <section class="floor" dd_name="">
-    <h2>
-         <a class="title">热卖商品</a>
-                  <a href="" class="more" dd_name="更多">更多</a>
-             </h2>
-	<dl>
-		    	    <dt><a href="" dd_name=""><img class="" src="/static/images/310x449ts929.jpg"></a></dt>
-	    
-		    	    <dd><a href=""><img class="" src="/static/images/309x224ts0929_01.jpg"></a></dd>
-
-		    	    <dd><a href=""><img class="" src="/static/images/309x224ts0929_02.jpg"></a></dd>
-
-	    </dl>
-	</section>
-
-
-
-
-    <section class="floor" dd_name="">
-    <h2>
-         <a class="title">最新商品</a>
-                  <a href="" class="more" dd_name="更多">更多</a>
-             </h2>
-	<dl>
-		    	    <dt><a href="" dd_name=""><img class="" src="/static/images/h5-w1-1009.jpg"></a></dt>
-	    
-		    	    <dd><a href=""><img class="" src="/static/images/ww_h5_9.30.jpg"></a></dd>
-	    
-		    	    <dd><a href=""><img class="" src="/static/images/88590011636295_y.jpg"></a></dd>
-	    
-	    </dl>
-	</section>
-
-</section>
-<footer class="footer new">
-    <nav class="b-nav">
-        <p>
-            <a href="" ontouchstart="">提建议</a>
-            <a class="red" href="" ontouchstart="">触屏版</a>
-            <a href="" ontouchstart="">电脑版</a>
-            <a href="" ontouchstart="">帮&nbsp;&nbsp;助</a>
-        </p>
-    </nav>
-</footer>
-<script src="p/zepto.min.js"></script>
-<script src="p/iscroll5.min.js"></script>
-<script src="p/fastclick.min.js"></script>
-<script src="p/mod_countdown.min.js"></script>
-<script src="p/mod_suggest.min.js"></script>
-<script src="p/mdd_index.min.js"></script>
-
-
-</body>
-
+    <!DOCTYPE html>  
+    <html lang="en">  
+    <head>  
+        <meta charset="UTF-8">  
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">  
+        <title>上拉加载更多</title>  
+        <!-- head 中 -->  
+        <link rel="stylesheet" href="http://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">  
+        <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">  
+    </head>  
+    <body>  
+    <div id="list" class="demos-content-padded">  
+      
+        <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+      
+        <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+      
+        <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+      
+        <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+      
+        <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+      
+    </div>  
+    <div class="weui-loadmore">  
+        <i class="weui-loading"></i>  
+        <span class="weui-loadmore__tips">正在加载</span>  
+    </div>  
+    <!-- body 最后 -->  
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>  
+    <script src="http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>  
+    <script>  
+        $(function () {  
+            var loading = false;  //状态标记  
+            $(document.body).infinite().on("infinite", function() {  
+                if(loading) return;  
+                loading = true;  
+                setTimeout(function() {  
+                   $("#list").append("<p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>");  
+                    loading = false;  
+                }, 1000);   //模拟延迟  
+            });  
+        })  
+    </script>  
+    </body>  
+    </html>  
