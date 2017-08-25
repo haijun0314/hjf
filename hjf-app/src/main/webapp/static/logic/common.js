@@ -110,15 +110,12 @@ var SecUtil= {
 		if(session==null||session==""){
 			window.location.href="/login.html";
 		}
-	},
-	login:function (){
-		 
-	}	
+	}
 }
-SecUtil.checkLogin();
+
 $(function() {
+	SecUtil.checkLogin();
 	FastClick.attach(document.body);
 });
-
 
   

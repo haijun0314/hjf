@@ -30,7 +30,10 @@
 	<update id="updateById" parameterType="Account" >
 	   update account 
   	   	   <trim prefix="set"  suffixOverrides="," >
-	  	   	 <if test="@MyOgnl@isNotEmpty(userName)">
+  	   	   	 <if test="@MyOgnl@isNotEmpty(updatedTime)">
+	   		 	updatedTime=#{updatedTime},
+	   		 </if>
+	  	   	 <if test="@MyOgnl@isNotEmpty(accountName)">
 	   		 	accountName=#{accountName},
 	   		 </if>
 	   		  <if test="@MyOgnl@isNotEmpty(age)">
@@ -52,7 +55,7 @@
 	   		 	dynamic=#{dynamic}
 	   		 </if>
 	   </trim>
-	   where accountId = #accountId#
+	   where accountId = #{accountId}
 	</update> 
 	
 </mapper>

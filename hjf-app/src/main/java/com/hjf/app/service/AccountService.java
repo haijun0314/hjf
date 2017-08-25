@@ -1,8 +1,8 @@
 package com.hjf.app.service;
 
-import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
 import com.hjf.app.entity.Account;
+import com.hjf.common.bean.BaseRespBean;
 /**
  * 功能说明:【账户信息】
  * 作    者：lihaijun
@@ -10,7 +10,7 @@ import com.hjf.app.entity.Account;
  */
 public interface AccountService {
 	//【更新账户信息】
-	public void update(AccountReqBean q)	;	 
+	public BaseRespBean update(Account q)	;	 
 	//【查看账户信息】
 	public AccountRespBean myInfo(AccountRespBean r)	;	
 	//【查看账户信息】

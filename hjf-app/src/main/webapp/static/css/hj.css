@@ -112,6 +112,12 @@ ul li{ list-style:none;}
 
 
 
-
-
+.hj-header-icon-back{
+    height: 32px;
+    position: absolute;
+    width: 32px;
+    background: url(../images/icon/back.png);
+    top: 10px;
+    z-index:40000;
+}
  

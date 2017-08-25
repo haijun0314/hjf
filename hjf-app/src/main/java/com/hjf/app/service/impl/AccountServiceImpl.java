@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
 import com.hjf.app.core.util.AccountUtil;
 import com.hjf.app.dao.AccountDAO;
@@ -19,6 +18,7 @@ import com.hjf.app.entity.Account;
 import com.hjf.app.service.AccountService;
 import com.hjf.base.exception.CodeUtil;
 import com.hjf.base.mybatis.BaseService;
+import com.hjf.common.bean.BaseRespBean;
 @Service
 @Transactional 
 public class AccountServiceImpl   extends BaseService implements AccountService {
@@ -28,18 +28,15 @@ public class AccountServiceImpl   extends BaseService implements AccountService 
 	/**
 	 * 【更新自己账户信息】
 	 */
-	public void update(AccountReqBean q){
-		try {
-			Account c=new Account();
-			copyProperties(c, q);
-			int ret=accountDAO.updateById(c);
-			if (ret<0) {
-				log.error("【更新自己账户信息】..."+q.getAccountId()+"发生异常...");
-			}
-		} catch (Exception e) {
-			log.error("【更新自己账户信息】..."+q.getAccountId()+"发生异常...");
-			e.printStackTrace();
+	public BaseRespBean update(Account a){
+		a.setAccountId(AccountUtil.getMyId());
+		int ret=accountDAO.updateById(a);
+		if (ret<0) {
+			log.error("【更新自己账户信息】..."+a.getAccountId()+"发生异常...");
+			r.fail();
+			return r;
 		}
+		return r;
 	}
 	
 	/**

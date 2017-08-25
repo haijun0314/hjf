@@ -23,7 +23,6 @@
     .pic-list a{display: block;margin: 10px 0;}
     .pic-list a img{vertical-align: middle;max-width: 30px;max-height: 30px;margin: -4px 0 0 10px;}
   </style>
-      <script src="/static/logic/common/head.js"></script>
 </head>
 <body>
 <input type="file" id="choose" accept="image/*" multiple>
@@ -56,8 +55,8 @@
   filechooser.onchange = function() {
     if (!this.files.length) return;
     var files = Array.prototype.slice.call(this.files);
-    if (files.length >1) {
-      alert("最多同时只可上传1张图片");
+    if (files.length > 9) {
+      alert("最多同时只可上传9张图片");
       return;
     }
     files.forEach(function(file, i) {
@@ -133,6 +132,9 @@
     }
     //进行最小压缩
     var ndata = canvas.toDataURL('image/jpeg', 0.1);
+    console.log('压缩前：' + initSize);
+    console.log('压缩后：' + ndata.length);
+    console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + "%");
     tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
     return ndata;
   }
@@ -154,13 +156,55 @@
         var jsonData = JSON.parse(xhr.responseText);
         var imagedata = jsonData[0] || {};
         var text = imagedata.path ? '上传成功' : '上传失败';
+        console.log(text + '：' + imagedata.path);
         clearInterval(loop);
         //当收到该消息时上传完毕
+        $li.find(".progress span").animate({'width': "100%"}, pecent < 95 ? 200 : 0, function() {
+          $(this).html(text);
+        });
+        if (!imagedata.path) return;
+        $(".pic-list").append('<a href="' + imagedata.path + '">' + imagedata.name + '（' + imagedata.size + '）<img src="' + imagedata.path + '" /></a>');
       }
     };
+    //数据发送进度，前50%展示该进度
+    xhr.upload.addEventListener('progress', function(e) {
+      if (loop) return;
+      pecent = ~~(100 * e.loaded / e.total) / 2;
+      $li.find(".progress span").css('width', pecent + "%");
+      if (pecent == 50) {
+        mockProgress();
+      }
+    }, false);
+    //数据后50%用模拟进度
+    function mockProgress() {
+      if (loop) return;
+      loop = setInterval(function() {
+        pecent++;
+        $li.find(".progress span").css('width', pecent + "%");
+        if (pecent == 99) {
+          clearInterval(loop);
+        }
+      }, 100)
+    }
     xhr.send(formdata);
   }
-  
+  /**
+   * 获取blob对象的兼容性写法
+   * @param buffer
+   * @param format
+   * @returns {*}
+   */
+  function getBlob(buffer, format) {
+    try {
+      return new Blob(buffer, {type: format});
+    } catch (e) {
+      var bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder);
+      buffer.forEach(function(buf) {
+        bb.append(buf);
+      });
+      return bb.getBlob(format);
+    }
+  }
   /**
    * 获取formdata
    */

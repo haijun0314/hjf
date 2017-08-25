@@ -2,6 +2,7 @@ document.writeln("	<meta name=\'applicable-device\' content=\'mobile\'>");
 document.writeln("	<meta name=\'viewport\' content=\'width=device-width,initial-scale=1,user-scalable=0\'>");
 document.writeln("	<meta http-equiv=\'Cache-Control\' content=\'no-siteapp\'>");
 document.writeln("	<meta http-equiv=\'Cache-Control\' content=\'no-transform\'>");
+document.writeln("	<meta name='charset' content='utf-8'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/jquery-weui.css\'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/weui.css\'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/hj.css\'>");

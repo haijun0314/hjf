@@ -17,9 +17,10 @@ var AccountUtils = {
 			data.account=respData;
 		});
 	},
+	/************更新账户资料******************/
 	updateInfo:function(){
 		AjaxUtils.formRequest("dataForm",function(respData){
-			 
+			  
 		});
 	},
 	

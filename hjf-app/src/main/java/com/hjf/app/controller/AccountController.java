@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
+import com.hjf.app.entity.Account;
 import com.hjf.app.service.AccountService;
 import com.hjf.base.spring.BaseAction;
-import com.hjf.common.bean.BaseRespBean;
  
 /**
  * 功能说明:【用户信息】
@@ -42,18 +42,10 @@ public class AccountController extends BaseAction{
 	/**
 	 * 【更新自己账户信息】
 	 */
-	@RequestMapping(params = "updateInfo")   
-	public void updateInfo(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping(params = "update")   
+	public void update(Account a,HttpServletRequest request,HttpServletResponse response) {
 		try {
-			AccountReqBean    	q =new AccountReqBean();
-			boolean check        =q.checkParams(request);
-			if (!check) {
-				err_param(response, r);
-				respMsgObj(response, r);
-				return;	
-			}
-			//accountService.update(q);
-			r.fail();
+			r=accountService.update(a);
 			respMsgObj(response, r);
 		} catch (Exception e) {
 			log.error("【查询自己账户信息】...发生异常");

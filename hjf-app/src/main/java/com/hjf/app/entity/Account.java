@@ -28,9 +28,15 @@ public class Account extends BaseModel implements java.io.Serializable {
 	private String  level;//会员等级【 1、普通  2、铁牌 3 银牌  4  金牌 5 钻石】
 	private String  sex;//0男 1女
 	private String  birthday;//生日
+	private String  email;
 	
 	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getSex() {
 		return sex;
 	}
