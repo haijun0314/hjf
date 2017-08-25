@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.hjf.app.core.util.AccountUtil;
 import com.hjf.app.core.util.ConfigUtil;
 import com.hjf.app.core.util.KeysUtil;
 import com.hjf.app.entity.Account;
@@ -57,6 +58,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
 				invalidSession(response);
 				return false;
 			}
+			AccountUtil.setMyId(c.getAccountId());
 		}else {
 			log.info("【权限session拦截】....session远程存储 ck="+ck);
 			String cks[]=ck.split("-");
@@ -65,6 +67,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
 				invalidSession(response);
 				return false;
 			}
+			AccountUtil.setMyId(new Integer(cks[0]));
 			String  key=KeysUtil.getSession_login_User(cks[0]);
 			SessionUtil.continueRedisSession(cks[0], session);
 		}

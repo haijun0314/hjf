@@ -7,13 +7,12 @@ var AjaxUtils = {
 	 * 完成处理,主要用于操作回调函数
 	 */
 	loadding : function(type){
+		var load="<div class='weui-loadmore'> <i class='weui-loading'></i> <span class='weui-loadmore__tips'>正在加载</span></div>";
  		var loader = $("<div class='weui-ajax-loading'  ><p class='weui-toast_content'>正在加载.....</p></div>"); 
- 		$("body").append(loader);
- 		if(type==1){
- 			$("#ajax-loading").show();
- 		}else{
- 			 $(".weui-ajax-loading").remove();
- 		}
+ 		$("body").append(load);
+ 		if(type==0){
+ 			 $(".weui-loadmore").remove();
+ 		} 
 	},
 	httpGet : function(requestUrl ,callback){
 		$.getJSON( requestUrl,callback);
@@ -41,12 +40,15 @@ var AjaxUtils = {
 	formRequest : function(form ,  callback){
         var data = $("#"+form).serialize();
         var url = $("#"+form).attr("action");
+        $.showLoading();
         $.post(url, data, function (respData) {
+        	 $.hideLoading();
             if (respData.code == "0000") {
             	callback(respData);
+            	$.toast(respData.msg);
             } else {
             	callback(respData);
-                $.toast(respData.msg);
+            	 $.toast(respData.msg, "forbidden");
             }
         }, 'json');
 	},
@@ -54,13 +56,11 @@ var AjaxUtils = {
 	loadData: function(url, data, callback) {
 		AjaxUtils.loadding(1);
 		$.post(url, '', function (respData) {
-			 
-			AjaxUtils.loadding(0);
 	        if (respData.code == "0000") {
+	        	AjaxUtils.loadding(0);
 	        	callback(respData);
 	        } else if(respData.code == "1010"){
-	        	window.location.href="login.html";
-	        	
+	        	window.location.href="/login.html";
 	        }  else {
 	        	 $.toast(respData.msg);	 
 	        }

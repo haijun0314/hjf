@@ -1,7 +1,6 @@
 (function(b) {
     var f = {
         init: function() {
-            this.suggestInit();
             this.browserDetectiveInit();
         },
         isInViewport: function(a) {
@@ -123,21 +122,11 @@
                 a.slideInit(c)
             })
         },
-        suggestInit: function() {
-            this.suggest = new Suggest({
-                ajaxUrl: index_url + "h5ajax.php",
-                defaultVal: "\u5c3e\u54c1\u6c47",
-                formEl: "#index_search_form",
-                wrapEl: ".search_list"
-            })
-        },
-        
         fontSizeInit: function() {
             var a = document.documentElement,
             b = a.clientWidth;
             b && (b /= 320, 2 < b && (b = 2), a.style.fontSize = 20 * b + "px")
         }
-        
     };
     b(document).ready(function() {
         f.fontSizeInit();

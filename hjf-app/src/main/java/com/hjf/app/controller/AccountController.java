@@ -10,13 +10,12 @@ import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
 import com.hjf.app.service.AccountService;
 import com.hjf.base.spring.BaseAction;
-import com.hjf.common.bean.BaseReqBean;
 import com.hjf.common.bean.BaseRespBean;
  
 /**
  * 功能说明:【用户信息】
  * 作    者：lihaijun
- * 创建日期：2014-11-21
+ * 创建日期：2017-08-23
  */
 @Controller  
 @RequestMapping("/account") 
@@ -29,9 +28,8 @@ public class AccountController extends BaseAction{
 	public void myInfo(HttpServletRequest request,HttpServletResponse response) {
 		try {
 			log.info("【查询自己账户信息】...");
-			BaseReqBean    		q =new BaseReqBean();
 			AccountRespBean    r =new AccountRespBean();
-			r=accountService.accountInfo(q, r);
+			r=accountService.myInfo(r);
 			respMsgObj(response, r);
 		} catch (Exception e) {
 			log.error("【查询自己账户信息】...发生异常");
@@ -44,39 +42,23 @@ public class AccountController extends BaseAction{
 	/**
 	 * 【更新自己账户信息】
 	 */
-	@RequestMapping(params = "update")   
-	public void update(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping(params = "updateInfo")   
+	public void updateInfo(HttpServletRequest request,HttpServletResponse response) {
 		try {
 			AccountReqBean    	q =new AccountReqBean();
-			BaseRespBean    	r =new BaseRespBean();
 			boolean check        =q.checkParams(request);
 			if (!check) {
 				err_param(response, r);
 				respMsgObj(response, r);
 				return;	
 			}
-			accountService.update(q);
+			//accountService.update(q);
+			r.fail();
 			respMsgObj(response, r);
 		} catch (Exception e) {
 			log.error("【查询自己账户信息】...发生异常");
 			errorMsg(response);
 		}
 	}		
-	
-	/**
-	 * 【查看他人账户信息】
-	 */
-	@RequestMapping(params = "customerInfo")   
-	public void customerInfo(HttpServletRequest request,HttpServletResponse response) {
-		try {
-			BaseReqBean    		q =new BaseReqBean();
-			AccountRespBean    r =new AccountRespBean();
-			r=accountService.accountInfo(q, r);
-			respMsgObj(response, r);
-		} catch (Exception e) {
-			log.error("【查看他人账户信息】...发生异常");
-			errorMsg(response);
-		}
-	}	
-	 
+ 
 }

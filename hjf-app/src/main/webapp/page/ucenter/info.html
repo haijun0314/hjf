@@ -1,0 +1,61 @@
+<!-- 个人资料页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>个人资料</title>
+    <meta name="charset" content="utf-8">
+    <script src="/static/logic/common/head.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/ucenter.css">
+</head>
+<body>
+<!--头部导航 开始-->
+<header class="bar bar-nav">
+    <h1 class="title">个人资料</h1>
+</header>
+<div id="app_v" >
+	<form action="/account?updateInfo" name="dataForm"  id="dataForm" >
+	<input  type="hidden"  name="accountId" v-model="account.accountId">
+    <!-- 个人资料展示模块 -->
+	<div class="weui-cells weui-cells_form"style="top: 2.2rem" >
+	  <div class="weui-cell">
+	    <div class="weui-cell__hd"><label class="weui-label">头像</label></div>
+	    <div class="weui-cell__bd">
+				<div class="infor-pic"><img v-bind:src="account.headPic"/> </div>
+	    </div>
+	  </div>
+	  <div class="weui-cell">
+	    <div class="weui-cell__hd"><label class="weui-label">昵称</label></div>
+	    <div class="weui-cell__bd">
+	      <input class="weui-input" type="text"  placeholder="请输入昵称" v-model="account.accountName">
+	    </div>
+	  </div>
+	  <div class="weui-cell weui-cell_select weui-cell_select-after">
+        <div class="weui-cell__hd">
+          <label for="" class="weui-label">性别</label>
+        </div>
+        <div class="weui-cell__bd">
+          <select class="weui-select" name="sex" v-model="account.sex">  
+            <option value="0">男</option>
+            <option value="1">女</option>
+          </select>
+        </div>
+      </div>
+	  <div class="weui-cell">
+	    <div class="weui-cell__hd"><label for="" class="weui-label">生日</label></div>
+	    <div class="weui-cell__bd">
+	      <input class="weui-input" type="date"  name="birthday"  v-model="account.birthday">  
+	    </div>
+	  </div>
+	</div>
+    <div class="weui-btn-area">
+        <a href="#" onclick="AccountUtils.updateInfo()" class="weui-btn weui-btn_primary">保存</a>
+    </div>
+    </form>
+</div>
+<div style="height: 54px" id="content-padded"> </div>
+<script src="/static/logic/account.js"></script>
+<script src="/static/logic/common/foot.js"></script>
+</body>
+</html>
+
+

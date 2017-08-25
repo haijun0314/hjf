@@ -1,7 +1,8 @@
 @charset "utf-8";
 /*******重置WEUI 部分样式*******/
 body{font-family: -apple-system-font,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;}
-.weui-btn_primary {background-color: #996666;}
+.weui-btn_primary {background-color: #ff5500;}
+.weui-btn_reg {background-color: #76bb2a ;}
 .weui-btn_disabled.weui-btn_primary {
     background-color: #ec8b89;
 }
@@ -49,7 +50,7 @@ ul li{ list-style:none;}
 
 
 /*标题栏*/
-.bar{position:fixed;right:0;left:0;z-index:10;height:2.2rem;padding-right:.5rem;padding-left:.5rem;background-color:#0993c7;-webkit-backface-visibility:hidden;backface-visibility:hidden; color:#FFF;}
+.bar{position:fixed;right:0;left:0;z-index:10;height:2.2rem;padding-right:.5rem;padding-left:.5rem;background-color:#ff5500 ;-webkit-backface-visibility:hidden;backface-visibility:hidden; color:#FFF;}
 .bar-header-secondary{top:2.2rem}
 .bar-footer{bottom:0}
 .bar-footer-secondary{bottom:2.2rem}
@@ -84,9 +85,33 @@ ul li{ list-style:none;}
 .badge{display:inline-block;padding:.1rem .45rem .15rem;font-size:.6rem;line-height:1;color:#3d4145;background-color:rgba(0,0,0,.15);border-radius:5rem}
 .badge.badge-inverted{padding:0 .25rem 0 0;background-color:transparent}
  
+ 
 
-/*底部固定导航栏*/
-.qf_tab{ position:fixed; bottom:0; width:100%; z-index:9999;}
-.blank60{ height:60px;}
-.content{-webkit-overflow-scrolling:touch; padding-bottom:55px; padding-top:2.2rem;}
+.common-wrapper {
+	width: 100%;
+	position: relative;
+	max-width: 640px;
+	min-width: 320px;
+	overflow: hidden;
+	margin: 0 auto;
+	font-size: 16px;
+	background-color: #f5f5f5;
+	padding-bottom: 10px
+}
+.login-logo {
+    margin: 3rem 0;
+    text-align: center;
+}
+.weui-btn-area {
+    margin: 3.176em 15px 0.3em;
+}
+
+.weui-toast{
+	margin-left: 0px
+}
+
+
+
+
+
  

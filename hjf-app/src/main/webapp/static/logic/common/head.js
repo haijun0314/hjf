@@ -6,10 +6,12 @@ document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/jquery-weui.css\'
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/weui.css\'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/hj.css\'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/iconfont.css\'>");
-document.writeln("	<script src=\'/static/js/cookies.js\'></script>");
-document.writeln("	<script src=\'/static/logic/common.js\'></script>");
 document.writeln("  <script src=\'/static/js/jquery-2.1.4.js\'></script>");
 document.writeln("	<script src=\'/static/js/fastclick.js\'></script>");
+document.writeln("	<script src=\'/static/js/cookies.js\'></script>");
+document.writeln("	<script src=\'/static/logic/common.js\'></script>");
+
+
 document.writeln("	<script src=\'/static/js/jquery-weui.js\'></script>");
 document.writeln("	<script src=\'/static/js/vue.js\'></script>");
 document.writeln("	<script src=\'/static/js/ajaxRequest.js\'></script>");

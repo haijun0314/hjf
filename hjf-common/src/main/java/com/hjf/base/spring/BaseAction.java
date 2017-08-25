@@ -1,6 +1,5 @@
 package com.hjf.base.spring;
 
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hjf.base.LogUtil;
 import com.hjf.base.exception.CodeUtil;
-import com.hjf.base.model.MyUserDetails;
 import com.hjf.base.model.PageBean;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.Query;

@@ -26,7 +26,7 @@ a {
 .gray {
     background:#f2f2f2
 }
-body{background-color: #eee;padding: 0;min-width: 300px; max-width: 667px;margin: 0 auto;}
+body{background-color: #eee;padding: 0;margin: 0 auto;}
  
 header{background-color:#ffffff; width: 100%;position:relative;height:2.2rem;border-bottom: solid 1px #e4e4e4;}
 .dd-logo {vertical-align: middle;position:absolute;top:0;left:0;height:2.2rem;width:2.5rem;
@@ -151,4 +151,8 @@ and (-webkit-min-device-pixel-ratio : 2)
 .rec-prds .price{color: #fe435d;font-size: .475rem;text-align: left;}
 .rec-prds .price .rob{font-size: .6rem;}
 .rec-prds .price .discount{float: right;margin: .1rem .1rem 0 0;width:1.5rem;height:.625rem;line-height:.625rem;background-color:#fe435d;color: #fff;font-size: .475rem;text-align: center;-webkit-border-radius:.1rem;border-radius:.1rem;}
+
+
+
+
 

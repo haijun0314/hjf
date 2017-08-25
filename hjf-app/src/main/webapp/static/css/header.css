@@ -61,7 +61,7 @@ ul,li {
 }
 .jd-header-icon-back span, .jd-header-icon-shortcut span, .jd-header-icon-cancel span, .jd-header-icon-logo span, .jd-header-shortcut span, .jd-header-icon-category span, .jd-header-icon-search span, .jd-header-icon-close:after, .jd-auto-complete-list li:before, .jd-footer-platforms li a:before, .jd-footer-platforms li a.badge:after, .jd-search-tab li.sort-by-integrative a:after, .jd-search-tab li.sort-by-integrative.active a:after, .jd-search-tab li.sort-by-price a:after, .jd-search-tab li.sort-by-price.active a.arrow-down:after, .jd-search-tab li.sort-by-price.active a.arrow-up:after, .sidebar-categories .arrow, .sidebar-categories li li.checked .tick, .sidebar-btn-location:after, .supplier-arrow-right, .landing-keywords a:before, .hot-search-bar span i:before {
     display:block;
-    background: url(../images/2015/jd-sprites.png?v=12) no-repeat;
+    background: url(../images/jd-sprites_v=12.png) no-repeat;
     background-size: 200px 200px;
 }
 .jd-header-icon-back span, .jd-header-icon-shortcut span, .jd-header-icon-cancel span, .jd-header-icon-search span {
@@ -84,7 +84,7 @@ ul,li {
 .jd-header-icon-back span {
     width:20px;
     height:20px;
-    background-position: -20px 0;
+    background-position: -23px 0;
     margin:12px 0 0 10px;
 }
 .jd-header-icon-logo span {

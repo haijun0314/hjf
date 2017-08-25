@@ -10,21 +10,45 @@ import com.hjf.base.model.BaseModel;
  */
 public class Account extends BaseModel implements java.io.Serializable {
 	private Integer accountId;
-	private String  userToken;
+	private String  userToken;					//账户token  免密码登录
+	private String  accountName; 				//用户名称
+	private String  telephone;					//电话号码
+	private String  password;					//账号密码
+	private Integer age;						//年龄
+	private String  headPic;					//头像地址
+	private String 	cityCode;				    //城市编号
+	private String 	cityName;				    //城市名称
+	private String  dynamic;					//当前动态
+	private String  status;						//状态0.正常1.暂停}
 	private String  sessionId;
-	private String  status;
-	private String  accountName;
-	private String  telephone;
-	private String  password;	
 	private Date    registTime;
 	private Date    loginTime;
-	private Integer age;
-	private String  headPic;	
-	private String  dynamic;
-	private String cityName; 
-	private String cityNameFull;		
-	private String cityCode;
-	private String address;
+	private String  cityNameFull;		
+	private String  address;
+	private String  level;//会员等级【 1、普通  2、铁牌 3 银牌  4  金牌 5 钻石】
+	private String  sex;//0男 1女
+	private String  birthday;//生日
+	
+	
+	
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
 	public Integer getAccountId() {
 		return accountId;
 	}

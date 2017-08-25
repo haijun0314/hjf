@@ -2,40 +2,19 @@
 <html>
   <head>
   	<title>首页</title>
-
     <meta name="charset" content="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="application-name" content="">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="version" content="ddtouch">
-    <meta http-equiv="Cache-Control" content="must-revalidate,no-cache">
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/app.css?v=20150605">
     <script src="static/logic/common/head.js"></script>
   </head>
-  <script type="text/javascript">
-  	SysUtil.checkLogin();
-  </script>
-  
-  
 <body class="weui-pull-to-refresh">
-  <div class="weui-pull-to-refresh__layer">
-    <div class='weui-pull-to-refresh__arrow'></div>
-    <div class='weui-pull-to-refresh__preloader'></div>
-    <div class="down">下拉刷新</div>
-    <div class="up">释放刷新</div>
-    <div class="refresh">正在刷新</div>
-  </div>
-
-
-<script type="text/javascript">
-     var proxyAssets = "/h5touchassets";
-     var index_url = "";
-</script>
+	<div class="weui-pull-to-refresh__layer">
+	    <div class='weui-pull-to-refresh__arrow'></div>
+	    <div class='weui-pull-to-refresh__preloader'></div>
+	    <div class="down">下拉刷新</div>
+	    <div class="up">释放刷新</div>
+	    <div class="refresh">正在刷新</div>
+	</div>
 <!-- 首页搜索区  -->
 <header id="search" dd_name="首页搜索区">
     <div class="dd-logo">
@@ -55,8 +34,7 @@
     <div class="header-category"><a href="" dd_name="跳转分类"><em>分类</em></a></div>
     <div class="search_list"></div>
 </header>
-
-<section id="wrapper">
+<section id="wrapper" class="common-wrapper">
 	<!-- 首页焦点轮播区  -->
 	<section class="top-slider-wrapper" dd_name="首页焦点轮播区">
 	  <section data-widget="topSlider" class="J_top_slider index-slider">
@@ -127,18 +105,18 @@
 	    </div> 
 	    <div class="seckilling-con" id="seckill_index"> 
 	        <ul class="clearfix">
-	                <li  v-for="pro in  prdsList">
-	                    <a href="" dd_name="秒杀品1">
-	                        <p class="pic"><img :src="pro.pic"></p>
-	                        <p class="price">
-	                            <span class="rob">
-	                                <span class="sign">¥</span>
-	                                <span class="num">{{pro.price}}</span>
-	                                <span class="tail"></span>
-	                            </span>
-	                        </p>
-	                     </a>
-	                 </li>
+                <li  v-for="pro in  prdsList">
+                    <a href="" dd_name="秒杀品1">
+                        <p class="pic"><img :src="pro.pic"></p>
+                        <p class="price">
+                            <span class="rob">
+                                <span class="sign">¥</span>
+                                <span class="num">{{pro.price}}</span>
+                                <span class="tail"></span>
+                            </span>
+                        </p>
+                     </a>
+                 </li>
 	         </ul>
 	    </div>
 	    </div>
@@ -180,10 +158,8 @@ $(document.body).pullToRefresh().on("pull-to-refresh", function() {
  
 <script src="static/js/zepto.min.js"></script>
 <script src="static/js/iscroll5.min.js"></script>
-<script src="static/logic/mod_suggest.js"></script>
 <script src="static/logic/mod_index.js"></script>
 <script src="static/logic/index.js"></script>
-<!--主体部分 结束-->
 <script src="static/logic/common/foot.js"></script>
 </body>
 

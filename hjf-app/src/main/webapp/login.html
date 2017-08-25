@@ -3,7 +3,6 @@
 	<meta charset="UTF-8">
 	<title>用户登录</title>
     <script src="static/logic/common/head.js"></script>
-
 </head>
 <body ontouchstart="">
 	<!--头部导航 开始-->
@@ -14,7 +13,7 @@
     <!--主体部分 开始-->
     <div class="content">
         <div class="content-block">
-            <div class="login_logo"> <img src="/static/images/login_logo.png"></div>
+            <div class="login-logo"> <img src="/static/images/logo.png"></div>
             <form method="post"   id="formlogin">
                 <div class="weui-cells weui-cells_form">
                     <div class="weui-cell">
@@ -38,7 +37,7 @@
 
             <div class="weui-btn-area">
                 <a class="weui-btn weui-btn_primary" id="loginBtn">登录</a>
-                <a href="/register" class="weui-btn weui-btn_default">注册</a>
+                <a href="/register" class="weui-btn weui-btn_reg">注册</a>
             </div>
             <div class="qifeng_p"><a href="#" style="float:right">忘记密码？</a></div>
         </div>
@@ -46,34 +45,7 @@
 <div class="weui-footer">
   <p class="weui-footer__text">Copyright © 2008-2017 hhh</p>
 </div>
-    
-    
-    <!--主体部分 结束-->
-	<!--底部固定导航 开始
-	<div class="weui-tabbar">
-	    <a href="/" class="weui-tabbar__item ">
-		    <div class="weui-tabbar__icon"> <i class="sstfont sst-shouye"></i> </div>
-		    <p class="weui-tabbar__label">首 页</p>
-	    </a>
-		<a href="/news/index.html" class="weui-tabbar__item ">
-			<div class="weui-tabbar__icon"> <i class="sstfont sst-xuetang"></i> </div>
-			<p class="weui-tabbar__label">笔记</p>
-		</a>
-		<a href="/dashi/index.html" class="weui-tabbar__item ">
-			<div class="weui-tabbar__icon"> <i class="sstfont sst-dashizaixian"></i> </div>
-			<p class="weui-tabbar__label">发现</p>
-		</a>
-		<a href="/shop/index/index.html" class="weui-tabbar__item ">
-			<div class="weui-tabbar__icon"> <i class="sstfont sst-shangcheng"></i> </div>
-			<p class="weui-tabbar__label">我的</p>
-		</a>
-	</div>
-	-->
-	
 	<script>
-	  $(function() {
-	    	FastClick.attach(document.body);
-	  });
 	 $('#loginBtn').click(function () {
 	 	   var telephone = $("#telephone").val();
 	 	   var password  = $("#password").val();

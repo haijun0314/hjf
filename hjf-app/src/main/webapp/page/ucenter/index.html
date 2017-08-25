@@ -1,3 +1,4 @@
+<!-- 个人中心页面 -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,41 +11,39 @@
 <style type="text/css">
 	.current-half-width li{width:33.3% !important;}
 </style>
-<script type="text/javascript">
-	SysUtil.checkLogin();
-</script>
 <body id="body">
 	<!-- 通用头 div -->
 	<div id="m_common_header" style="min-height:45px;">
 		<header class="jd-header">    
 			<div class="jd-header-bar">        
 				<div id="m_common_header_goback" class="jd-header-icon-back"><a href=""><span></span></a></div>        
-				<div class="jd-header-title">我的商城</div>           
+				<div class="jd-header-title">个人中心</div>           
 			</div>   
 		</header>
 	</div>
-	<div class="common-wrapper">
+	<div class="common-wrapper" id="app_v">
    		<div class="head-img">
-			<span class="my-img" style="background-image:url('/static/images/defaul.png')"></span>    		
-			<p>dahai516802786</p>
-  			<p>金牌会员</p>
+			<span class="my-img" v-bind:style="{backgroundImage:'url('+account.headPic+')'}" 
+			 ></span>    		
+			<p>{{account.accountName}}</p>
+  			<p>{{account.level}}</p>
   		</div>
    		<ul class="padding-list current-half-width">
 	  		<li>
 	  			<a id="waite4Payment" href="">
-	  				<p id="waite4PaymentSum">0</p>
-	  				<p>待付款</p>
+	  				<p id="waite4PaymentSum">{{account.order_count_pay}}</p>
+ 					<p>待付款</p>
 	  			</a>
 	  		</li>
 	  		<li>
 	  			<a id="waitDeliveryOrderList" href="">
-	  				<p id="waitDeliveryOrderListSum">0</p>
+	  				<p id="waitDeliveryOrderListSum">{{account.order_count_shouhuo}}</p>
 	  				<p>待确认收货</p>
-	  			</a>
+	 			</a>
 	  		</li>
 			<li>
 	  			<a id="waitDeliveryOrderList" href="">
-	  				<p id="waitDeliveryOrderListSum">0</p>
+	  				<p id="waitDeliveryOrderListSum">{{account.order_count_pinglun}}</p>
 	  				<p>待评价</p>
 	  			</a>
 	  		</li>
@@ -76,23 +75,24 @@
 		        <div class="weui-panel__bd">
 		    	<ul class="menu-list">
 			        <li>
-		      			<a id="quanbudingdan" href=""> <img src="/static/images/1-icon4.png" alt=""> <p>个人资料</p> </a>
+		      			<a id="quanbudingdan" href="info.html"> <img src="/static/images/1-icon4.png" alt=""> <p>个人资料</p> </a>
 		      		</li>
 			        <li>
-		      			<a id="wodeqianbao" href=""> <img src="/static/images/1-icon5.png" alt=""> <p>收获地址</p> </a>
+		      			<a id="wodeqianbao" href="address.html"> <img src="/static/images/1-icon5.png" alt=""> <p>收获地址</p> </a>
 		      		</li>
 				 	<li>
-		      			<a id="liulanjilu" href=""><img src="/static/images/1-icon6.png" alt=""><p>安全设置</p></a>
+		      			<a id="liulanjilu" href="sec.html"><img src="/static/images/1-icon6.png" alt=""><p>安全设置</p></a>
 		      		</li>
 					<li>
-		      			<a id="wodeguanzhu" href=""> <img src="/static/images/1-icon7.png" alt=""> <p>我的钱包</p> </a>
+		      			<a id="wodeguanzhu" href="wallet.html"> <img src="/static/images/1-icon7.png" alt=""> <p>我的钱包</p> </a>
 		      		</li>
 			 	</ul>
 		        </div>
 		      </div>
 		</div>
-		
+	</div>
 <div style="height: 54px" id="content-padded"> </div>
+<script src="/static/logic/account.js"></script>
 <script src="/static/logic/common/foot.js"></script>
 </body>
 </html>
