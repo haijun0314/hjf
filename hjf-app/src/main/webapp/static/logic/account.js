@@ -4,9 +4,18 @@ var data={
 	 
 }
  
+/*******************文件上传******************************/
+var filechooser = document.getElementById("choose");
+
 var index=new Vue({
   el: '#app_v',
-  data:data
+  data:data,
+  methods: { 
+	  chooseFile: function (e) { 
+		  filechooser.click();
+	  }
+  }
+
 })
 
 var AccountUtils = {
