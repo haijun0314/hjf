@@ -1,5 +1,6 @@
 package com.hjf.app.service;
 
+import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
 import com.hjf.app.entity.Account;
 import com.hjf.common.bean.BaseRespBean;
@@ -9,6 +10,8 @@ import com.hjf.common.bean.BaseRespBean;
  * 创建日期：2017-05-11
  */
 public interface AccountService {
+	//【设置密码】
+	public BaseRespBean setPassword(AccountReqBean q)	;	 
 	//【更新账户信息】
 	public BaseRespBean update(Account q)	;	 
 	//【查看账户信息】

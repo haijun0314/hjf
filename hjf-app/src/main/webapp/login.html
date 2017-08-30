@@ -68,7 +68,7 @@
                    }, 200);
                } else {
                		$('#loginBtn').removeClass(" weui-btn_disabled");
-                   $.toast(respData.msg);
+                   $.toast(respData.msg,"forbidden");
                }
            }, 'json');
       })

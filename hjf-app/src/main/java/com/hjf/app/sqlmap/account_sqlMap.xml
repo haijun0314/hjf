@@ -52,8 +52,17 @@
 	   		 	password=#{password},
 	   		 </if>
 	   		  <if test="@MyOgnl@isNotEmpty(dynamic)">
-	   		 	dynamic=#{dynamic}
+	   		 	dynamic=#{dynamic},
 	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(cityNameFull)">
+	   		 	cityNameFull=#{cityNameFull},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(cityName)">
+	   		 	cityName=#{cityName},
+	   		 </if>
+	   		  <if test="@MyOgnl@isNotEmpty(cityCode)">
+	   		 	cityCode=#{cityCode},
+	   		  </if>
 	   </trim>
 	   where accountId = #{accountId}
 	</update> 

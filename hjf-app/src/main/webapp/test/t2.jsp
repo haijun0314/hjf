@@ -1,62 +1,63 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<!-- 个人资料页面 -->
 <!DOCTYPE html>
-<html lang="en">
+<html class="pixel-ratio-1">
 <head>
     <script src="/static/logic/common/head.js"></script>
-</head>
-<body>
-<div id="app_v" >
-	<form action="/account?update" name="dataForm"  id="dataForm" >
-	    <a  v-on="click:chooseFile"  >上传onClick</a>
-    </form>
-    
-    
-</div>
-<div id="example-2">
-  <!-- `greet` 是在下面定义的方法名 -->
-  <button v-on:click="greet">Greet</button>
-</div>
-
- <script type="text/javascript">
- 
- var example2 = new Vue({
-	  el: '#example-2',
-	  data: {
-	    name: 'Vue.js'
-	  },
-	  // 在 `methods` 对象中定义方法
-	  methods: {
-	    greet: function (event) {
-	      // `this` 在方法里指当前 Vue 实例
-	      alert('Hello ' + this.name + '!')
-	      // `event` 是原生 DOM 事件
-	      if (event) {
-	        alert(event.target.tagName)
-	      }
-	    }
-	  }
-	})
- 
- 
- 
- </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <script src="/static/js/jquery.validate.js"></script>
+  <body>
+<form action="/account?setPassword" name="dataForm"  id="dataForm" >
+    <!-- 更新密码模块 -->
+	<div class="weui-cells weui-cells_form"style="top: 2.2rem" >
+	  <div class="weui-cell">
+	    <div class="weui-cell__bd">
+	      <input class="weui-input"    name="orgPassword" id="orgPassword"   		type="text"  placeholder="请输入原密码" >
+	    </div>
+	  </div>
+      <div class="weui-cell">
+          <div class="weui-cell__bd">
+          <input class="weui-input"   placeholder="请输入新密码"     type="text" name="password" >
+        </div>
+      </div>
+      <div class="weui-cell">
+          <div class="weui-cell__bd">
+          <input class="weui-input" placeholder="请再次输入新密码"   type="text" name="eqPassword"  >
+        </div>
+      </div>
+	</div>
+    <div class="weui-btn-area">
+        <a href="#" onclick="subty()" class="weui-btn weui-btn_primary">保存</a>
+    </div>
+    </form>      
 <script>
-   
+ 
+function  subty(){
+	 if($('#dataForm').valid()){
+       alert(0);
+      }
+}
+$(document).ready(function(){
+	validate_Form(); //初始化表单验证
+});
+ 
+ 
+function validate_Form(){
+   var validateForm  = $('#dataForm');
+   validateForm.validate({
+      rules:{
+    	   orgPassword:{required:true,minlength: 3},
+    	   password:{required:true,minlength: 3},
+    	   eqPassword:{required:true,minlength: 3},
+      },
+      messages:{
+    	  orgPassword:{
+	   		    required: "请输入商户名称"
+	   	   } 
+      }
+   });		
+}
+
+ 
+ 
 </script>
-</body>
-</html>
+
+</body></html>

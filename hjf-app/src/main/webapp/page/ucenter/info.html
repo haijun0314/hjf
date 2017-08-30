@@ -1,20 +1,23 @@
 <!-- 个人资料页面 -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
+  	<title>个人资料</title>
     <script src="/static/logic/common/head.js"></script>
-    	<link rel="stylesheet" type="text/css" href="/static/css/ucenter.css">
-  <style>
-    #choose{display: none;}
-  </style>
-</head>
+	<link rel="stylesheet" type="text/css" href="/static/css/ucenter.css" charset="gbk">
+	<script type="text/javascript" src="/static/js/city-picker.js" charset="utf-8"></script>
+  </head>
+<style>
+	#choose{display: none;}
+</style>
 <body>
 <!--头部导航 开始-->
 <header class="bar bar-nav"  >
 	<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
     <h1 class="title">个人资料</h1>
 </header>
-<div id="app_v" >
+ 
+<div id="app_page" >
 	<form action="/account?update" name="dataForm"  id="dataForm" >
 	<input  type="hidden"  name="accountId" v-model="account.accountId">
     <!-- 个人资料展示模块 -->
@@ -48,16 +51,38 @@
 	      <input class="weui-input" type="date"  name="birthday"  v-model="account.birthday">  
 	    </div>
 	  </div>
+      <div class="weui-cell">
+     	 <div class="weui-cell__hd"><label for="" class="weui-label">电子邮件</label></div>
+          <div class="weui-cell__bd">
+          <input class="weui-input" placeholder="电子邮件"    type="text" name="email" v-model="account.email">
+        </div>
+      </div>
+      <div class="weui-cell">
+      	<div class="weui-cell__hd"><label for="" class="weui-label">个人签名</label></div>
+          <div class="weui-cell__bd">
+          <input class="weui-input" placeholder="个人签名" type="text" name="dynamic" v-model="account.dynamic">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="name" class="weui-label">城市</label></div>
+        <div class="weui-cell__bd">
+          <input     v-model="account.cityName" name="cityName" id="cityName"  type="hidden">
+          <input     v-model="account.cityCode" name="cityCode" id="cityCode"  type="hidden">
+          <input class="weui-input" v-on:click="cityPicker"   v-model="account.cityNameFull" name="cityNameFull" id="cityNameFull"    readonly="" data-code="" data-codes="" type="text">
+        </div>
+      </div>
 	</div>
+
     <div class="weui-btn-area">
         <a href="#" onclick="AccountUtils.updateInfo()" class="weui-btn weui-btn_primary">保存</a>
     </div>
     </form>
 </div>
+<div style="height: 54px" id="content-padded"> </div>
 <script src="/static/logic/account.js"></script>
 <script src="/static/logic/common/foot.js"></script>
 <input type="file" id="choose" accept="image/*" multiple>
-
+ 
 <script>
   var  url='/account?update';
   var filechooser = document.getElementById("choose");
@@ -101,6 +126,8 @@
       };
       reader.readAsDataURL(file);
   };
+  AccountUtils.loadData();
+  
 </script>
 </body>
 </html>

@@ -7,11 +7,14 @@ package com.hjf.app.service.impl;
  */
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
 import com.hjf.app.core.util.AccountUtil;
+import com.hjf.app.core.util.SecUtil;
 import com.hjf.app.dao.AccountDAO;
 import com.hjf.app.enmu.AccountLevel;
 import com.hjf.app.entity.Account;
@@ -23,6 +26,32 @@ import com.hjf.common.bean.BaseRespBean;
 @Transactional 
 public class AccountServiceImpl   extends BaseService implements AccountService {
 	@Resource AccountDAO accountDAO;
+	
+	/**
+	 * 【设置密码】
+	 */
+	public BaseRespBean setPassword(AccountReqBean q)	{
+		String newPass=SecUtil.encrypt(q.getPassword());
+		String	orgPass=SecUtil.encrypt(q.getOrgPassword());
+		Account org=getAccount(AccountUtil.getMyId());
+		if (!orgPass.equals(org.getPassword())) {
+			r.fail(CodeUtil.e_1101);
+			return  r;
+		}
+		Account a=new Account();
+		a.setAccountId(AccountUtil.getMyId());
+		a.setPassword(newPass);
+		int ret=accountDAO.updateById(a);
+		if (ret<0) {
+			log.error("【设置密码】..."+a.getAccountId()+"发生异常...");
+			r.fail();
+			return r;
+		}
+		r.success();
+		return r;
+	}	
+	
+	
 	
  
 	/**

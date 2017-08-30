@@ -38,7 +38,6 @@ public class CodeUtil
 	public static String e_1009="1009";//缺失账户信息
 	public static String e_1010="1010";//session  过期
 	
-	
 	//后台代码
 	public static String e_1101="1101";
 	public static String e_1102="1102";

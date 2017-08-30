@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
 import com.hjf.app.entity.Account;
 import com.hjf.app.service.AccountService;
@@ -51,6 +51,36 @@ public class AccountController extends BaseAction{
 			log.error("【查询自己账户信息】...发生异常");
 			errorMsg(response);
 		}
+	}	
+	
+	
+	
+	/**
+	 * 【设置密码】
+	 */
+	@RequestMapping(params = "setPassword")   
+	public void setPassword(AccountReqBean a,HttpServletRequest request,HttpServletResponse response) {
+		try {
+			if (!a.checkSetPass(request)) {
+				err_param(response, r);
+				return;
+			}
+			r=accountService.setPassword(a);
+			respMsgObj(response, r);
+		} catch (Exception e) {
+			log.error("【设置密码】...发生异常");
+			errorMsg(response);
+		}
 	}		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
  
 }

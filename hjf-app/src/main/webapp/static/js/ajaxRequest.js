@@ -37,7 +37,10 @@ var AjaxUtils = {
 	/**
 	 * 表单请求
 	 */
-	formRequest : function(form ,  callback){
+	formRequest : function(form ,  callback,btnId){
+		if(btnId){
+			$("#"+btnId).addClass("weui-btn_disabled");
+		}
         var data = $("#"+form).serialize();
         var url = $("#"+form).attr("action");
         $.showLoading();
@@ -47,8 +50,11 @@ var AjaxUtils = {
             	callback(respData);
             	$.toast(respData.msg);
             } else {
+        		if(btnId){
+        			$("#"+btnId).removeClass("weui-btn_disabled");
+        		}
             	callback(respData);
-            	 $.toast(respData.msg, "forbidden");
+            	$.toast(respData.msg, "forbidden");
             }
         }, 'json');
 	},

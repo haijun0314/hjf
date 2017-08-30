@@ -28,12 +28,20 @@ public class AccountRespBean extends BaseRespBean {
 	private String  level;//会员等级【 1、普通  2、铁牌 3 银牌  4  金牌 5 钻石】
 	private String  sex;//0男 1女
 	private String  birthday;//生日
+	private String  email;
 	
 	/******扩展********/
 	private Integer order_count_pinglun;//订单数待评论
 	private Integer order_count_pay;	//订单数待支付
 	private Integer order_count_shouhuo;//订单数带收获
 	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getSex() {
 		return sex;
 	}

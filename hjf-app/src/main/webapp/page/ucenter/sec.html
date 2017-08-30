@@ -13,6 +13,40 @@
 	<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
     <h1 class="title">安全设置</h1>
 </header> 
+
+<div  id="app_page" >
+      <div class="weui-panel weui-panel_access" style="top: 2.2rem">
+      <div class="weui-panel">
+        <div class="weui-panel__hd">账户安全</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells">
+              <a class="weui-cell weui-cell_access list-btn" href="sec_password.html">
+                <div class="weui-cell__hd"><img src="/static/images/account_update.png"></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <p>更新登陆密码</p>
+                </div>
+                <span class="weui-cell__ft"></span>
+              </a>
+              <a class="weui-cell weui-cell_access list-btn" href="javascript:;">
+                <div class="weui-cell__hd"><img src="/static/images/account_pay.png"></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <p>更新支付密码</p>
+                </div>
+                <span class="weui-cell__ft"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>	
+</div>
+
+    <div class="weui-btn-area">
+        <a href="#" onclick="AccountUtils.logOut()" class="weui-btn weui-btn_primary">退出登录</a>
+    </div>
+
+
 <div style="height: 54px" id="content-padded"> </div>
 <script src="/static/logic/account.js"></script>
 <script src="/static/logic/common/foot.js"></script>

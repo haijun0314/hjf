@@ -3,8 +3,9 @@ document.writeln("	<meta name=\'viewport\' content=\'width=device-width,initial-
 document.writeln("	<meta http-equiv=\'Cache-Control\' content=\'no-siteapp\'>");
 document.writeln("	<meta http-equiv=\'Cache-Control\' content=\'no-transform\'>");
 document.writeln("	<meta name='charset' content='utf-8'>");
-document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/jquery-weui.css\'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/weui.css\'>");
+document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/jquery-weui.css\'>");
+
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/hj.css\'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/iconfont.css\'>");
 document.writeln("  <script src=\'/static/js/jquery-2.1.4.js\'></script>");
