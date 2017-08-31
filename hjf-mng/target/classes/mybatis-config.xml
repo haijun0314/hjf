@@ -19,6 +19,11 @@
 		 <typeAlias alias="Account" type="com.hjf.mng.entity.Account" />
 		 <typeAlias alias="ConfigSystem" type="com.hjf.mng.entity.ConfigSystem" />
 		 
+		 <typeAlias alias="Product" type="com.hjf.mng.entity.Product" />
+		 <typeAlias alias="ProductBrand" type="com.hjf.mng.entity.ProductBrand" />
+		 <typeAlias alias="ProductCategory" type="com.hjf.mng.entity.ProductCategory" />		 
+		 
+		 
 	</typeAliases> 
 	<typeHandlers>
 		<typeHandler javaType="com.hjf.common.enums.DefaultStatus" handler="com.hjf.common.enums.handler.BaseEnumHandler"/>
@@ -49,7 +54,9 @@
 	     <!-- 业务数据 -->
 		 <mapper resource="com/hjf/mng/sqlmap/account_SqlMap.xml" />	    
 	     <mapper resource="com/hjf/mng/sqlmap/config_system_sqlMap.xml" />	    
-	    
+		 <mapper resource="com/hjf/mng/sqlmap/product_brand_sqlMap.xml" />
+		 <mapper resource="com/hjf/mng/sqlmap/product_category_sqlMap.xml" />
+		 <mapper resource="com/hjf/mng/sqlmap/product_sqlMap.xml" />
 	    
 	    
 	    

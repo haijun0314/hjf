@@ -49,7 +49,7 @@ public class BaseIbatisDAO {
     public static final String POSTFIX_QUERYEXPLIST = ".queryExpList"; 
     public static final String POSTFIX_FINDALL = ".findAll";  
     public static final String POSTFIX_UPDATEBYID = ".updateById"; 
-    
+    public static final String POSTFIX_LOGICDELETE = ".logicDelete";
     public static final String POSTFIX_QUERYCOUNT = ".queryCount"; 
     public static final String POSTFIX_QUERYPAGELIST = ".queryPagelist"; 
 	/***************************删除操作****************************************************************************/	
@@ -112,6 +112,36 @@ public class BaseIbatisDAO {
 			deleteByID(ids[i],sql);
 		}
 	}	
+	
+
+	/**
+	 * 更新
+	 */
+	public int logicDelete(BaseModel bean)   {
+		try {
+			if(MyUserDetails.userDetails != null){
+				String createdBy = MyUserDetails.getCurUserDetails().getUsername(); 
+				bean.setUpdatedBy(createdBy);
+			}
+			bean.setUpdatedTime(new Date());
+			String sqlId = this.getNamespace()+POSTFIX_LOGICDELETE; 
+			return update(bean, sqlId);	
+		} catch (Exception e) {
+			log.error("更新数据发生异常"+e.getMessage());
+			e.fillInStackTrace();
+			 return -1;
+		}
+	}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/***************************添加操作****************************************************************************/	
 	

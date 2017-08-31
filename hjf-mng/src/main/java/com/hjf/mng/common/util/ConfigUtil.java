@@ -8,6 +8,7 @@ public class ConfigUtil {
 	 public  static String  environment;
 	 public  static String  sys_secKey;
 	 public  static String  sys_appSecret;
+	 public  static String  server_app_root;
 	 public  static String  server_app_host_url;
 	 public  static String  server_solr_host_url;
 	 public  static String  sys_uploadPath;
@@ -22,11 +23,14 @@ public class ConfigUtil {
 
 	 
 	static{
+		
+		
 		environment 		=PropUtils.getMsgStr("environment");
 		sys_uploadPath		=PropUtils.getMsgStr("sys.uploadPath");
 		sys_export			=PropUtils.getMsgStr("sys.export");
 		sys_secKey			=PropUtils.getMsgStr("sys.secKey");
 		sys_appSecret		=PropUtils.getMsgStr("sys.appSecret");
+		server_app_root		=PropUtils.getMsgStr("server.app.root");
 		server_app_host_url =PropUtils.getMsgStr("server.app.host.url");
 		server_mng_host		=PropUtils.getMsgStr("server.mng.host");
 		sys_session_isLocal	=PropUtils.getBooleanMsg("sys.session.isLocal");

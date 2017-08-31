@@ -17,7 +17,8 @@ import com.hjf.base.LogUtil;
 import com.hjf.base.exception.CodeUtil;
 import com.hjf.base.spring.BaseAction;
 import com.hjf.common.bean.UploadRespBean;
-import com.hjf.common.util.PropUtils;
+import com.hjf.common.util.TimeUtil;
+import com.hjf.mng.common.util.ConfigUtil;
 
 /**
  * 文件上传 
@@ -34,6 +35,10 @@ public class UploadController extends BaseAction {
 	@RequestMapping(method = RequestMethod.POST, params = "upload")
 	public void upload(HttpServletRequest request,HttpServletResponse response) {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String  ym=TimeUtil.getDateYM();
+		String serverPath = ConfigUtil.server_app_root + File.separator;
+		String appServer  =ConfigUtil.server_app_host_url;
+		String dataName = request.getParameter("dataName");
 		UploadRespBean rb   = new UploadRespBean();
 		String module  =request.getParameter("module");
 		if (StringUtils.isBlank(module)) {
@@ -42,25 +47,31 @@ public class UploadController extends BaseAction {
 			return;
 		} 
 		/** 构建图片保存的目录 **/
-		String pathDir = PropUtils.getMsgStr("uploadPath") +module;
+		String pathDir = ConfigUtil.sys_uploadPath +File.separator+module;
 		/** 得到图片保存目录的真实路径 **/
-		String realPathDir = request.getSession().getServletContext().getRealPath(pathDir);
+		String realPathDir =  serverPath + pathDir+"/" +ym;
 		/** 根据真实路径创建目录 **/
 		File saveFile = new File(realPathDir);
 		if (!saveFile.exists()){
 			saveFile.mkdirs();
 		}
 		/** 页面控件的文件流 **/
-		MultipartFile multipartFile = multipartRequest.getFile("file");
+		MultipartFile multipartFile = null;
+		if (StringUtils.isNotBlank(dataName)) {
+			multipartFile = multipartRequest.getFile(dataName);
+		}else{
+			multipartFile = multipartRequest.getFile("file");
+		}
+		
 		/** 获取文件的后缀 **/
 		String suffix = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf("."));
-		// /**使用UUID生成文件名称**/
+		/** 使用UUID生成文件名称 **/
 		String picName = UUID.randomUUID().toString() + suffix;// 构建文件名称
-		// String logImageName = multipartFile.getOriginalFilename();
 		/** 拼成完整的文件保存路径加文件 **/
-		String fileName = realPathDir + File.separator + picName;
-		String filePath = request.getContextPath() + pathDir + "/" + picName; // 文件存储路径【绝对对】
-		File file = new File(fileName);
+		String fileSavePath = serverPath + pathDir +File.separator  +ym+ File.separator + picName;
+		String filePath = appServer + pathDir+ "/"+ym+"/" + picName; // 文件存储路径【绝对对】
+		String fileName = pathDir + "/"+ym+"/" + picName; // 文件存储路径【绝对对】
+		File file = new File(fileSavePath);		
 		try {
 			multipartFile.transferTo(file);
 		} catch (Exception e) {

@@ -7,9 +7,26 @@ import com.hjf.base.model.BaseModel;
  * 创建日期：2017-08-17
  */
 public class ProductCategory extends BaseModel implements java.io.Serializable {
-	private Integer sortNum;
-	private Integer categoryId;
-	private String  categoryName;
+	private Integer  sortNum;
+	private Integer  categoryId;
+	private String   categoryName;
+	private String   pic;//图片
+	private Integer  pid;//上级分类
+	
+	
+	
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public Integer getPid() {
+		return pid;
+	}
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
 	public Integer getSortNum() {
 		return sortNum;
 	}

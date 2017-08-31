@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Product" >
+	<!-- 根据商品ID查询 -->
+	<select id="findById" parameterType="java.lang.Integer" resultType="Product">
+		select  * 
+		from product
+		where  productId=#{productId} 
+	</select>	
+	 
+	<!-- 提取公共WHERE -->
+	<sql id="common_sql_where">
+			<if test="@MyOgnl@isNotEmpty(params.categoryId)">
+				and  p.categoryId =#{params.categoryId}
+			</if>
+			<if test="@MyOgnl@isNotEmpty(params.productType)">
+				and  p.productType =#{params.productType}
+			</if>
+			<if test="@MyOgnl@isNotEmpty(params.status)">
+				and  p.status =#{params.status}
+			</if>
+			<if test="@MyOgnl@isNotEmpty(params.brandId)">
+				and  p.brandId =#{params.brandId}
+			</if>
+			<if test="@MyOgnl@isNotEmpty(params.productName)">
+				and  productName like   CONCAT('%',#{params.productName}, '%')   
+			</if>
+			<if test="@MyOgnl@isNotEmpty(params.endTime)">
+			and	<![CDATA[ p.createdTime <= #{params.endTime} ]]> 
+			</if>
+			<if test="@MyOgnl@isNotEmpty(params.startTime)">
+			and	<![CDATA[ p.createdTime >= #{params.startTime} ]]> 
+			</if>
+	</sql>	 
+	 
+ 	<!-- 分页查询商品 -->
+	<select id="queryPagelist" parameterType="PageModel" resultType="java.util.HashMap">
+		select   productId, productName,  productNO, productType, store, status,  marketPrice, pic, descriptions,
+    			p.createdTime, pc.categoryName
+		from  product p ,product_category pc
+		where   p.categoryId=pc.categoryId  and  p.delFlag=0
+		<include refid="common_sql_where"></include>
+		order by p.createdTime  desc
+		limit #{startRow},#{pageSize}
+	</select> 
+	<!-- 分页查询商品 -->
+	<select id="queryCount" parameterType="PageModel" resultType="java.lang.Integer">
+		select count(*)
+		from  product p ,product_category pc
+		where   p.categoryId=pc.categoryId and  p.delFlag=0
+		<include refid="common_sql_where"></include>
+	</select> 
+	
+	<!-- 删除商品 -->
+	<update id="logicDelete" parameterType="Product">
+		update  product set delFlag=1  where productId=#{productId}
+	</update>
+	
+	<!-- 增加 -->
+	<insert id="insertWithId" parameterType="ProductCategory">
+		 insert into product (productId,productName,productNO,store,productType,saleType,pics,pic,brandId,categoryId,sex,babyAge,descriptions,createdTime,createdBy)
+		 values(#{productId},#{productName},#{productNO},#{store},#{productType},#{saleType},#{pics},#{pic},#{brandId},#{categoryId},#{sex},#{babyAge},#{descriptions},#{createdTime},#{createdBy})
+	   	    <selectKey resultType="int" keyProperty="productId" >
+            SELECT @@IDENTITY AS productId
+        </selectKey> 
+	
+	</insert>
+	
+	<update id="updateById" parameterType="Product" >
+	   update product 
+	   	<trim prefix="set"  suffixOverrides="," >
+	   		 <if test="@MyOgnl@isNotEmpty(updatedTime)">
+	   		 	 updatedTime=#{updatedTime}, 
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(updatedBy)">
+	   		 	 updatedBy=#{updatedBy},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(status)">
+	   		 	 status=#{status},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(productNO)">
+	   		 	 productNO=#{productNO},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(productName)">
+	   		 	 productName=#{productName},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(productType)">
+	   		 	 productType=#{productType},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(countSale)">
+	   		 	 countSale=#{countSale},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(countRent)">
+	   		 	 countRent=#{countRent},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(pics)">
+	   		 	 pics=#{pics},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(pic)">
+	   		 	 pic=#{pic},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(brandId)">
+	   		 	 brandId=#{brandId},
+	   		 </if>
+
+	   		 <if test="@MyOgnl@isNotEmpty(categoryId)">
+	   		 	 categoryId=#{categoryId},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(babyAge)">
+	   		 	 babyAge=#{babyAge},
+	   		 </if>		 
+	   		 <if test="@MyOgnl@isNotEmpty(sex)">
+	   		 	 sex=#{sex},
+	   		 </if>	
+	   		 <if test="@MyOgnl@isNotEmpty(descriptions)">
+	   		 	 descriptions=#{descriptions},
+	   		 </if>	
+	   		 <if test="@MyOgnl@isNotEmpty(store)">
+	   		 	 store=#{store},
+	   		 </if>
+	   </trim>
+	  where productId=#{productId}
+	</update>
+	
+</mapper>

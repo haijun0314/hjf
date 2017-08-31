@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductCategory" >
+  <!-- 查询-->
+  <select id="queryList" parameterType="Query" resultType="java.util.HashMap">
+    	 select  *
+   		 from product_category
+    	 where delFlag=0
+    	<if test="@MyOgnl@isNotEmpty(params.pid)">
+    	 and pid=#{params.pid}
+    	 </if>
+    	 order  by   sortNum  desc
+  </select>
+  
+<select id="findById" parameterType="java.lang.Integer" resultType="ProductCategory">
+	select * 
+	from product_category  
+	where  categoryId=#{categoryId}
+</select>
+<!-- 增加 -->
+<insert id="insert" parameterType="ProductCategory">
+	 insert into product_category (categoryId,categoryName,sortNum,createdTime,pic,pid)
+	 values(#{categoryId},#{categoryName},#{sortNum},#{createdTime},#{pic},#{pid})
+</insert>
+<update id="logicDelete" parameterType="ProductCategory">
+	update  product_category  set delFlag=1  where categoryId=#{categoryId}
+</update>
+<update id="updateById" parameterType="ProductCategory" >
+	   update product_category 
+	   	<trim prefix="set"  suffixOverrides="," >
+	   		 <if test="@MyOgnl@isNotEmpty(updatedTime)">
+	   		 	 updatedTime=#{updatedTime}, 
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(updatedBy)">
+	   		 	 updatedBy=#{updatedBy},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(sortNum)">
+	   		 	 sortNum=#{sortNum},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(categoryName)">
+	   		 	 categoryName=#{categoryName},
+	   		 </if>
+	   </trim>
+	where  categoryId=#{categoryId}
+	</update>
+	
+
+
+</mapper>

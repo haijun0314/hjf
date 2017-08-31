@@ -16,6 +16,12 @@ public class TimeUtil{
         return date;
     }
     
+    public static String getDateYM() {
+		Date D = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyyMM");
+		String date = sf.format(D);
+		return date;
+	}      
     public static String  getEndDateStr(String endTime){
 		endTime=endTime+" 23:59:59";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
