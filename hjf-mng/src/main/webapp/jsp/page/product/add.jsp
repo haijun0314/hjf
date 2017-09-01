@@ -2,14 +2,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <link rel="stylesheet" type="text/css" href="/static/webuploader/webuploader.css">
-<link rel="stylesheet" type="text/css" href="/static/webuploader/demo.css">
 <script type="text/javascript" src="/static/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="/static/logic/product/uploadPic.js"></script> 
+<script type="text/javascript" src="/static/webuploader/uploadUtil.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	validate_Form();//初始化表单验证
-	ProductUtil.initData();
+	ProductUtil.initCategorys('pid');
+	ProductUtil.initBrands();
 });
+ 
+function selectPicd(){
+	var pid=$("#pid").val();
+	$("#categoryId").empty();
+	if(pid==''){
+		return;
+	}
+	
+	ProductUtil.initCategorys('categoryId',null,pid);
+} 
+ 
  
 /******************表单验证****************************/
 function validate_Form(){
@@ -36,25 +47,23 @@ function add_do(){
 	<div class="col-xs-12">
 		<form action="${contextPath}/product?add&ajax=true&reqType=2" class="form-horizontal" role="form"  id="dataForm" name="dataForm">
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right">玩具信息</label>
+				<label class="col-sm-3 control-label no-padding-right">商品信息</label>
 				<div class="col-sm-9">
 					<span class="input-icon">
-						<input   class="required"  type="text"  id="productName"  name="productName"  placeholder="玩具名称">
+						<input type="text"    class="required"  id="productName"  name="productName"  placeholder="商品名称">
 					</span>
 					<span class="input-icon input-icon-right">
-						<input  type="text" id="productNO"  name="productNO" placeholder="玩具编号">
+						<input  type="text" class="required"  id="productNO"  name="productNO" placeholder="商品编号">
 					</span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="countTotal" class="col-sm-3 control-label no-padding-right"><b class="star_red">*</b> 玩具库存</label>
-				<div class="col-sm-9">
-					<input type="text" class="col-xs-10 col-sm-7 required"  id="store" name="store"   >
+					<span class="input-icon input-icon-right">
+						<input type="text" class="required"  id="store" name="store"   placeholder="商品库存" >
+					</span>
 				</div>
 			</div>
 			<div class="form-group" >
 				<input  type="hidden" id="pics"  name="pics"   class="required">
-				<label class="col-sm-3 control-label no-padding-right">玩具图片</label>
+				<input id="module" value="product" style="display:none;" fileId="pics">
+				<label class="col-sm-3 control-label no-padding-right">商品图片</label>
 				<div id="uploader" class="wu-example col-sm-4">
 				    <div class="queueList">
 				        <div id="dndArea" class="placeholder">
@@ -81,29 +90,15 @@ function add_do(){
 			<div class="form-group" >
 				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>所属分类</label>
 				<div class="col-sm-9" >
-					 <select name="categoryId" id="categoryId" class="required">
-						 
+					 <select name="pid" id="pid" class="required"  onchange="selectPicd()">
+						 <option value=""> 请选择分类</option>
 					 </select>
-				</div> 
-			</div>
-			<div class="form-group" >
-				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>销售类型</label>
-				<div class="col-sm-9" >
-					 <select name="saleType" id="saleType" >
-						 <option value="1">售卖</option>
-						 <option value="0">租赁</option>
-					 </select>
-				</div> 
-			</div>
-			
-			<div class="form-group" >
-				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>所属性别</label>
-				<div class="col-sm-9" >
-					 <select name="sex" id="sex" >
-						 <option value="0">男</option>
-						 <option value="1">女</option>
-						 <option value="2">不限</option>
-					 </select>
+					 <span class="input-icon input-icon-right">
+						 <select name="categoryId" id="categoryId" class="required">
+						 </select>
+					</span>
+					 
+					 
 				</div> 
 			</div>
 			<div class="form-group" >
@@ -114,26 +109,23 @@ function add_do(){
 					 </select>
 				</div> 
 			</div>
+			
 			<div class="form-group" >
-				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>适宜儿童</label>
+				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>销售类型</label>
 				<div class="col-sm-9" >
-				<!--  年龄段["0-6个月","6个月-12个月","1-3岁","3-6岁"] -->
-					 <select name="babyAge" id="babyAge" >
-						 <option value="1">0-6个月</option>
-						 <option value="2">6个月-12个月</option>
-						 <option value="3">1-3岁</option>
-						 <option value="4">3-6岁</option>
-						 <option value="5">6岁以上</option>
+					 <select name="productType" id="productType" >
+						 <option value="1">普通商品 </option>
+						 <option value="2"> 推荐商品</option>
+						 <option value="3"> 热卖商品</option> 
 					 </select>
 				</div> 
 			</div>
-			</div>
-				<div class="form-group">
-					<label for="remark" class="col-sm-2 control-label no-padding-right">玩具介绍</label>
-					<div class="col-sm-10">
-						<textarea maxlength="500"   rows="10" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions"></textarea>
-					</div>
+			<div class="form-group">
+				<label for="remark" class="col-sm-3 control-label no-padding-right">商品介绍</label>
+				<div class="col-sm-5">
+					<textarea maxlength="500"   rows="3" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions"></textarea>
 				</div>
+			</div>
 			<div class="clearfix form-actions">
 				<div class="col-md-offset-3 col-md-9">
 					<button class="btn btn-danger" type="button" style="width: 300px"  onclick="add_do()">

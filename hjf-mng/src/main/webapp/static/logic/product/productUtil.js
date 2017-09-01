@@ -75,8 +75,6 @@ var ProductUtil = {
 		             }
 		         }]
 		    });
-			 
-			 
 		},
 		/*********商品添加***********/
 		add:function(){
@@ -91,13 +89,18 @@ var ProductUtil = {
 			AjaxRequest.urlRequest("/product?gridView&Ajax=true","right") ;
 		},
 		/********初始选择数据****disPlayId:展示Id**selectValue:默认选中值**/
-		initCategorys:function(disPlayId,selectValue){
+		initCategorys:function(disPlayId,selectValue,pid){
+			var url="/product?categoryList&reqType=2";
+			if(pid){
+				url=url+"&pid="+pid;
+			}
 			AjaxRequest.httpPost(
-				"/product?categoryList&reqType=2",
+				url,
 				{
 					     
 				},
 				function(result) {
+					
 					for( i=0;i<result.length;i++){
 						var  c=result[i];
 						if(disPlayId){
@@ -138,8 +141,39 @@ var ProductUtil = {
 					
 			});
 		},
-		
-		
+		/**********商品品牌***添加**********/
+		brand_add:function(){
+			 BootstrapDialog.show({
+				title:'商品品牌添加',
+		        message: $("<div></div>").load("/product?brand_add&Ajax=true"),//加载远程地址
+		         buttons: [{
+		             label: '确定操作',
+		             icon: 'glyphicon glyphicon-ok',
+		             cssClass: 'btn-primary',
+		             action: function(dialog) {
+		                 if($('#dataForm').valid()){
+		                 	AjaxRequest.submitFormForModel("dataForm",dialog,searchSubmit);//提交数据表单
+		                 }
+		             }
+		         }, {
+		             label: '取消',
+		             icon: 'glyphicon glyphicon-remove',
+		             cssClass: 'btn-danger',
+		             action: function(dialog) {
+		            	 dialog.close();
+		             }
+		         }]
+		    });
+		},
+		/**********删除商品品牌*********/
+		brand_del:function(brandId){
+			 bootbox.confirm("确认要删除数据吗?", function(result) {
+					if(result) {
+						var  url ="/product?brand_delete&Ajax=true&brandId="+brandId;
+						AjaxRequest.urlRequestWithMsg(url,searchSubmit) ;
+						}
+				});
+		},
 		
 		/**********删除商品*********/
 		del:function(productId){

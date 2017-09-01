@@ -10,6 +10,21 @@ public class ProductBrand extends BaseModel implements java.io.Serializable {
 	private Integer sortNum;
 	private Integer brandId;
 	private String  brandName;
+	private String  pic;
+	private Integer  categoryId;//所属类别【大类】
+	
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
 	public Integer getSortNum() {
 		return sortNum;
 	}

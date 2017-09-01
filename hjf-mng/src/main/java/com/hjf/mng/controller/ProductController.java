@@ -21,6 +21,7 @@ import com.hjf.common.util.web.RequestUtils;
 import com.hjf.mng.bean.vo.ProductDetailRespBean;
 import com.hjf.mng.common.util.SysLogUtil;
 import com.hjf.mng.entity.Product;
+import com.hjf.mng.entity.ProductBrand;
 import com.hjf.mng.entity.ProductCategory;
 import com.hjf.mng.service.ConfigService;
 import com.hjf.mng.service.ProductService;
@@ -45,9 +46,9 @@ public class ProductController extends BaseAction{
 	//商品类型
 	String categoryList      	="page/product/category/categoryList";
 	String category_add     	="page/product/category/add";
-	String brandList      		="page/product/brand/brandList";
+	String brand_dataList      		="page/product/brand/dataList";
 	String brand_add     		="page/product/brand/add";
-	
+	String brand_layout     	="page/product/brand/layout";
 	 
 	/**
 	 *   商品管理
@@ -91,10 +92,10 @@ public class ProductController extends BaseAction{
 			ModelAndView  mav=new ModelAndView(add);
 			return mav;
 		}else{
-			 
-			Map city_data=RequestUtils.getParameters(request);
-			pc.setProductType("0");
-			productService.add(pc,city_data);
+			r=productService.add(pc);
+			if (r.isFail()) {
+				
+			}
 			MsgUtil.operSuccess( response);
 			return  null;
 		}
@@ -168,15 +169,60 @@ public class ProductController extends BaseAction{
 	@RequestMapping(params = "brandList")
 	public ModelAndView brandList(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		ModelAndView mav = null;
-		if (pageRequest(request)) { 
-			mav = new ModelAndView(brandList);	
+		String  reqType =request.getParameter("reqType");
+		List brands=productService.brandList();
+		if (StringUtils.isBlank(reqType)) { 
+			mav = new ModelAndView(brand_layout);	
+			mav.addObject("brands", brands);
+			return mav;
+		}else if("1".equals(reqType)){
+			mav = new ModelAndView(brand_dataList);	
+			mav.addObject("brands", brands);
 			return mav;
 		}else{
-			List brands=productService.brandList();
 			respMsgObj(response, brands);
 			return   null;
 		}
 	}	
+	
+	/**
+	 *  商品品牌添加
+	 */
+	@RequestMapping(params = "brand_add")
+	public ModelAndView brand_add(ProductBrand pc,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		if (pageRequest(request)) { 
+			ModelAndView  mav=new ModelAndView(brand_add);
+			return mav;
+		}else{
+			try {
+				productService.brand_add(pc);
+				MsgUtil.operSuccess( response);
+				SysLogUtil.addlSysLog(request,"商品品牌添加【"+pc.getBrandName()+"】成功",ResultType.Success);
+			} catch (Exception e) {
+				MsgUtil.operFail(response, e);
+				SysLogUtil.addlSysLog(request,"商品品牌添加【"+pc.getBrandName()+"】失败",ResultType.Fail);
+			}
+			return  null;
+		}
+	}	
+	
+	/**
+	 *  商品品牌删除
+	 */
+	@RequestMapping(params = "brand_delete")
+	public void brand_delete(ProductBrand pc,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		try {
+			productService.brand_delete(pc); 
+			MsgUtil.operSuccess( response);
+			SysLogUtil.addlSysLog(request,"商品品牌删除【"+pc.getBrandId()+"】成功",ResultType.Success);
+		} catch (Exception e) {
+			MsgUtil.operFail(response, e);
+			SysLogUtil.addlSysLog(request,"商品品牌删除【"+pc.getBrandId()+"】失败",ResultType.Fail);
+		}
+	}	
+	
+	
+	
 	
 	
 	/**
@@ -187,12 +233,11 @@ public class ProductController extends BaseAction{
 		try {
 			productService.category_delete(pc); 
 			MsgUtil.operSuccess( response);
-			SysLogUtil.addlSysLog(request,"商品分类删除【"+pc.getCategoryName()+"】成功",ResultType.Success);
+			SysLogUtil.addlSysLog(request,"商品分类删除【"+pc.getCategoryId()+"】成功",ResultType.Success);
 		} catch (Exception e) {
 			MsgUtil.operFail(response, e);
-			SysLogUtil.addlSysLog(request,"商品分类删除【"+pc.getCategoryName()+"】失败",ResultType.Fail);
+			SysLogUtil.addlSysLog(request,"商品分类删除【"+pc.getCategoryId()+"】失败",ResultType.Fail);
 		}
-		
 	}		
 	/**
 	 *  商品分类添加

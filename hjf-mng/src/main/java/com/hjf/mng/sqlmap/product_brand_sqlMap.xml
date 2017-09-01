@@ -5,12 +5,20 @@
 <mapper namespace="ProductBrand" >
    
 <select id="queryList" parameterType="Query" resultType="java.util.HashMap">
-	select brandId,brandName
-	from product_brand  
-	where  delFlag=0
-		order  by sortNum  desc
+	select pb.brandId,pb.brandName,pb.pic,pc.categoryName,pb.createdTime
+	from product_brand  pb
+	left join product_category pc on pb.categoryId=pc.categoryId
+	where  pb.delFlag=0
+   order  by pb.sortNum  desc
 </select>
-
+<!-- 增加 -->
+<insert id="insert" parameterType="ProductBrand">
+	 insert into product_brand (brandId,brandName,sortNum,createdTime,pic,categoryId)
+	 values(#{brandId},#{brandName},#{sortNum},#{createdTime},#{pic},#{categoryId})
+</insert>
+<update id="logicDelete" parameterType="ProductBrand">
+	update  product_brand  set delFlag=1  where brandId=#{brandId}
+</update>
 <select id="findById" parameterType="java.lang.Integer" resultType="ProductBrand">
 	select *
 	from product_brand  

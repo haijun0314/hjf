@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.base.mybatis.Query;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.mng.bean.vo.ProductDetailRespBean;
 import com.hjf.mng.common.util.ConfigUtil;
 import com.hjf.mng.dao.ProductBrandDAO;
@@ -137,9 +138,31 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	public  void  category_delete(ProductCategory pc){
 		productCategoryDAO.logicDelete(pc);
 	}
+	
+	/**
+	 * 查询商品品牌
+	 */
 	public  ProductBrand  getProductBrand(Integer brandId){
 		return (ProductBrand) productBrandDAO.getObjById(brandId);
 	}	
+	
+	/**
+	 * 添加商品品牌
+	 */
+	public  void  brand_add(ProductBrand pb){
+		productBrandDAO.save(pb);
+	}	
+	
+	/**
+	 * 删除商品品牌
+	 */
+	public  void  brand_delete(ProductBrand pb){
+		productBrandDAO.logicDelete(pb);
+	}	
+		
+	
+	
+	
 	 
 	public  Product  getProduct(Integer productId){
 		Product p=(Product) productDAO.getObjById(productId);
@@ -190,19 +213,27 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	/**
 	 * 添加商品
 	 */
-	@SuppressWarnings("unused")
-	public  void  add(Product  pc,Map city_data){
-		String pics=pc.getPics();
-		if (pics.endsWith("_")) {
-			pc.setPics(pics.substring(0,pics.length()-1));
+	public  BaseRespBean  add(Product  pc){
+		try {
+			String pics=pc.getPics();
+			if (pics.endsWith("_")) {
+				pc.setPics(pics.substring(0,pics.length()-1));
+			}
+			String pic[]=pc.getPics().split("_");
+			pc.setPic(pic[0]);
+			pc=(Product) productDAO.saveWithReturnId(pc);
+			if (pc==null||pc.getProductId()<1) {
+				r.fail();
+				return r;
+			}
+		} catch (Exception e) {
+			log.error("【添加商品失败】"+e.getMessage());
+			r.fail();
+			return r;
 		}
-		String pic[]=pc.getPics().split("_");
-		pc.setPic(pic[0]);
-		pc=(Product) productDAO.saveWithReturnId(pc);
-		if (pc==null||pc.getProductId()<1) {
-			return ;
-		}
-		 
+		r.success();
+		return r;
+		
 	}
 		
 	 

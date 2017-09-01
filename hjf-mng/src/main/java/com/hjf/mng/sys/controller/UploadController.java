@@ -69,7 +69,7 @@ public class UploadController extends BaseAction {
 		String picName = UUID.randomUUID().toString() + suffix;// 构建文件名称
 		/** 拼成完整的文件保存路径加文件 **/
 		String fileSavePath = serverPath + pathDir +File.separator  +ym+ File.separator + picName;
-		String filePath = appServer + pathDir+ "/"+ym+"/" + picName; // 文件存储路径【绝对对】
+		String filePath =  pathDir+ "/"+ym+"/" + picName; // 文件存储路径【绝对对】
 		String fileName = pathDir + "/"+ym+"/" + picName; // 文件存储路径【绝对对】
 		File file = new File(fileSavePath);		
 		try {

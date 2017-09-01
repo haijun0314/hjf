@@ -2,9 +2,9 @@
 
     // 当domReady的时候开始初始化
     $(function () {
-    	
     	var  module=$("#module").val();
     	var  fileId=$("#module").attr("fileId");
+    	
     	$("#"+fileId).val("");
     	var  config={
                 pick: {

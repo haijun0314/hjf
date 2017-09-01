@@ -191,6 +191,10 @@ public class BaseIbatisDAO {
 	 */
 	public BaseModel  saveWithReturnId(BaseModel bean)  {
 		try {
+			if(MyUserDetails.getCurUserDetails() != null){
+				String createdBy = MyUserDetails.getCurUserDetails().getUsername(); 
+				bean.setCreatedBy(createdBy);
+			}
 			bean.setCreatedTime(new Date());
 			String  sqlId=this.getNamespace()+POSTFIX_SAVE_WITHID ; 
 			sqlSessionTemplate.insert(sqlId, bean);

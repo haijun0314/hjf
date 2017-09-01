@@ -1,9 +1,9 @@
 package com.hjf.mng.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.hjf.base.model.PageModel;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.mng.bean.vo.ProductDetailRespBean;
 import com.hjf.mng.entity.Product;
 import com.hjf.mng.entity.ProductBrand;
@@ -25,12 +25,18 @@ public interface ProductService {
 	public  void updateStroe(Product  pc);	
 	//获取商品品牌
 	public  ProductBrand  getProductBrand(Integer brandId);	
+	//添加商品品牌
+	public  void  brand_add(ProductBrand pb);
+	//删除商品品牌
+	public  void  brand_delete(ProductBrand pb);	
+	
+	
 	//商品更新
 	public  void update(Product  p)	;
 	//删除商品
 	public  void  delete(Product  pc);
 	//添加商品
-	public  void  add(Product  pc,Map city_data);
+	public  BaseRespBean  add(Product  pc);
 	//商品详情
 	public ProductDetailRespBean  detail(Integer productId);
 	//根据Id查询商品
