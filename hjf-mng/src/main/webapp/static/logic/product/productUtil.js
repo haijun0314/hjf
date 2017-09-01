@@ -55,15 +55,15 @@ var ProductUtil = {
 		/**********商品分类***添加**********/
 		category_add:function(){
 			 BootstrapDialog.show({
-				 title:'商品分类添加',
+				title:'商品分类添加',
 		        message: $("<div></div>").load("/product?category_add&Ajax=true"),//加载远程地址
 		         buttons: [{
 		             label: '确定操作',
 		             icon: 'glyphicon glyphicon-ok',
 		             cssClass: 'btn-primary',
 		             action: function(dialog) {
-		                 if($('#dataForm').valid()){
-		                 	AjaxRequest.submitFormForModel("dataForm",dialog,searchSubmit);//提交数据表单
+		                 if($('#dataFormD').valid()){
+		                 	AjaxRequest.submitFormForModel("dataFormD",dialog,ProductUtil.category_update_load);//提交数据表单
 		                 }
 		             }
 		         }, {
@@ -75,6 +75,8 @@ var ProductUtil = {
 		             }
 		         }]
 		    });
+			 
+			 
 		},
 		/*********商品添加***********/
 		add:function(){
@@ -88,25 +90,45 @@ var ProductUtil = {
 		return_list:function(){
 			AjaxRequest.urlRequest("/product?gridView&Ajax=true","right") ;
 		},
-		/********初始选择数据********/
-		initData:function(categoryId_,brandId_){
+		/********初始选择数据****disPlayId:展示Id**selectValue:默认选中值**/
+		initCategorys:function(disPlayId,selectValue){
 			AjaxRequest.httpPost(
-				"/product?initData",
+				"/product?categoryList&reqType=2",
+				{
+					     
+				},
+				function(result) {
+					for( i=0;i<result.length;i++){
+						var  c=result[i];
+						if(disPlayId){
+							$("#"+disPlayId).append("<option value='"+c.categoryId+"'>"+c.categoryName+"</option>");
+						}else{
+							$("#categoryId").append("<option value='"+c.categoryId+"'>"+c.categoryName+"</option>");
+							
+						}
+					}
+					if(selectValue!=null){
+						if(disPlayId){
+							$("#"+disPlayId).val(selectValue);
+						}else{
+							$("#categoryId").val(selectValue);
+						}
+						
+					}
+					 
+			});
+		},
+		
+		/********初始选择数据********/
+		initBrands:function(brandId_){
+			AjaxRequest.httpPost(
+				"/product?brandList&reqType=2",
 				{
 					 
 				},
 				function(result) {
-					var categorys=result.categorys;
-					for( i=0;i<categorys.length;i++){
-						var  c=categorys[i];
-						$("#categoryId").append("<option value='"+c.categoryId+"'>"+c.categoryName+"</option>");
-					}
-					if(categoryId_!=null){
-						$("#categoryId").val(categoryId_);
-					}
-					var brands=result.brands;
-					for( i=0;i<brands.length;i++){
-						var  b=brands[i];
+					for( i=0;i<result.length;i++){
+						var  b=result[i];
 						$("#brandId").append("<option value='"+b.brandId+"'>"+b.brandName+"</option>");
 					}
 					if(brandId_!=null){
@@ -116,6 +138,8 @@ var ProductUtil = {
 					
 			});
 		},
+		
+		
 		
 		/**********删除商品*********/
 		del:function(productId){

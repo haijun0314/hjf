@@ -16,7 +16,8 @@ function searchSubmit(){
 }
 $(document).ready(function(){
 	HJF.initDate();
-	ProductUtil.initData();
+	ProductUtil.initCategorys();
+	ProductUtil.initBrands();
 });
 
 </script>	

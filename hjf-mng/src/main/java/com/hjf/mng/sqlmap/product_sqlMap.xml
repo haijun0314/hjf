@@ -13,7 +13,7 @@
 	<!-- 提取公共WHERE -->
 	<sql id="common_sql_where">
 			<if test="@MyOgnl@isNotEmpty(params.categoryId)">
-				and  p.categoryId =#{params.categoryId}
+				and  p.categoryId in (select categoryId  from product_category where pid = #{params.categoryId})
 			</if>
 			<if test="@MyOgnl@isNotEmpty(params.productType)">
 				and  p.productType =#{params.productType}
@@ -37,7 +37,7 @@
 	 
  	<!-- 分页查询商品 -->
 	<select id="queryPagelist" parameterType="PageModel" resultType="java.util.HashMap">
-		select   productId, productName,  productNO, productType, store, status,  marketPrice, pic, descriptions,
+		select   productId, productName,  productNO, productType, store, status,  marketPrice, p.pic, descriptions,
     			p.createdTime, pc.categoryName
 		from  product p ,product_category pc
 		where   p.categoryId=pc.categoryId  and  p.delFlag=0

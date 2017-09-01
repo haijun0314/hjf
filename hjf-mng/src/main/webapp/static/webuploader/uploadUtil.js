@@ -1,31 +1,35 @@
 (function ($) {
-	var  module=$("#module").val();
-	var  fileId=$("#module").attr("fileId");
-	var  config={
-            pick: {
-                id: '#filePicker',
-                label: '点击选择图片'
-            },
-            dnd: '#uploader .queueList',
-            paste: document.body,
-            accept: {
-                title: 'Images',
-                extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
-            },
 
-            // swf文件路径
-            swf:  '/static/webuploader/Uploader.swf',
-            disableGlobalDnd: true,
-            chunked: true,
-            fileNumLimit: 1,
-            fileSizeLimit: 5 * 1024 * 1024,    // 200 M
-            fileSingleSizeLimit: 1 * 1024 * 1024,    // 50 M
-            server: '/upload?upload&module=' +module ,
-            fileId:fileId
-        }
     // 当domReady的时候开始初始化
     $(function () {
+    	
+    	var  module=$("#module").val();
+    	var  fileId=$("#module").attr("fileId");
+    	$("#"+fileId).val("");
+    	var  config={
+                pick: {
+                    id: '#filePicker',
+                    label: '点击选择图片'
+                },
+                dnd: '#uploader .queueList',
+                paste: document.body,
+                accept: {
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/*'
+                },
+
+                // swf文件路径
+                swf:  '/static/webuploader/Uploader.swf',
+                disableGlobalDnd: true,
+                chunked: true,
+                fileNumLimit: 1,
+                fileSizeLimit: 5 * 1024 * 1024,    // 200 M
+                fileSingleSizeLimit: 1 * 1024 * 1024,    // 50 M
+                server: '/upload?upload&module=' +module  
+            }   	
+    	
+    	
         var $wrap = $('#uploader'),
                 // 图片容器
                 $queue = $('<ul class="filelist"></ul>')
@@ -190,10 +194,10 @@
         });
         
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。  
-        uploader.on( 'uploadSuccess', function( file ,reponse) {  
-       	 		var pics=$("#"+config.fileId).val();
+        uploader.on( 'uploadSuccess', function( file ,reponse) { 
+       	 		var pics=$("#"+fileId).val();
        	 		pics=pics+reponse.fileName+"_";
-       	 		$("#"+config.fileId).val(pics);
+       	 		$("#"+fileId).val(pics);
         }); 
 
         // 当有文件添加进来时执行，负责view的创建

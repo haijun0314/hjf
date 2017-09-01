@@ -146,7 +146,7 @@ public class ProductController extends BaseAction{
 			return mav;
 		}else{
 			List  datas=new ArrayList();
-			if (StringUtils.isNotBlank(reqType)) {
+			if (StringUtils.isNotBlank(reqType)&&reqType.equals("1")) {
 				datas=productService.categoryTree();
 				respMsgObj(response, datas);
 				return   null;
@@ -167,7 +167,6 @@ public class ProductController extends BaseAction{
 	 */
 	@RequestMapping(params = "brandList")
 	public ModelAndView brandList(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		String pid=request.getParameter("");
 		ModelAndView mav = null;
 		if (pageRequest(request)) { 
 			mav = new ModelAndView(brandList);	

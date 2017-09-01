@@ -13,9 +13,9 @@
 
 
 </script>
- <div class="demo">
-            <h3>3、高级上传</h3>
             <div id="uploader">
+            <input  type="hidden" id="pic"  name="pic"   class="required">
+            <input id="module" value="category" style="display:none;" fileId="pic">
                 <div class="queueList">
                     <div id="dndArea" class="placeholder">
                         <div id="filePicker"></div>
@@ -28,11 +28,11 @@
                         <span class="percentage"></span>
                     </div><div class="info"></div>
                     <div class="btns">
+                     
                         <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
                     </div>
                 </div>
             </div>
-        </div>
  
 
 

@@ -11,10 +11,6 @@
 <script type="text/javascript">
 	ProductUtil.category_load_tree();	
 </script>
-
-
-
-
 <form  id="searchForm" >
 		<div class="row">
 			<div class=" col-sm-5">
@@ -43,7 +39,7 @@
 			<div class="form-group">
 				<label for="roleName" class="col-sm-3 control-label no-padding-right"><b class="star_red">*</b> 排序</label>
 				<div class="col-sm-9">
-					<input type="text" class="col-xs-10 col-sm-7" placeholder="" id="sortNum" name="sortNum">
+					<input type="text" class="col-xs-10 col-sm-7 digits" placeholder="" id="sortNum" name="sortNum" >
 				</div>
 			</div>
 			<div class="form-group">
