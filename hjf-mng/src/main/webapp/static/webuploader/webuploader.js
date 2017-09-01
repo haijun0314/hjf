@@ -1187,7 +1187,6 @@
     
             init: function() {
                 var me = this;
-    
                 me.connectRuntime( me.options, function() {
                     me.exec('init');
                     me.trigger('ready');
@@ -4204,7 +4203,7 @@
     
                 if ( count >= max && flag ) {
                     flag = false;
-                    this.trigger( 'error', 'Q_EXCEED_NUM_LIMIT', max, file );
+                    this.trigger( 'error', '文件数量超出限制', max, file );
                     setTimeout(function() {
                         flag = true;
                     }, 1 );
@@ -4249,7 +4248,7 @@
     
                 if ( invalid && flag ) {
                     flag = false;
-                    this.trigger( 'error', 'Q_EXCEED_SIZE_LIMIT', max, file );
+                    this.trigger( 'error', '文件大小超出限制', max, file );
                     setTimeout(function() {
                         flag = true;
                     }, 1 );
