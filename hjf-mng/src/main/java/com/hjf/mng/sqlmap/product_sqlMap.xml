@@ -60,8 +60,8 @@
 	
 	<!-- 增加 -->
 	<insert id="insertWithId" parameterType="ProductCategory">
-		 insert into product (productId,productName,productNO,store,productType,pics,pic,brandId,categoryId,descriptions,createdTime,createdBy)
-		 values(#{productId},#{productName},#{productNO},#{store},#{productType},#{pics},#{pic},#{brandId},#{categoryId},#{descriptions},#{createdTime},#{createdBy})
+		 insert into product (productId,productName,productNO,store,productType,pics,pic,brandId,categoryId,descriptions,createdTime,createdBy,detailDesc)
+		 values(#{productId},#{productName},#{productNO},#{store},#{productType},#{pics},#{pic},#{brandId},#{categoryId},#{descriptions},#{createdTime},#{createdBy},#{detailDesc})
 	   	    <selectKey resultType="int" keyProperty="productId" >
             SELECT @@IDENTITY AS productId
         </selectKey> 

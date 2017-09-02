@@ -897,6 +897,8 @@ $.extend($.validator, {
 	staticRules: function( element ) {
 		var rules = {};
 		var validator = $.data(element.form, "validator");
+		/**********2017-09-02 李海军 添加*  目的文本编辑器  上传图片按钮  增加了触发事件导致验证失效  *****/
+		if(!validator){return }
 		if ( validator.settings.rules ) {
 			rules = $.validator.normalizeRule(validator.settings.rules[element.name]) || {};
 		}

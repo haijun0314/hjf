@@ -4,11 +4,22 @@
 <link rel="stylesheet" type="text/css" href="/static/webuploader/webuploader.css">
 <script type="text/javascript" src="/static/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/static/webuploader/uploadUtil.js"></script>
+
+
+    <link href="/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="/static/umeditor/third-party/template.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function(){
-	validate_Form();//初始化表单验证
 	ProductUtil.initCategorys('pid');
 	ProductUtil.initBrands();
+	 var um = UM.getEditor('detailDesc');
 });
  
 function selectPicd(){
@@ -37,6 +48,7 @@ function validate_Form(){
 
 /******************表单验证****************************/
 function add_do(){
+	validate_Form();//初始化表单验证
     if($('#dataForm').valid()){
      	AjaxRequest.formRequest("dataForm",ProductUtil.return_list());//提交数据表单
      }
@@ -126,6 +138,19 @@ function add_do(){
 					<textarea maxlength="500"   rows="3" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions"></textarea>
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="remark" class="col-sm-3 control-label no-padding-right">商品介绍</label>
+				<div class="col-sm-5">
+					<!--style给定宽度可以影响编辑器的最终宽度-->
+						<script type="text/plain" id="detailDesc"  name="detailDesc"  style="width:700px;height:240px;">
+    
+						</script>
+				</div>
+			</div>
+			
+			
+			
 			<div class="clearfix form-actions">
 				<div class="col-md-offset-3 col-md-9">
 					<button class="btn btn-danger" type="button" style="width: 300px"  onclick="add_do()">

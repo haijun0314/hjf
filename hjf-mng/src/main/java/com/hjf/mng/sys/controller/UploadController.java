@@ -37,7 +37,6 @@ public class UploadController extends BaseAction {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String  ym=TimeUtil.getDateYM();
 		String serverPath = ConfigUtil.server_app_root + File.separator;
-		String appServer  =ConfigUtil.server_app_host_url;
 		String dataName = request.getParameter("dataName");
 		UploadRespBean rb   = new UploadRespBean();
 		String module  =request.getParameter("module");

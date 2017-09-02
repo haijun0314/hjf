@@ -40,7 +40,17 @@ public class ProductDetailRespBean extends BaseRespBean {
 	private String    		babyAge;//年龄段["0-6个月","6个月-12个月","1-3岁","3-6岁"]
 	private String [] 			picList;
 	
+	private String   		detailDesc;//详细描述
 	
+	
+	
+	
+	public String getDetailDesc() {
+		return detailDesc;
+	}
+	public void setDetailDesc(String detailDesc) {
+		this.detailDesc = detailDesc;
+	}
 	 
 	public String[] getPicList() {
 		return picList;

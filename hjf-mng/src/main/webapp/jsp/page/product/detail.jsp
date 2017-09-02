@@ -10,70 +10,111 @@
 
 </style>
 	 
-	   <table class="table">
-		<tr>
-			<div id="myCarousel" class="carousel slide">
-				<!-- 轮播（Carousel）指标 -->
-				<ol class="carousel-indicators">
-				<c:forEach var="data" items="${p.picList}" varStatus="status">
-					<c:if test="${status.index==0}">
-					<li data-target="#myCarousel" data-slide-to="${status.index}" class="active"></li>
-					</c:if>
-					<c:if test="${status.index>0}">
-					<li data-target="#myCarousel" data-slide-to="${status.index}"></li>
-					</c:if>
-					 
-				</c:forEach>	
-				</ol>   
-				<!-- 轮播（Carousel）项目 -->
-				<div class="carousel-inner">
-					<c:forEach var="data" items="${p.picList}" varStatus="status">
-					<c:if test="${status.index==0}">
-						<div class="item active">
-							<img src="${data }"  height="200px" width="300px">
-						</div>
-					</c:if>
-					<c:if test="${status.index>0}">
-					<div class="item">
-						<img src="${data }" height="200px" width="300px">
-					</div>
-					</c:if>
-					</c:forEach>	
-				</div>
-				<!-- 轮播（Carousel）导航 -->
-				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-				<a class="carousel-control right" href="#myCarousel"  data-slide="next">&rsaquo;</a>
-			</div> 
-		</tr>
-		 
-		<tr>
-			<td>
-				<span class="badge badge-info">商品名称:</span>
-				${p.productName }
-			</td>
-			<td>
-				<span class="badge badge-info">商品编号:</span>
-				${p.productNO }
-			</td>
-		    <td>
-				<span class="badge badge-info">上架时间:</span>
-				<fmt:formatDate value="${p.createdTime}" type="both" pattern="yyyy-MM-dd"/>
-		    </td>
-		</tr>
-		<tr> 
-		  <td>
-				<span class="badge badge-info">商品类型:</span>
-				${p.categoryName }
-		  </td>
+		<div class="tabbable">
+			<ul class="nav nav-tabs" id="myTab">
+				<li class="active">
+					<a data-toggle="tab" href="#home">
+						<i class="green icon-home bigger-110"></i>
+						商品信息
+					</a>
+				</li>
 
-		  <td>
-				<span class="badge badge-info">商品品牌:</span>
-				${p.brandName}
-		  </td>
-		  <td>
-				<span class="badge badge-info">试用年龄:</span>
-				${p.babyAge}
-		  </td> 
-		</tr>
-	</table>
+				<li class="">
+					<a data-toggle="tab" href="#profile">
+						商品详情
+						<i class="green   bigger-110"></i>
+					</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="home" class="tab-pane active">
+					 <table class="table">
+						<tr>
+							<div id="myCarousel" class="carousel slide">
+								<!-- 轮播（Carousel）指标 -->
+								<ol class="carousel-indicators">
+								<c:forEach var="data" items="${p.picList}" varStatus="status">
+									<c:if test="${status.index==0}">
+									<li data-target="#myCarousel" data-slide-to="${status.index}" class="active"></li>
+									</c:if>
+									<c:if test="${status.index>0}">
+									<li data-target="#myCarousel" data-slide-to="${status.index}"></li>
+									</c:if>
+									 
+								</c:forEach>	
+								</ol>   
+								<!-- 轮播（Carousel）项目 -->
+								<div class="carousel-inner">
+									<c:forEach var="data" items="${p.picList}" varStatus="status">
+									<c:if test="${status.index==0}">
+										<div class="item active">
+											<img src="${data }"  height="200px" width="300px">
+										</div>
+									</c:if>
+									<c:if test="${status.index>0}">
+									<div class="item">
+										<img src="${data }" height="200px" width="300px">
+									</div>
+									</c:if>
+									</c:forEach>	
+								</div>
+								<!-- 轮播（Carousel）导航 -->
+								<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+								<a class="carousel-control right" href="#myCarousel"  data-slide="next">&rsaquo;</a>
+							</div> 
+						</tr>
+						 
+						<tr>
+							<td>
+								<span class="badge badge-info">商品名称:</span>${p.productName }
+							</td>
+							<td>
+								<span class="badge badge-info">商品编号:</span>${p.productNO }
+							</td>
+						    <td>
+								<span class="badge badge-info">上架时间:</span>
+								<fmt:formatDate value="${p.createdTime}" type="both" pattern="yyyy-MM-dd"/>
+						    </td>
+						</tr>
+						<tr> 
+						  <td>
+								<span class="badge badge-info">商品类型:</span>${p.categoryName }
+						  </td>
+				
+						  <td>
+								<span class="badge badge-info">商品品牌:</span>${p.brandName}
+						  </td>
+						  <td>
+								<span class="badge badge-info">试用年龄:</span>${p.babyAge}
+						  </td> 
+						</tr>
+					</table>					 
+				</div>
+				<div id="profile" class="tab-pane">
+					 ${p.detailDesc}
+				</div>
+			</div>
+		</div>
+	 
+	 
+	 
+	 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
  
