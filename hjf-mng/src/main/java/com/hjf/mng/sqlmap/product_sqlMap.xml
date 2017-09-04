@@ -60,8 +60,8 @@
 	
 	<!-- 增加 -->
 	<insert id="insertWithId" parameterType="ProductCategory">
-		 insert into product (productId,productName,productNO,store,productType,pics,pic,brandId,categoryId,descriptions,createdTime,createdBy,detailDesc)
-		 values(#{productId},#{productName},#{productNO},#{store},#{productType},#{pics},#{pic},#{brandId},#{categoryId},#{descriptions},#{createdTime},#{createdBy},#{detailDesc})
+		 insert into product (productId,productName,productNO,store,productType,pics,pic,brandId,categoryId,descriptions,createdTime,createdBy,detailDesc,price,marketPrice)
+		 values(#{productId},#{productName},#{productNO},#{store},#{productType},#{pics},#{pic},#{brandId},#{categoryId},#{descriptions},#{createdTime},#{createdBy},#{detailDesc},#{price},#{marketPrice})
 	   	    <selectKey resultType="int" keyProperty="productId" >
             SELECT @@IDENTITY AS productId
         </selectKey> 
@@ -89,11 +89,14 @@
 	   		 <if test="@MyOgnl@isNotEmpty(productType)">
 	   		 	 productType=#{productType},
 	   		 </if>
-	   		 <if test="@MyOgnl@isNotEmpty(countSale)">
-	   		 	 countSale=#{countSale},
+	   		 <if test="@MyOgnl@isNotEmpty(price)">
+	   		 	 price=#{price},
 	   		 </if>
-	   		 <if test="@MyOgnl@isNotEmpty(countRent)">
-	   		 	 countRent=#{countRent},
+	   		 <if test="@MyOgnl@isNotEmpty(marketPrice)">
+	   		 	 marketPrice=#{marketPrice},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(detailDesc)">
+	   		 	 detailDesc=#{detailDesc},
 	   		 </if>
 	   		 <if test="@MyOgnl@isNotEmpty(pics)">
 	   		 	 pics=#{pics},
@@ -108,12 +111,7 @@
 	   		 <if test="@MyOgnl@isNotEmpty(categoryId)">
 	   		 	 categoryId=#{categoryId},
 	   		 </if>
-	   		 <if test="@MyOgnl@isNotEmpty(babyAge)">
-	   		 	 babyAge=#{babyAge},
-	   		 </if>		 
-	   		 <if test="@MyOgnl@isNotEmpty(sex)">
-	   		 	 sex=#{sex},
-	   		 </if>	
+ 
 	   		 <if test="@MyOgnl@isNotEmpty(descriptions)">
 	   		 	 descriptions=#{descriptions},
 	   		 </if>	

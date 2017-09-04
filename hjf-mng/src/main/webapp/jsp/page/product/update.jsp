@@ -1,16 +1,24 @@
-<!-- 添加商品页面-->
+<!-- 更新商品页面-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <link rel="stylesheet" type="text/css" href="/static/webuploader/webuploader.css">
-<link rel="stylesheet" type="text/css" href="/static/webuploader/demo.css">
 <script type="text/javascript" src="/static/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="/static/logic/product/uploadPic.js"></script> 
+<script type="text/javascript" src="/static/webuploader/uploadUtil.js"></script>
+<link href="/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/static/umeditor/third-party/template.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+
+
+
 <script type="text/javascript">
 $(document).ready(function(){
 	validate_Form();//初始化表单验证
-	ProductUtil.initData("${p.categoryId}","${p.brandId}");
-	$("#babyAge").val("${p.babyAge}");
-	$("#sex").val("${p.sex}");
+	ProductUtil.initCategorys('pid','${pc.pid}');
+	selectPicd('${pc.pid}');
+	ProductUtil.initBrands();
+	var um = UM.getEditor('detailDesc');
 	
 });
  
@@ -33,7 +41,19 @@ function update_do(){
      	AjaxRequest.formRequest("dataForm",ProductUtil.return_list());//提交数据表单
      }
 }
-
+function selectPicd(pid){
+	pid_=$("#pid").val();
+	$("#categoryId").empty();
+	if(!pid){
+		pid=$("#pid").val();
+	}
+	if(!pid){
+		return;
+	}
+	
+	ProductUtil.initCategorys('categoryId',null,pid);
+} 
+ 
 
 
 
@@ -42,37 +62,46 @@ function update_do(){
  
 
 <div class="row">
-<!-- 
-<div class="clearfix form-search" style="height: 56px;">
-	<form  id="searchForm" >
-		<div class="row">
-			<div class=" col-sm-5">
-				<button class="btn btn-info" type="button"  onclick="ProductUtil.return_list()">
-					返回玩具列表
-				</button>
-			</div>
-		</div>
-	</form> 		
-</div>
- -->
-
 	<div class="col-xs-12">
 		<form action="${contextPath}/product?update&ajax=true&reqType=2" class="form-horizontal" role="form"  id="dataForm" name="dataForm">
 			<input class="required"  type="hidden"  id="productId"  name="productId"  value="${p.productId }">
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right">玩具信息</label>
+				<label class="col-sm-3 control-label no-padding-right"><b class="star_red">*</b>商品名称</label>
 				<div class="col-sm-9">
-					<span class="input-icon">
-						<input class="required"  type="text"  id="productName"  name="productName" placeholder="玩具名称" value="${p.productName }">
-					</span>
-					<span class="input-icon input-icon-right">
-						<input type="text" id="productNO"  name="productNO" placeholder="玩具编号" value="${p.productNO }"  >
-					</span>
+						<input class="required col-sm-9"  type="text"  id="productName"  name="productName" placeholder="商品名称" value="${p.productName }">
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"><b class="star_red">*</b>商品编号</label>
+				<div class="col-sm-9">
+						<input type="text"  class=" col-sm-4"  id="productNO"  name="productNO" placeholder="商品编号" value="${p.productNO }"  >
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"><b class="star_red">*</b>商品库存</label>
+				<div class="col-sm-9">
+						<input type="text" class="required digits col-sm-4"  min="1"  id="store" name="store"   placeholder="商品库存"  value="${p.store }"  >
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">商品价格</label>
+				<div class="col-sm-9">
+						<input type="text"    class="col-sm-4 required number"  min="0.1"  id="price"  name="price"  placeholder="商品价格" value="${p.price }">
+						
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">市场价格</label>
+				<div class="col-sm-9">
+					<input  type="text" class="col-sm-4 number" min="0.1" id="marketPrice"  name="marketPrice" placeholder="市场价" value="${p.marketPrice }">
+				</div>
+			</div>
+			
+			
 			<div class="form-group" >
-				<input  type="hidden" id="pics"  name="pics"   class="required" value="${p.pics }">
-				<label class="col-sm-3 control-label no-padding-right">玩具图片</label>
+				<input  type="hidden" id="pics"  name="pics"  value="${p.pics }">
+				<input id="module" value="product" style="display:none;" fileId="pics" fileNumLimit="5">
+				<label class="col-sm-3 control-label no-padding-right"><b class="star_red">*</b>商品图片</label>
 				<div id="uploader" class="wu-example col-sm-4">
 				    <div class="queueList">
 				        <div id="dndArea" class="placeholder">
@@ -99,19 +128,13 @@ function update_do(){
 			<div class="form-group" >
 				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>所属分类</label>
 				<div class="col-sm-9" >
-					 <select name="categoryId" id="categoryId" class="required">
-						 
+					 <select name="pid" id="pid" class="required"  onchange="selectPicd()">
+						 <option value=""> 请选择分类</option>
 					 </select>
-				</div> 
-			</div>
-			<div class="form-group" >
-				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>所属性别</label>
-				<div class="col-sm-9" >
-					 <select name="sex" id="sex" >
-						 <option value="0">男</option>
-						 <option value="1">女</option>
-						 <option value="2">不限</option>
-					 </select>
+					 <span class="input-icon input-icon-right">
+						 <select name="categoryId" id="categoryId" class="required">
+						 </select>
+					</span>
 				</div> 
 			</div>
 			<div class="form-group" >
@@ -122,26 +145,13 @@ function update_do(){
 					 </select>
 				</div> 
 			</div>
-			<div class="form-group" >
-				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>适宜儿童</label>
-				<div class="col-sm-9" >
-				<!--  年龄段["0-6个月","6个月-12个月","1-3岁","3-6岁"] -->
-					 <select name="babyAge" id="babyAge" >
-						 <option value="1">0-6个月</option>
-						 <option value="2">6个月-12个月</option>
-						 <option value="3">1-3岁</option>
-						 <option value="4">3-6岁</option>
-						 <option value="5">6岁以上</option>
-					 </select>
-				</div> 
-			</div>
 		 
-				<div class="form-group">
-					<label for="remark" class="col-sm-2 control-label no-padding-right">玩具介绍</label>
-					<div class="col-sm-10">
-						<textarea maxlength="500"   rows="10" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions">${p.descriptions }</textarea>
-					</div>
+			<div class="form-group">
+				<label for="remark" class="col-sm-2 control-label no-padding-right">商品介绍</label>
+				<div class="col-sm-10">
+					<textarea maxlength="500"   rows="10" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions">${p.descriptions }</textarea>
 				</div>
+			</div>
 			<div class="clearfix form-actions">
 				<div class="col-md-offset-3 col-md-9">
 					<button class="btn btn-danger" type="button" style="width: 300px"  onclick="update_do()">

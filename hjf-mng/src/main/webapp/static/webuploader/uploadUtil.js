@@ -4,7 +4,10 @@
     $(function () {
     	var  module=$("#module").val();
     	var  fileId=$("#module").attr("fileId");
-    	
+    	var fileNumLimit=$("#module").attr("fileNumLimit");
+    	if(!fileNumLimit){
+    		fileNumLimit=1;
+    	}
     	$("#"+fileId).val("");
     	var  config={
                 pick: {
@@ -23,7 +26,7 @@
                 swf:  '/static/webuploader/Uploader.swf',
                 disableGlobalDnd: true,
                 chunked: true,
-                fileNumLimit: 1,
+                fileNumLimit: fileNumLimit,
                 fileSizeLimit: 5 * 1024 * 1024,    // 200 M
                 fileSingleSizeLimit: 1 * 1024 * 1024,    // 50 M
                 server: '/upload?upload&module=' +module  

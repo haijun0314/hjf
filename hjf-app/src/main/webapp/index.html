@@ -67,7 +67,7 @@
 	        <a href="" class="more" dd_name="更多">更多</a>
         </h2>
 		<dl>
-    	    <dt  v-for="p_rec in  recPrdsList"><a href=""><img :src="p_rec.pic"> </a></dt>
+    	    <dt  v-for="p_rec in  recPrdsList"><a v-bind:href="'/page/product/detail.html?productId='+p_rec.productId"><img :src="p_rec.pic"> </a></dt>
 	    </dl>
 	</section>
 	

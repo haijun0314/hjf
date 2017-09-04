@@ -19,6 +19,7 @@ import com.hjf.common.util.TimeUtil;
 import com.hjf.common.util.web.MsgUtil;
 import com.hjf.common.util.web.RequestUtils;
 import com.hjf.mng.bean.vo.ProductDetailRespBean;
+import com.hjf.mng.common.util.ConfigUtil;
 import com.hjf.mng.common.util.SysLogUtil;
 import com.hjf.mng.entity.Product;
 import com.hjf.mng.entity.ProductBrand;
@@ -112,7 +113,9 @@ public class ProductController extends BaseAction{
 		if (pageRequest(request)) { 
 			ModelAndView  mav=new ModelAndView(update);
 			p=productService.getProduct(p.getProductId());
+			ProductCategory  pc=productService.getProductCategory(p.getCategoryId());
 			mav.addObject("p", p);
+			mav.addObject("pc", pc);
 			return mav;
 		}else{
 			productService.update(p);
@@ -282,6 +285,10 @@ public class ProductController extends BaseAction{
 	@RequestMapping(params = "category_load")
 	public void category_load(ProductCategory pc,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		pc=productService.getProductCategory(pc.getCategoryId());
+		String pic=pc.getPic();
+		if (StringUtils.isNotBlank(pic)) {
+			pc.setPic(ConfigUtil.server_app_host_url+pic);
+		}
 		respMsgObj(response, pc); 
 	}	
 	

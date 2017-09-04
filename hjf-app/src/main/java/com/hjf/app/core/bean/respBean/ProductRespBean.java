@@ -1,6 +1,6 @@
 package com.hjf.app.core.bean.respBean;
 
-import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import com.hjf.common.bean.BaseRespBean;
@@ -9,70 +9,39 @@ import com.hjf.common.bean.BaseRespBean;
  * 作    者：lihaijun
  * 创建日期：2017-05-26
  */
-public class ProductRespBean extends BaseRespBean {
-
-	private Integer 		productId;
-	private String  		productName; 
-	private String   		producNO;
-	private String  		productType;//商品类型  0  正常  1 特价商品
-	private String       	status; 
-	private String  		saleType; //销售类型 0 租赁1  售卖
-	private Integer   		countSale; //销售统计
-	private Integer       	countRent;//赁租统计 
-	private String  		cityCode;
-	private String  		rentType;// 租赁类型 1 、日租2、周租3、月租4、半年租5年租
-	private BigDecimal  		rentSeason;
-	private BigDecimal  	rentDay;// 
-	private BigDecimal   	rentWeek;// 
-	private BigDecimal  	rentMonth;//月租价格
-	private BigDecimal  	rentYear;//
-	private BigDecimal  	rentHalfYear; //
-	private BigDecimal      depositMoney; //金押
-	private BigDecimal  	saleMoney;//售销价格
-	private BigDecimal    	marketMoney;//市场价
+public class ProductRespBean extends BaseRespBean { 
+	private Double  	price;//售销价格
+	private Double  	marketPrice;//市场价格
+	private Integer 		productId;//商品ID
+	private String  		productName;// 商品名称
+	private String   		productNO;//商品编号
+	private String  		productType;//商品类型  1、普通商品 2 推荐商品  3 热卖商品
+	private String       	status; //0 正常 1人工下架  2 库存下架
+	private Integer 		store;//库存   【变为0时候商品下架】
 	private Integer   		brandId;
 	private Integer   		categoryId;
-	private String    		sex;
-	private String    		babyAge;//孩小年龄段
-	private String    		descriptions;
-	private String    		source;//商品来源0 平台  1  个人
-	private Integer   		accountId;//账户编号 只有source==1时候有数据
-	private String    		descDamage;
-	private String    		descBuyTime;//商品描述购买时间
-	private String    		descParts;//商品描述配件
-
-	private String  brandName;
-	private String  categoryName;
+	private String  		brandName;
+	private String  		categoryName;
+	private List 			picList;
+	private String   		detailDesc;//详细描述
+	private String   		descriptions;
+	private Date 			createdTime;
+	private String  		pic; 
+	private String  		pics;
 	
-	private BigDecimal    	psqMoney;//配送费	
-	private List picList;
-	private BigDecimal  	rentMoney;// 租金   计算获得
 	
-	public BigDecimal getRentMoney() {
-		return rentMoney;
+	public Double getPrice() {
+		return price;
 	}
-	public void setRentMoney(BigDecimal rentMoney) {
-		this.rentMoney = rentMoney;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
-	public BigDecimal getPsqMoney() {
-		return psqMoney;
+	public Double getMarketPrice() {
+		return marketPrice;
 	}
-	public void setPsqMoney(BigDecimal psqMoney) {
-		this.psqMoney = psqMoney;
+	public void setMarketPrice(Double marketPrice) {
+		this.marketPrice = marketPrice;
 	}
-	public String getBrandName() {
-		return brandName;
-	}
-	public void setBrandName(String brandName) {
-		this.brandName = brandName;
-	}
-	public String getCategoryName() {
-		return categoryName;
-	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-
 	public Integer getProductId() {
 		return productId;
 	}
@@ -85,11 +54,11 @@ public class ProductRespBean extends BaseRespBean {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProducNO() {
-		return producNO;
+	public String getProductNO() {
+		return productNO;
 	}
-	public void setProducNO(String producNO) {
-		this.producNO = producNO;
+	public void setProductNO(String productNO) {
+		this.productNO = productNO;
 	}
 	public String getProductType() {
 		return productType;
@@ -103,87 +72,11 @@ public class ProductRespBean extends BaseRespBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getSaleType() {
-		return saleType;
+	public Integer getStore() {
+		return store;
 	}
-	public void setSaleType(String saleType) {
-		this.saleType = saleType;
-	}
-	public Integer getCountSale() {
-		return countSale;
-	}
-	public void setCountSale(Integer countSale) {
-		this.countSale = countSale;
-	}
-	 
-	 
-	public List getPicList() {
-		return picList;
-	}
-	public void setPicList(List picList) {
-		this.picList = picList;
-	}
-	public Integer getCountRent() {
-		return countRent;
-	}
-	public void setCountRent(Integer countRent) {
-		this.countRent = countRent;
-	}
-	public String getCityCode() {
-		return cityCode;
-	}
-	public void setCityCode(String cityCode) {
-		this.cityCode = cityCode;
-	}
-	public BigDecimal getRentDay() {
-		return rentDay;
-	}
-	public void setRentDay(BigDecimal rentDay) {
-		this.rentDay = rentDay;
-	}
-	public BigDecimal getRentWeek() {
-		return rentWeek;
-	}
-	public void setRentWeek(BigDecimal rentWeek) {
-		this.rentWeek = rentWeek;
-	}
-	public BigDecimal getRentMonth() {
-		return rentMonth;
-	}
-	public void setRentMonth(BigDecimal rentMonth) {
-		this.rentMonth = rentMonth;
-	}
-	public BigDecimal getRentYear() {
-		return rentYear;
-	}
-	public void setRentYear(BigDecimal rentYear) {
-		this.rentYear = rentYear;
-	}
-	public BigDecimal getRentHalfYear() {
-		return rentHalfYear;
-	}
-	public void setRentHalfYear(BigDecimal rentHalfYear) {
-		this.rentHalfYear = rentHalfYear;
-	}
-	public BigDecimal getDepositMoney() {
-		return depositMoney;
-	}
-	public void setDepositMoney(BigDecimal depositMoney) {
-		this.depositMoney = depositMoney;
-	}
-	public BigDecimal getSaleMoney() {
-		return saleMoney;
-	}
-	public void setSaleMoney(BigDecimal saleMoney) {
-		this.saleMoney = saleMoney;
-	}
-	 
-	 
-	public BigDecimal getMarketMoney() {
-		return marketMoney;
-	}
-	public void setMarketMoney(BigDecimal marketMoney) {
-		this.marketMoney = marketMoney;
+	public void setStore(Integer store) {
+		this.store = store;
 	}
 	public Integer getBrandId() {
 		return brandId;
@@ -197,17 +90,29 @@ public class ProductRespBean extends BaseRespBean {
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
-	public String getSex() {
-		return sex;
+	public String getBrandName() {
+		return brandName;
 	}
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
-	public String getBabyAge() {
-		return babyAge;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setBabyAge(String babyAge) {
-		this.babyAge = babyAge;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public List getPicList() {
+		return picList;
+	}
+	public void setPicList(List picList) {
+		this.picList = picList;
+	}
+	public String getDetailDesc() {
+		return detailDesc;
+	}
+	public void setDetailDesc(String detailDesc) {
+		this.detailDesc = detailDesc;
 	}
 	public String getDescriptions() {
 		return descriptions;
@@ -215,49 +120,25 @@ public class ProductRespBean extends BaseRespBean {
 	public void setDescriptions(String descriptions) {
 		this.descriptions = descriptions;
 	}
-	public String getSource() {
-		return source;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
-	public void setSource(String source) {
-		this.source = source;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
-	public Integer getAccountId() {
-		return accountId;
+	public String getPic() {
+		return pic;
 	}
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
-	public String getDescDamage() {
-		return descDamage;
+	public String getPics() {
+		return pics;
 	}
-	public void setDescDamage(String descDamage) {
-		this.descDamage = descDamage;
-	}
-	public String getDescBuyTime() {
-		return descBuyTime;
-	}
-	public void setDescBuyTime(String descBuyTime) {
-		this.descBuyTime = descBuyTime;
-	}
-	public String getDescParts() {
-		return descParts;
-	}
-	public void setDescParts(String descParts) {
-		this.descParts = descParts;
-	}
-	public String getRentType() {
-		return rentType;
-	}
-	public void setRentType(String rentType) {
-		this.rentType = rentType;
-	}
-	public BigDecimal getRentSeason() {
-		return rentSeason;
-	}
-	public void setRentSeason(BigDecimal rentSeason) {
-		this.rentSeason = rentSeason;
-	}
-	
+	public void setPics(String pics) {
+		this.pics = pics;
+	} 
 	 
+	
 	
 }

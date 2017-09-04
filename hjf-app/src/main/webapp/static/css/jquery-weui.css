@@ -1664,7 +1664,7 @@ button.swiper-pagination-bullet {
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #04BE02;
+  background: #ef4f4f;
 }
 .swiper-pagination-white .swiper-pagination-bullet-active {
   background: #fff;

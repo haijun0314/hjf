@@ -46,7 +46,7 @@ public class UploadController extends BaseAction {
 			return;
 		} 
 		/** 构建图片保存的目录 **/
-		String pathDir = ConfigUtil.sys_uploadPath +File.separator+module;
+		String pathDir = ConfigUtil.sys_uploadPath +"/"+module;
 		/** 得到图片保存目录的真实路径 **/
 		String realPathDir =  serverPath + pathDir+"/" +ym;
 		/** 根据真实路径创建目录 **/

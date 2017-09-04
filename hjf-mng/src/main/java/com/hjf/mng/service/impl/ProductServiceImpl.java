@@ -15,8 +15,10 @@ import com.hjf.base.model.PageModel;
 import com.hjf.base.mybatis.BaseService;
 import com.hjf.base.mybatis.Query;
 import com.hjf.common.bean.BaseRespBean;
+import com.hjf.common.util.TimeUtil;
 import com.hjf.mng.bean.vo.ProductDetailRespBean;
 import com.hjf.mng.common.util.ConfigUtil;
+import com.hjf.mng.common.util.DataUtil;
 import com.hjf.mng.dao.ProductBrandDAO;
 import com.hjf.mng.dao.ProductCategoryDAO;
 import com.hjf.mng.dao.ProductDAO;
@@ -81,13 +83,17 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	public  List  categoryList(Integer pid){
 		Query q=new Query();
 		q.append("pid", pid);
-		return productCategoryDAO.queryList(q);
+		List list =productCategoryDAO.queryList(q);
+		DataUtil.initPic(list);
+		return list;
 	}
 	/**
 	 * 查询商品品牌
 	 */
 	public  List  brandList(){
-		return productBrandDAO.queryList(null);
+		List list=productBrandDAO.queryList(null);
+		DataUtil.initPic(list);
+		return list;
 	}
 	/**
 	 * 商品详情
@@ -108,19 +114,18 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 			}
 			r.setPicList(picList);
 		}
-		
 		return  r ;
 	}
 	
 	/**
 	 * 商品类型添加
 	 */
-	public  void  category_add(ProductCategory  pc){
-		productCategoryDAO.save(pc);
+	public  void  category_add(ProductCategory  pb){
+		if(StringUtils.isNotBlank(pb.getPic())&&pb.getPic().endsWith("_")){
+			pb.setPic(pb.getPic().substring(0, pb.getPic().length()-1));
+		}
+		productCategoryDAO.save(pb);
 	}	
-	
-	 
-	
 	
  
 	/**
@@ -150,6 +155,9 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	 * 添加商品品牌
 	 */
 	public  void  brand_add(ProductBrand pb){
+		if(StringUtils.isNotBlank(pb.getPic())&&pb.getPic().endsWith("_")){
+			pb.setPic(pb.getPic().substring(0, pb.getPic().length()-1));
+		}
 		productBrandDAO.save(pb);
 	}	
 	

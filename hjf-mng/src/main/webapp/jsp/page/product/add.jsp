@@ -4,13 +4,11 @@
 <link rel="stylesheet" type="text/css" href="/static/webuploader/webuploader.css">
 <script type="text/javascript" src="/static/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/static/webuploader/uploadUtil.js"></script>
-
-
-    <link href="/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="/static/umeditor/third-party/template.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+<link href="/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/static/umeditor/third-party/template.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/static/umeditor/lang/zh-cn/zh-cn.js"></script>
 
 
 
@@ -28,7 +26,6 @@ function selectPicd(){
 	if(pid==''){
 		return;
 	}
-	
 	ProductUtil.initCategorys('categoryId',null,pid);
 } 
  
@@ -68,13 +65,24 @@ function add_do(){
 						<input  type="text" class="required"  id="productNO"  name="productNO" placeholder="商品编号">
 					</span>
 					<span class="input-icon input-icon-right">
-						<input type="text" class="required"  id="store" name="store"   placeholder="商品库存" >
+						<input type="text" class="required digits"  min="1"  id="store" name="store"   placeholder="商品库存" >
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">商品价格</label>
+				<div class="col-sm-9">
+					<span class="input-icon">
+						<input type="text"    class="required number"  min="0.1"  id="price"  name="price"  placeholder="商品价格">
+					</span>
+					<span class="input-icon input-icon-right">
+						<input  type="text" class="number" min="0.1" id="marketPrice"  name="marketPrice" placeholder="市场价">
 					</span>
 				</div>
 			</div>
 			<div class="form-group" >
 				<input  type="hidden" id="pics"  name="pics"   class="required">
-				<input id="module" value="product" style="display:none;" fileId="pics">
+				<input id="module" value="product" style="display:none;" fileId="pics" fileNumLimit="5">
 				<label class="col-sm-3 control-label no-padding-right">商品图片</label>
 				<div id="uploader" class="wu-example col-sm-4">
 				    <div class="queueList">
@@ -109,8 +117,6 @@ function add_do(){
 						 <select name="categoryId" id="categoryId" class="required">
 						 </select>
 					</span>
-					 
-					 
 				</div> 
 			</div>
 			<div class="form-group" >

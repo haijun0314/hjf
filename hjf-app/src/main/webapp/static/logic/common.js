@@ -123,6 +123,13 @@ DataUtil={
 }
 
 UrlUtil={
+		
+	getParam:function (name)
+	{
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	},	
     /*****返回当前页面的url*********/
     getURL: function() {
         return  window.location.href; //大写哦！

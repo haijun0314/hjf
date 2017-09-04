@@ -20,8 +20,16 @@ public class Product extends BaseModel implements java.io.Serializable {
 	private String   		descriptions;
 	private Double  		price;//售价
 	private Double 			marketPrice;//市场价
+	private String   		detailDesc;//详细描述
 	
 	
+	
+	public String getDetailDesc() {
+		return detailDesc;
+	}
+	public void setDetailDesc(String detailDesc) {
+		this.detailDesc = detailDesc;
+	}
 	public Double getPrice() {
 		return price;
 	}

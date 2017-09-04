@@ -76,45 +76,7 @@ public class TimeUtil{
         String time = sdf.format(date);
         return time;
     }
-    /*锟斤拷锟斤拷锟斤拷锟斤拷锟绞憋拷址锟�/
-    public static String timeYMDHStr(){
-    	 Date D = new Date();
-         SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHH");
-         String date = sf.format(D);
-         return date;
-    }
-    /*锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷址锟�/
-    public static String timeYMDStr(){
-   	 Date D = new Date();
-        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
-        String date = sf.format(D);
-        return date;
-   }
-    public static String getWenHouYu(){
-        String returnstring="";
-        SimpleDateFormat setDateFormat = new SimpleDateFormat("HH");
-        String temp = setDateFormat.format(new java.util.Date());
-        int ii = Integer.parseInt(temp);
-        if (ii > 6 && ii < 8 || ii == 8) {
-            returnstring="锟斤拷锟较猴拷! ";
-        } else if (ii > 8 && ii < 11) {
-            returnstring="锟斤拷锟斤拷锟� ";
-        } else if ((ii > 11 && ii < 13) || ii == 11 || ii == 13) {
-            returnstring="锟斤拷锟斤拷锟� ";
-        } else if (ii > 13 && ii < 18) {
-            returnstring="锟斤拷锟斤拷锟� ";
-        } else if ((ii > 18 && ii < 22) || ii == 18) {
-            returnstring="锟斤拷锟较猴拷! ";
-        } else {
-            returnstring="锟斤拷锟斤拷锟斤拷锟斤拷夜锟斤拷锟斤拷注锟斤拷锟斤拷息锟斤拷锟斤拷";
-        }
-        return returnstring;
-    }
-    /**
-     * 锟斤拷取时锟斤拷锟�
-     * @return
-     */
-    
+ 
     public static Date getDateYMDHMS(String date) {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		if (date == null || "".equals(date)) {
@@ -155,11 +117,7 @@ public class TimeUtil{
 		return d;
 	}
 	
-	
 	 
-
-	 
-
 	public static String formatDateYMDHMS(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time = sdf.format(date);

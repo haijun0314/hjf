@@ -140,7 +140,7 @@ h4.block {
 h5 {
 	font-size:15px;
 	font-weight:normal;
-	font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ
+	font-family:"Microsoft YaHei",Î¢ï¿½ï¿½ï¿½Åºï¿½
 }
 h5.smaller {
 	font-size:14px
@@ -154,7 +154,7 @@ h5.block {
 h6 {
 	font-size:13px;
 	font-weight:normal;
-	font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ
+	font-family:"Microsoft YaHei",Î¢ï¿½ï¿½ï¿½Åºï¿½
 }
 h6.smaller {
 	font-size:12px
@@ -8068,7 +8068,8 @@ li.item-default {
 .profile-info-value {
 	padding:6px 4px 6px 6px;
 	margin-left:120px;
-	border-top:1px dotted #d5e4f1
+	border-top:1px dotted #d5e4f1;
+	overflow-wrap:break-word;
 }
 .profile-info-value>span+span:before {
 	display:inline;

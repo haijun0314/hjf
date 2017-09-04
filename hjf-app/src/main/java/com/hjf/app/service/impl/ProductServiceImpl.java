@@ -98,8 +98,6 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		pb= productDAO.queryPageList(pb);
 		return pb;
 	}
-	 
-	 
 	
 	/**
 	 * 商品详情
@@ -114,8 +112,6 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		if (pb!=null) {
 			r.setBrandName(pb.getBrandName());
 		}
-		 
-		
 		ProductCategory  pc=getProductCategory(p.getCategoryId());
 		if (pc!=null) {
 			r.setCategoryName(pc.getCategoryName());
