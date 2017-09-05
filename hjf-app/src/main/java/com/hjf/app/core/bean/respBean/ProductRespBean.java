@@ -7,7 +7,7 @@ import com.hjf.common.bean.BaseRespBean;
 /**
  * 功能说明:【接口返回商品详情】
  * 作    者：lihaijun
- * 创建日期：2017-05-26
+ * 创建日期：2017-08-26
  */
 public class ProductRespBean extends BaseRespBean { 
 	private Double  	price;//售销价格
@@ -28,7 +28,16 @@ public class ProductRespBean extends BaseRespBean {
 	private Date 			createdTime;
 	private String  		pic; 
 	private String  		pics;
+	private String   		promotion;//促销内容
 	
+	 
+	 
+	public String getPromotion() {
+		return promotion;
+	}
+	public void setPromotion(String promotion) {
+		this.promotion = promotion;
+	}
 	
 	public Double getPrice() {
 		return price;

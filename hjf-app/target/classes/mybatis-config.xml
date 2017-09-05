@@ -15,6 +15,9 @@
  		 <typeAlias alias="Product" type="com.hjf.app.entity.Product" />
 		 <typeAlias alias="ProductBrand" type="com.hjf.app.entity.ProductBrand" />
 		 <typeAlias alias="ProductCategory" type="com.hjf.app.entity.ProductCategory" />		 
+		 <typeAlias alias="ProductComment" type="com.hjf.app.entity.ProductComment" />		 
+		 
+		 
 		 
 	
 	</typeAliases> 
@@ -41,6 +44,7 @@
 	     <mapper resource="com/hjf/app/sqlmap/market_carousel_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/product_brand_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/product_category_sqlMap.xml" />
+		 <mapper resource="com/hjf/app/sqlmap/product_comment_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/product_sqlMap.xml" />
 	</mappers>
 

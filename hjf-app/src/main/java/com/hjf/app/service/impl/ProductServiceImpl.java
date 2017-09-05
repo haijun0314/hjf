@@ -8,14 +8,15 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hjf.app.core.bean.respBean.ProductCommentRespBean;
 import com.hjf.app.core.bean.respBean.ProductRespBean;
 import com.hjf.app.dao.ProductBrandDAO;
 import com.hjf.app.dao.ProductCategoryDAO;
+import com.hjf.app.dao.ProductCommentDAO;
 import com.hjf.app.dao.ProductDAO;
 import com.hjf.app.entity.Product;
 import com.hjf.app.entity.ProductBrand;
 import com.hjf.app.entity.ProductCategory;
-import com.hjf.app.service.ConfigService;
 import com.hjf.app.service.ProductService;
 import com.hjf.base.model.PageBean;
 import com.hjf.base.mybatis.BaseService;
@@ -26,7 +27,30 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	@Resource ProductDAO 		 productDAO;
 	@Resource ProductCategoryDAO productCategoryDAO;
 	@Resource ProductBrandDAO 	 productBrandDAO;
-	@Resource ConfigService 	 configService;
+	@Resource ProductCommentDAO  productCommentDAO;
+	/**
+	 * 【商品评论列表】
+	 */
+	public ProductCommentRespBean comments(PageBean pb,ProductCommentRespBean r){
+		Integer productId=(Integer) pb.getParams().get("productId");
+		if (pb.getStartRow()==0) {
+			Double commentScoreRate=(Double) productCommentDAO.getObjById(productId, "scoreRate");
+			if (commentScoreRate!=null) {
+				commentScoreRate=commentScoreRate*100;
+				r.setCommentScoreRate(commentScoreRate+"%");
+			}else{
+				r.setCommentScoreRate("");
+			}
+			Object commentCount=productCommentDAO.getObjById(productId, "commentCount");
+			r.setCommentCount(commentCount+"");
+		}
+		pb =productCommentDAO.queryPageList(pb);
+		List list=pb.getDatas();
+		r.setDatas(list);
+		r.success();
+		return r;
+	}	
+	
 	
 	/**
 	 * 增加库存

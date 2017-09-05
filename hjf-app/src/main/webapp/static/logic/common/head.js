@@ -11,12 +11,12 @@ document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/iconfont.css\'>")
 document.writeln("  <script src=\'/static/js/jquery-2.1.4.js\'></script>");
 document.writeln("	<script src=\'/static/js/fastclick.js\'></script>");
 document.writeln("	<script src=\'/static/js/cookies.js\'></script>");
+document.writeln("	<script src=\'/static/js/iscroll5.min.js\'></script>");
 document.writeln("	<script src=\'/static/logic/common.js\'></script>");
 
 
 document.writeln("	<script src=\'/static/js/jquery-weui.js\'></script>");
 document.writeln("	<script src=\'/static/js/vue.js\'></script>");
-document.writeln("	<script src=\'/static/js/ajaxRequest.js\'></script>");
 document.writeln("	<meta name=\'apple-mobile-web-app-capable\' content=\'yes\'>");
 document.writeln("	<meta name=\'apple-mobile-web-app-title\' content=\'hjw\'>");
 document.writeln("	<link rel=\'apple-touch-icon\' href=\'/static/images/touch-icon-iphone.png\'>");

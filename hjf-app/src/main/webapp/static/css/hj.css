@@ -135,8 +135,13 @@ ul li{ list-style:none;}
 	margin-left:10px;
 	color: #666;
 }
-
-
+.price-market{
+	text-decoration: line-through;
+	color: gray;
+	font-size:0.7rem;
+}
+/*  导航占位 */
+.space-header{height:2.2rem;}
 
 
 

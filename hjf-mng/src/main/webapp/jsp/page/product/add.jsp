@@ -17,7 +17,8 @@
 $(document).ready(function(){
 	ProductUtil.initCategorys('pid');
 	ProductUtil.initBrands();
-	 var um = UM.getEditor('detailDesc');
+	var um = UM.getEditor('detailDesc');
+	var descriptions = UM.getEditor('descriptions');
 });
  
 function selectPicd(){
@@ -139,14 +140,18 @@ function add_do(){
 				</div> 
 			</div>
 			<div class="form-group">
-				<label for="remark" class="col-sm-3 control-label no-padding-right">商品介绍</label>
+				<label for="remark" class="col-sm-3 control-label no-padding-right">商品简介</label>
 				<div class="col-sm-5">
-					<textarea maxlength="500"   rows="3" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions"></textarea>
+						<script type="text/plain" id="descriptions"  name="descriptions"  style="width:700px;height:240px;">
+    
+						</script>
+					
 				</div>
+				
 			</div>
 			
 			<div class="form-group">
-				<label for="remark" class="col-sm-3 control-label no-padding-right">商品介绍</label>
+				<label for="remark" class="col-sm-3 control-label no-padding-right">详细介绍</label>
 				<div class="col-sm-5">
 					<!--style给定宽度可以影响编辑器的最终宽度-->
 						<script type="text/plain" id="detailDesc"  name="detailDesc"  style="width:700px;height:240px;">

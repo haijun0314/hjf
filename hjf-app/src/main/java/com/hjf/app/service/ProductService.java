@@ -2,6 +2,7 @@ package com.hjf.app.service;
 
 import java.util.List;
 
+import com.hjf.app.core.bean.respBean.ProductCommentRespBean;
 import com.hjf.app.core.bean.respBean.ProductRespBean;
 import com.hjf.app.entity.Product;
 import com.hjf.app.entity.ProductBrand;
@@ -27,8 +28,8 @@ public interface ProductService {
 	public  void  reduceStore(Integer productId);
 	//增加库存
 	public  void  addStore(Integer productId);
-			
-			
+	//【商品评论列表】
+	public ProductCommentRespBean comments(PageBean pb,ProductCommentRespBean r);		
 		
 	
 	

@@ -21,7 +21,15 @@ public class Product extends BaseModel implements java.io.Serializable {
 	private Double  		price;//售价
 	private Double 			marketPrice;//市场价
 	private String   		detailDesc;//详细描述
+	private String   		promotion;//促销内容
 	
+	
+	public String getPromotion() {
+		return promotion;
+	}
+	public void setPromotion(String promotion) {
+		this.promotion = promotion;
+	}
 	
 	
 	

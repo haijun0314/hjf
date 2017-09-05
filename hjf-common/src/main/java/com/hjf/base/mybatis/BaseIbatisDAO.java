@@ -319,11 +319,17 @@ public class BaseIbatisDAO {
 	 * 根据ID查询
 	 */
 	public Object getObjById(Serializable id,String sql) {
-		if (sql.contains(".")) {
-			return sqlSessionTemplate.selectOne(sql, id);
-		}else {
-			return sqlSessionTemplate.selectOne(this.getNamespace()+"."+sql, id);
+		try {
+			if (sql.contains(".")) {
+				return sqlSessionTemplate.selectOne(sql, id);
+			}else {
+				return sqlSessionTemplate.selectOne(this.getNamespace()+"."+sql, id);
+			}
+		} catch (Exception e) {
+			 e.getMessage();
 		}
+		return null;
+		
 	}
 	
 	

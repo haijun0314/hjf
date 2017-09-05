@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductComment" >
+
+<!-- 分页查询商品评论 -->
+<select id="queryPagelist" parameterType="PageBean" resultType="java.util.HashMap">
+	select c.content,c.score,a.accountName ,date_format(c.createdTime,'%Y-%m-%d %H:%i')  as createdTime
+	from product_comment c ,account a
+	where  c.delFlag=0 and a.accountId=c.accountId
+	<if test="@MyOgnl@isNotEmpty(params.productId)">
+		and  productId=#{params.productId}
+	</if>
+	order  by createdTime  desc
+	limit #{startRow},#{pageSize}
+</select>
+
+<!--查询商品评论好评率 -->
+<select id="scoreRate" parameterType="java.lang.Integer" resultType="java.lang.Double">
+	select    
+	(select  count(*)  as  good from  product_comment  where  score>3 and  productId=#{productId}) /
+	( select  count(*) as  bad   from  product_comment  where  score >=3 and productId=#{productId})
+</select> 
+
+<!--查询商品评论好评率 -->
+<select id="commentCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	select  count(*)  as  commentCount from  product_comment  where     productId=#{productId}  
+	 
+</select> 
+
+
+
+
+</mapper>

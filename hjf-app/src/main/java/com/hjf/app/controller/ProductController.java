@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hjf.app.core.bean.reqBean.ProductSearchReqBean;
+import com.hjf.app.core.bean.respBean.ProductCommentRespBean;
 import com.hjf.app.core.bean.respBean.ProductRespBean;
+import com.hjf.app.entity.Product;
 import com.hjf.app.service.ProductService;
 import com.hjf.base.model.PageBean;
 import com.hjf.base.spring.BaseAction;
@@ -77,5 +79,21 @@ public class ProductController extends BaseAction{
 		}
 	}	
 	
+	
+	/**
+	 * 【商品评论列表】
+	 */
+	@RequestMapping(params = "comments")   
+	public void comments(Product p,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		try {
+			ProductCommentRespBean   r=new ProductCommentRespBean();
+			PageBean      pb=new PageBean(request);
+			pb.append("productId",p.getProductId());
+			r=productService.comments(pb,r);
+			super.respMsgObj(response, r);
+		} catch (Exception e) {
+			 errorMsg(response);
+		}
+	}		
 	 
 }
