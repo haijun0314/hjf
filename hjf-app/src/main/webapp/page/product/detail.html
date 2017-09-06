@@ -74,7 +74,7 @@
 				<h4>数量：</h4>
 				<div class="number_con">
 					<span v-on:click="buy_num_minus" class="minus">-</span>
-					<div class="input"><input  v-on:blur="buy_num_blur"   id="buy_num" type="text" value="1"></div>
+					<div class="input"><input  v-on:blur="buy_num_blur"   id="buy_num" type="text"  v-model="buy_num"></div>
 					<span v-on:click="buy_num_plus" class="plus on">+</span>
 				</div>
 			</section>
@@ -135,7 +135,8 @@
 	<!-- 购物车开始 -->
 	<section class="shopping_cart">
 		<div class="btn_con">
-			<button class="add" dd_name="加入购物车">加入购物车</button><button class="buy J_buy" dd_name="直接购买">立即购买</button>		
+			<button class="add"  v-on:click="addCart">加入购物车</button>
+			<button class="buy J_buy" >立即购买</button>		
 		</div>
 		<a href="/page/cart/index.html" class="cart" dd_name="查看购物车">
 			<span>购物车<i></i></span>
@@ -146,6 +147,8 @@
 <!-- 购物车占位开始 -->
 <section class="space"></section>
 <!-- 购物车占位结束 -->
+
+<script src="/static/logic/product_cart.js"></script>
 <script src="/static/logic/product.js"></script>
 <script src="/static/js/swiper.js"></script>
 <script type="text/javascript">

@@ -10,7 +10,6 @@ document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/hj.css\'>");
 document.writeln("	<link rel=\'stylesheet\' href=\'/static/css/iconfont.css\'>");
 document.writeln("  <script src=\'/static/js/jquery-2.1.4.js\'></script>");
 document.writeln("	<script src=\'/static/js/fastclick.js\'></script>");
-document.writeln("	<script src=\'/static/js/cookies.js\'></script>");
 document.writeln("	<script src=\'/static/js/iscroll5.min.js\'></script>");
 document.writeln("	<script src=\'/static/logic/common.js\'></script>");
 

@@ -10,6 +10,11 @@ import com.hjf.app.entity.ProductCategory;
 import com.hjf.base.model.PageBean;
 
 public interface ProductService {
+	
+	
+	
+	//从购物车加载商品信息
+	public  List  loadCardProducts(String cartPros);
 	//商品类别
 	public  ProductCategory  getProductCategory(Integer categoryId);
 	//商品品牌
@@ -30,8 +35,6 @@ public interface ProductService {
 	public  void  addStore(Integer productId);
 	//【商品评论列表】
 	public ProductCommentRespBean comments(PageBean pb,ProductCommentRespBean r);		
-		
-	
 	
 	
 }

@@ -5,7 +5,7 @@
   	<title>购物车</title>
 
     <script src="/static/logic/common/head.js"></script>
-      	<link rel="stylesheet" href="/static/css/product_cart.css">
+    <link rel="stylesheet" href="/static/css/product_cart.css">
   </head>
 <body>
 <div id="app_page">
@@ -22,168 +22,34 @@
 	        <section class="content">
 	        	<div class="block">
 	            	<div class="cart_list">
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
+	                     <div class="cart_item"  v-for="pro in cartPros"  id="1100604422" item_id="1935345606" stock="195">
 	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
+	                        <img v-bind:src="pro.pic" class="fl pro_pic">
 	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
+	                            <p class="fr prd_price">￥{{pro.price}}</p>
+	                            <p class="fl prd_tit"><a href="">{{pro.productName}}</a></p>
 	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
+	                               <a  v-on:click="delCart(pro.productId)" class="garbage" style="display: inline;"></a>
 	                            </p>
 	                        </div>
 	                         <div class="bottom_line"></div>
 	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>	                    
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	                     <div class="cart_item" id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
-	                        <img src="/static/images/1100604422-1_h.jpg" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥69.00</p>
-	                            <p class="fl prd_tit"><a href="">Sweet City/都市甜心油性指甲油美甲套装 魅影OL裸色系列7+1礼盒 TC03</a></p>
-	                            <p class="clear tags">
-	                               <a class="garbage" style="display: inline;"></a>
-	                            </p>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>	                    
-	                    
-	                      
 	            	</div>
 	         	</div>
 	         </section>
 	    </div>
-	    <footer class="total_result" style="">
+	    <footer class="total_result">
 	        <div class="fl ">
 	            <input type="checkbox" class="c_checkbox" id="cart_check_all" style="">
 	            <span style="color:">全选</span>
 	        </div>
 	       
 	        <div class="fr"> 
-	            <a style="color:;background-color:;border:.1rem solid red;" class="c_btn payBtn" id="do_checkout" href="javascript:;">去结算(<span id="cart_quantity">1</span>)</a> 
+	            <a style="border:.1rem solid red;" class="c_btn payBtn" id="do_checkout" href="javascript:;">去结算(<span id="cart_quantity">1</span>)</a> 
 	        </div>
 	        <div class="fr totalPrice">
 	        	<span>商品金额总计</span>
-	            <p id="cart_price" style="color:"> <span style="color:">￥69.00</span></p>
+	            <p id="cart_price"> <span style="color:">￥{{totalPrice}}</span></p>
 	        </div>
 	        <form id="cart_form" action="" method="post">
                  <input type="hidden" value="touch" name="user_client">
@@ -198,9 +64,53 @@
                  <input type="hidden" value="ckadd" name="ref">
              </form>
 	    </footer>
+		<div id="emptyCart">
+			<div class="weui-msg">
+		      <div class="weui-msg__icon-area" > <img alt="" src="/static/images/icon/cart.empty.png"></div>
+		      <div class="weui-msg__text-area">
+		        <p class="weui-msg__desc"><a href="/index.html">您的购物车空空如也！赶快逛逛吧 </a></p>
+		      </div>
+		       
+		    </div>
+	    </div>
 	</div>
 </div>
 <script src="/static/logic/product_cart.js"></script>
+<script type="text/javascript">
+
+var data={
+		cartPros:[],//商品评论 
+		totalPrice:100
+	}
+	 
+var app=new Vue({
+  	el: '#app_page',
+  	data:data ,
+  	methods: { 
+  		 delCart:function(productId) {
+  			CartUtils.delCart(productId);
+  			CartUtils.init();
+  		 }
+  	},
+  	watch:{  
+  		cartPros:{  
+            handler:function(val,oldval){  
+            	   
+            },  
+            deep:true//对象内部的属性监听，也叫深度监听  
+        }
+         
+    }, 
+})
+
+
+$(document).ready(function(){
+	CartUtils.init();
+	alert(document.body.clientWidth);
+});
+
+</script>
+
 </body>
 </html>
 

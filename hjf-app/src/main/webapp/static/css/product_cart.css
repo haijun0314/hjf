@@ -1,6 +1,6 @@
 /*html5 reset*/
 html {
-    font-size: 62.5%;/*10 ¡Â 16 ¡Á 100% = 62.5%*/
+    font-size: 62.5%;/*10 ï¿½ï¿½ 16 ï¿½ï¿½ 100% = 62.5%*/
 }
 @media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){
 
@@ -14,21 +14,13 @@ html {
         font-size: 80.8%!important;
     }
 }
-@media only screen and (min-width: 480px) {
-    html {
-        font-size: 94%!important;
-    }
-}
+ 
 @media only screen and (min-width: 560px) {
     html {
         font-size: 109%!important;
     }
 }
-@media only screen and (min-width: 640px) {
-    html {
-        font-size: 125%!important;
-    }
-}
+ 
 ::-webkit-scrollbar {
     width: 0px;
  }
@@ -38,9 +30,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    /* overflow-x:hidden;
-     -webkit-overflow-scrolling: touch;*/
-}
+ }
 ul, ol {
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
@@ -538,7 +528,7 @@ a.c_btn {
     height:3.9rem;
     line-height:3.9rem;
     color:#464646;
-    font-family:"ºÚÌå";
+    font-family:"ï¿½ï¿½ï¿½ï¿½";
     font-size:1.5rem;
     display:block;
     border-radius:6px;
@@ -883,7 +873,7 @@ a.c_btn.orange{border:.1rem solid #ff463c;color:#fff; background:#ff463c}
 .keyboard .gray{ background:#b5b5b5}
 .keyboard .backspace{background: url(../images/backspace.png) #b5b5b5 center no-repeat;background-size:2.35rem 1.55rem;}
 
-/*ÎÒµÄ¶©µ¥*/
+/*ï¿½ÒµÄ¶ï¿½ï¿½ï¿½*/
 .content2 {
     padding-top:1.1rem;
 }
@@ -911,7 +901,7 @@ nav ul li a.hover{border-bottom:3px solid #ff463c;color:#ff463c}
 a.orange_solid,.order_list .cart_item .detail3 a.orange_solid{border:.1rem solid #ff463c;color:#ff463c}
 a.orange_hollow,.order_list .cart_item .detail3 a.orange_hollow{border:.1rem solid #ff463c;color:#fff; background:#ff463c}
 .order_list .ebook_tag{top:0;left:0;}
-/*¶©µ¥ÏêÇé*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .logistics{ background:#565e64; padding:1rem 1.5rem;}
 .logistics p{ color:#dddfe0; font-size:1.1rem; line-height:1.6rem; text-indent:2.9rem;}
 .logistics p:first-child{ background:url(../images/order_state.png) 0 center no-repeat; background-size:1.4rem 1.7rem; line-height:1.7rem; margin-bottom:.45rem;color:#fff; font-size:1.3rem }
@@ -944,7 +934,7 @@ a.orange_hollow,.order_list .cart_item .detail3 a.orange_hollow{border:.1rem sol
 
 .order_box2 p a.right_arrow{ height:1.75rem }
 
-/*¿ÕÊý¾ÝÁÐ±í*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½*/
 .list_null{ width:100%;
             padding:16.8rem 0 1.88rem 0;
             background:url(../images/cart_null.gif) center 3.5rem no-repeat;
@@ -965,7 +955,7 @@ a.orange_hollow,.order_list .cart_item .detail3 a.orange_hollow{border:.1rem sol
 }
  
 
-/*Ð¡ºï×Ó*/
+/*Ð¡ï¿½ï¿½ï¿½ï¿½*/
 @keyframes monkey
 {
     0 {background:url(../images/and/m_00.png) }
@@ -990,7 +980,7 @@ a.orange_hollow,.order_list .cart_item .detail3 a.orange_hollow{border:.1rem sol
 87.5% {background-image:url(../images/and/m_15.png)}
 100% {background-image:url(../images/and/m_00.png)}
 }
-@-webkit-keyframes monkey /* Safari ºÍ Chrome */
+@-webkit-keyframes monkey /* Safari ï¿½ï¿½ Chrome */
 {
     0 {background-image:url(../images/and/m_00.png) }
 12.5% {background-image:url(../images/and/m_02.png) }
@@ -1170,7 +1160,7 @@ header.slideUp {
 .collect.on{background-image:url(../images/collect_on.png);}
 .cart_item .tags a.collect{margin: 0 0.1rem 0 0}
 a.payBtn{background-color: #FB4741;color: #fff;}
-/************************²ÂÄãÏ²»¶******************************/
+/************************ï¿½ï¿½ï¿½ï¿½Ï²ï¿½ï¿½******************************/
 
 .guessList{height: 14.5rem;overflow-x:scroll;}
 .guess_like li{float: left;margin-right: 0.5rem;}
@@ -1186,11 +1176,11 @@ a.payBtn{background-color: #FB4741;color: #fff;}
 }
 .list_null .desc{line-height: 3rem;}
 
-/* Çå³ýÔ­À´µÄÑùÊ½ */
+/* ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ */
 nav.t-nav{padding-top:0;border-bottom:0 none;}
 nav.t-nav ul{background:transparent;}
 nav.t-nav ul li a{border-bottom:0 none;font-size:12px;}
-/** ¶¥²¿µ¼º½ **/
+/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ **/
 .header{z-index:5;position:relative;top:0;left:0;margin:0 auto;overflow:hidden;width:100%;line-height:44px;background-color:#fff;color:#333;}
 .header .back{z-index:2;position:absolute;top:0;left:0;height:44px;padding-left:30px;background:url(../images/back.png) no-repeat 15px center;background-size:auto 15px;font-size:0;width:10px;}
 .header .menu{z-index:2;position:absolute;top:0;right:0;width:40px;height:44px;background:url(../images/menu.png) no-repeat center;background-size:22px;line-height:44px;font-size:14px;transition:background .3s;text-indent:-999px;}
@@ -1221,5 +1211,7 @@ nav.t-nav ul li a{border-bottom:0 none;font-size:12px;}
 	.t-nav ul li a{padding:60px 0 4px;background:url(../images/h-home.png) no-repeat center 12px;background-size:44px;line-height:32px;}
 }
 
-/* º£Íâ¹º±êÇ© */
+
+
+/* ï¿½ï¿½ï¿½â¹ºï¿½ï¿½Ç© */
 .overseas{display:inline-block;color:white;background:url(../images/overseas.png) center center no-repeat;background-size:contain;text-indent:1.6rem;border-radius:.2rem;margin-left:.4rem;height:1.3rem;width:4.65rem;line-height:1.3rem;font-size:.9rem;margin-top:1.1rem;float:left;}

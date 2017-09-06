@@ -1,15 +1,18 @@
 package com.hjf.app.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hjf.app.core.bean.respBean.ProductCommentRespBean;
 import com.hjf.app.core.bean.respBean.ProductRespBean;
+import com.hjf.app.core.bean.vo.ProductCart;
 import com.hjf.app.dao.ProductBrandDAO;
 import com.hjf.app.dao.ProductCategoryDAO;
 import com.hjf.app.dao.ProductCommentDAO;
@@ -20,6 +23,7 @@ import com.hjf.app.entity.ProductCategory;
 import com.hjf.app.service.ProductService;
 import com.hjf.base.model.PageBean;
 import com.hjf.base.mybatis.BaseService;
+import com.hjf.common.util.JsonUtil;
 import com.hjf.common.util.StringUtil;
 @Service
 @Transactional 
@@ -28,6 +32,32 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	@Resource ProductCategoryDAO productCategoryDAO;
 	@Resource ProductBrandDAO 	 productBrandDAO;
 	@Resource ProductCommentDAO  productCommentDAO;
+	
+	
+	/**
+	 * 从购物车加载商品信息
+	 */
+	public  List  loadCardProducts(String cartPros){
+		log.info("【从购物车加载商品信息】....cartPros="+cartPros);
+		List datas=new ArrayList();	
+		if(StringUtils.isBlank(cartPros)){
+			return datas;
+		}
+		List<ProductCart> pros= JsonUtil.json2List(cartPros, ProductCart.class);
+		for (ProductCart pc:pros) {
+			Product p=getProduct(pc.getProductId());
+			pc.setProductName(p.getProductName());
+			pc.setPic(p.getPic());
+			pc.setPrice(p.getPrice());
+			datas.add(pc);
+		}
+		return datas;
+	}	
+	
+	
+	
+	
+	
 	/**
 	 * 【商品评论列表】
 	 */
@@ -93,6 +123,9 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		return (ProductBrand) productBrandDAO.getObjById(brandId);
 	}	
 	 
+	/**
+	 * 查询单个商品
+	 */
 	public  Product  getProduct(Integer productId){
 		return (Product) productDAO.getObjById(productId);
 	}	
@@ -102,7 +135,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	/**
 	 * 商品搜索
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({  "rawtypes" })
 	public  PageBean  search(PageBean pb){
 		pb=productDAO.queryPageList(pb,"search");
 		List list=pb.getDatas();
@@ -143,5 +176,5 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		r.success();
 		return r;
 	}	 
-	
+	 
 }

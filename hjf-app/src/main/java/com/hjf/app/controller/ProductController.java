@@ -48,6 +48,19 @@ public class ProductController extends BaseAction{
 	}	
 	
 	
+	/**
+	 * 【商品详情】
+	 */
+	@RequestMapping(params = "loadCardProducts")   
+	public void loadCardProducts(Product q,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		try {
+			String cartPros=request.getParameter("cartPros");
+			List datas=productService.loadCardProducts(cartPros);
+			respMsgObj(response, datas); 
+		} catch (Exception e) {
+			 errorMsg(response);
+		}
+	}	
 	 	
 	
 	/**
