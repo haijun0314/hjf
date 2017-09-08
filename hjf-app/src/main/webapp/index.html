@@ -1,10 +1,10 @@
+<!-- 商城首页  -->
 <!DOCTYPE html>
 <html>
   <head>
   	<title>首页</title>
     <meta name="charset" content="utf-8">
-    <link rel="stylesheet" href="/static/css/common.css">
-    <link rel="stylesheet" href="/static/css/app.css?v=20150605">
+    <link rel="stylesheet" href="/static/css/index.css">
     <script src="static/logic/common/head.js"></script>
   </head>
 <body class="weui-pull-to-refresh">
@@ -15,121 +15,119 @@
 	    <div class="up">释放刷新</div>
 	    <div class="refresh">正在刷新</div>
 	</div>
-<!-- 首页搜索区  -->
-<header id="search" dd_name="首页搜索区">
-    <div class="dd-logo">
-    	<a href="" dd_name="logo跳转"></a>
-    </div>
-    <div class="search_box">
-        <div class="search">
-            <form id="index_search_form" method="get" action="" target="_parent">
-                <div class="text_box">
-                    <input id="keyword" name="keyword" type="text" placeholder="请输入您的宝贝" class="keyword text" onkeydown="this.style.color=&#39;#404040&#39;" autocomplete="off">
-                </div>
-                <input type="submit" value="" class="submit" dd_name="搜索">
-                <input type="hidden" value="d256b1d537fe186e53c0444399341c24" name="sid">
-            </form>
-        </div>
-      </div>
-    <div class="header-category"><a href="" dd_name="跳转分类"><em>分类</em></a></div>
-    <div class="search_list"></div>
-</header>
-<section id="wrapper" class="common-wrapper">
-	<!-- 首页焦点轮播区  -->
-	<section class="top-slider-wrapper" dd_name="首页焦点轮播区">
-	  <section data-widget="topSlider" class="J_top_slider index-slider">
-	    <ul class="top-slider" style="width: 500%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-2588px, 0px) translateZ(0px);">
-	      <li style="width:20%"  v-for="carouse in  carouseList"> <a href="" dd_name="焦点轮播图1"> <img :src="carouse.pic">  </a>  </li>
-	    </ul>
-	    <div class="top-slider-indicator">
-	 		<span class="dot"></span>
-	        <span class="dot"></span>
-	        <span class="dot"></span>
-	        <span class="dot"></span>
-	        <span class="dot on"></span>
+	<!-- 首页搜索区  -->
+	<header id="search">
+	    <div class="dd-logo">
+	    	<a href=""></a>
 	    </div>
-	  </section>
+	    <div class="search_box">
+	        <div class="search">
+	            <form id="index_search_form" method="get" action="" target="_parent">
+	                <div class="text_box">
+	                    <input id="keyword" name="keyword" type="text" placeholder="请输入您的宝贝" class="keyword text" onkeydown="this.style.color=&#39;#404040&#39;" autocomplete="off">
+	                </div>
+	                <input type="submit" value="" class="submit">
+	                <input type="hidden" value="d256b1d537fe186e53c0444399341c24" name="sid">
+	            </form>
+	        </div>
+	      </div>
+	    <div class="header-category"><a href="" ><em>分类</em></a></div>
+	    <div class="search_list"></div>
+	</header>
+	<section id="wrapper" class="common-wrapper">
+		<!-- 首页焦点轮播区  -->
+		<section class="top-slider-wrapper">
+		  <section data-widget="topSlider" class="J_top_slider index-slider">
+		    <ul class="top-slider" style="width: 500%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-2588px, 0px) translateZ(0px);">
+		      <li style="width:20%"  v-for="carouse in  carouseList"> <a href="" dd_name="焦点轮播图1"> <img :src="carouse.pic">  </a>  </li>
+		    </ul>
+		    <div class="top-slider-indicator">
+		 		<span class="dot"></span>
+		        <span class="dot"></span>
+		        <span class="dot"></span>
+		        <span class="dot"></span>
+		        <span class="dot on"></span>
+		    </div>
+		  </section>
+		</section>
+		<!-- 首页功能区 -->
+		<ul class="index-nav" >
+				<li><a href=""  ><img class="" src="/static/images/fenlei.png"><span>分类</span></a></li>
+				<li><a href="" dd_name="立减5元"><img class="" src="/static/images/xiazai-0605.png"><span>立减5元</span></a></li>
+				<li><a href="" dd_name="购物车"><img class="" src="/static/images/gouwuche.png"><span>购物车</span></a></li>
+				<li><a href="" dd_name=""><img class="" src="/static/images/wodedangdang-h5.png"><span>个人信息</span></a></li>
+				<li><a href="" dd_name="好书榜"><img class="" src="/static/images/haoshubang.png"><span>热卖榜</span></a></li>
+				<li><a href="" dd_name="童书榜"><img class="" src="/static/images/tognshubang-0604.png"><span>促销榜</span></a></li>
+				<li><a href="" dd_name="9块9"><img class="" src="/static/images/9.9.png"><span>优惠商品</span></a></li>
+				<li><a href="" dd_name="电子书"><img class="" src="/static/images/dianzihsu.png"><span>更多商品</span></a></li>
+		</ul>
+	    <section class="floor" dd_name="">
+	    	<h2>
+		        <a class="title_1">推荐商品</a>
+		        <a href="" class="more" dd_name="更多">更多</a>
+	        </h2>
+			<dl>
+	    	    <dt  v-for="p_rec in  recPrdsList"><a v-bind:href="'/page/product/detail.html?productId='+p_rec.productId"><img :src="p_rec.pic"> </a></dt>
+		    </dl>
+		</section>
+		
+	    <section class="banner" dd_name="楼间推荐区">
+	        <section data-widget="bannerSlider" class="J_banner_slider banner-slider" id="bannerSlider_99659" dd_name="轮播推荐区99659">
+	        <ul class="banner-slider" style="width: 200%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-647px, 0px) translateZ(0px);">
+	          <li style="width:50%">
+	          <a href="" dd_name="轮播推荐1"><img class="" src="/static/images/10banner-620X1501.jpg"></a>
+	          </li>
+	          <li style="width:50%">
+	          <a href="" dd_name="轮播推荐2"><img class="" src="/static/images/lppz600-150.jpg"></a>
+	          </li>
+	        </ul>
+	        <div class="banner-slider-indicator">
+	              <span class="dot"></span>
+	              <span class="dot on"></span>
+	        </div>
+	      	</section>
+	    </section>
+	 
+	    <section class="floor" dd_name="">
+	    	<h2>
+	         <a class="title_1">热卖商品</a>
+	         <a href="" class="more" dd_name="更多">更多</a>
+	    	</h2>
+			<dl>
+		   	     <dt  v-for="p_hot in  hotPrdsList"><a href=""><img :src="p_hot.pic"> </a></dt>
+		    </dl>
+		</section>
+	    
+		<section class="seckilling infinite" dd_name="有好货">
+		    <div class="seckilling-box"> 
+		        <div class="seckilling-title">
+		        <span class="seckilling-name">有好货</span>
+		    </div> 
+		    <div class="seckilling-con" id="seckill_index"> 
+		        <ul class="clearfix">
+	                <li  v-for="pro in  prdsList">
+	                    <a href="" >
+	                        <p class="pic"><img :src="pro.pic"></p>
+	                        <p class="price">
+	                            <span class="rob">
+	                                <span class="sign">¥</span>
+	                                <span class="num">{{pro.price}}</span>
+	                                <span class="tail"></span>
+	                            </span>
+	                        </p>
+	                     </a>
+	                 </li>
+		         </ul>
+		    </div>
+		    </div>
+		</section>
 	</section>
-	<!-- 首页功能区 -->
-	<ul class="index-nav" dd_name="首页功能区">
-			<li><a href="" dd_name="分类"><img class="" src="/static/images/fenlei.png"><span>分类</span></a></li>
-			<li><a href="" dd_name="立减5元"><img class="" src="/static/images/xiazai-0605.png"><span>立减5元</span></a></li>
-			<li><a href="" dd_name="购物车"><img class="" src="/static/images/gouwuche.png"><span>购物车</span></a></li>
-			<li><a href="" dd_name=""><img class="" src="/static/images/wodedangdang-h5.png"><span>个人信息</span></a></li>
-			<li><a href="" dd_name="好书榜"><img class="" src="/static/images/haoshubang.png"><span>热卖榜</span></a></li>
-			<li><a href="" dd_name="童书榜"><img class="" src="/static/images/tognshubang-0604.png"><span>促销榜</span></a></li>
-			<li><a href="" dd_name="9块9"><img class="" src="/static/images/9.9.png"><span>优惠商品</span></a></li>
-			<li><a href="" dd_name="电子书"><img class="" src="/static/images/dianzihsu.png"><span>更多商品</span></a></li>
-	</ul>
-    <section class="floor" dd_name="">
-    	<h2>
-	        <a class="title_1">推荐商品</a>
-	        <a href="" class="more" dd_name="更多">更多</a>
-        </h2>
-		<dl>
-    	    <dt  v-for="p_rec in  recPrdsList"><a v-bind:href="'/page/product/detail.html?productId='+p_rec.productId"><img :src="p_rec.pic"> </a></dt>
-	    </dl>
-	</section>
-	
-    <section class="banner" dd_name="楼间推荐区">
-        <section data-widget="bannerSlider" class="J_banner_slider banner-slider" id="bannerSlider_99659" dd_name="轮播推荐区99659">
-        <ul class="banner-slider" style="width: 200%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-647px, 0px) translateZ(0px);">
-          <li style="width:50%">
-          <a href="" dd_name="轮播推荐1"><img class="" src="/static/images/10banner-620X1501.jpg"></a>
-          </li>
-          <li style="width:50%">
-          <a href="" dd_name="轮播推荐2"><img class="" src="/static/images/lppz600-150.jpg"></a>
-          </li>
-        </ul>
-        <div class="banner-slider-indicator">
-              <span class="dot"></span>
-              <span class="dot on"></span>
-        </div>
-      	</section>
-    </section>
- 
-    <section class="floor" dd_name="">
-    	<h2>
-         <a class="title_1">热卖商品</a>
-         <a href="" class="more" dd_name="更多">更多</a>
-    	</h2>
-		<dl>
-	   	     <dt  v-for="p_hot in  hotPrdsList"><a href=""><img :src="p_hot.pic"> </a></dt>
-	    </dl>
-	</section>
-    
-	<section class="seckilling infinite" dd_name="有好货">
-	    <div class="seckilling-box"> 
-	        <div class="seckilling-title">
-	        <span class="seckilling-name">有好货</span>
-	    </div> 
-	    <div class="seckilling-con" id="seckill_index"> 
-	        <ul class="clearfix">
-                <li  v-for="pro in  prdsList">
-                    <a href="" dd_name="秒杀品1">
-                        <p class="pic"><img :src="pro.pic"></p>
-                        <p class="price">
-                            <span class="rob">
-                                <span class="sign">¥</span>
-                                <span class="num">{{pro.price}}</span>
-                                <span class="tail"></span>
-                            </span>
-                        </p>
-                     </a>
-                 </li>
-	         </ul>
-	    </div>
-	    </div>
-	</section>
-</section>
-
-
-<div class="weui-loadmore">
-  <i class="weui-loading"></i>
-  <span class="weui-loadmore__tips">正在加载</span>
-</div>
-<!-- body 顶部加上如下代码 -->
-<div style="height: 54px" id="content-padded"> </div>
+	<div class="weui-loadmore">
+	  <i class="weui-loading"></i>
+	  <span class="weui-loadmore__tips">正在加载</span>
+	</div>
+	<!-- body 顶部加上如下代码 -->
+	<div style="height: 54px" id="content-padded"> </div>
 
 <script type="text/javascript">
 /*********下拉刷新*************/

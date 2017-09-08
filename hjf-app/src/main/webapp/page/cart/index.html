@@ -1,79 +1,98 @@
 <!-- 购物车页面 -->
 <!DOCTYPE html>
 <html>
-  <head>
-  	<title>购物车</title>
+<head>
+	<title>购物车</title>
+	<script src="/static/logic/common/head.js"></script>
+	<link rel="stylesheet" href="/static/css/product_cart.css">
+	<style type="text/css">
 
-    <script src="/static/logic/common/head.js"></script>
-    <link rel="stylesheet" href="/static/css/product_cart.css">
-  </head>
+/* 数量 */
+.number_con{display:table;border:1px solid #e5e5e5;border-radius:.15rem;}
+.number_con .minus,.number_con .plus{display:table-cell;vertical-align:middle;width:1.7rem;text-align:center;background-color:#f8f8f8;color:#ddd;height:1.4rem;font-size:1.4rem;line-height:1.4rem;overflow:hidden;text-indent:-999rem;}
+.number_con .minus{background:url(/static/images/control.png) #f8f8f8 0 -1.4rem no-repeat;background-size:200%;border-right:1px solid #e5e5e5;}
+.number_con .minus.on{background:url(/static/images/control.png) #f8f8f8 0 0 no-repeat;background-size:200%;}
+.number_con .plus{background:url(/static/images/control.png) #f8f8f8 -1.7rem -1.4rem no-repeat;background-size:200%;border-left:1px solid #e5e5e5;}
+.number_con .plus.on{background:url(/static/images/control.png) #f8f8f8 -1.7rem 0 no-repeat;background-size:200%;}
+.number_con .input{display:table-cell;-webkit-box-sizing:border-box;box-sizing:border-box;width:2rem;height:1.4rem;font-size:0;}
+.number_con .input input{text-align:center;width:100%;height:100%;color:black;font-size:.7rem;}
+	
+	
+	
+	</style>
+</head>
 <body>
 <div id="app_page">
- 
-	<!--头部导航 开始-->
+	<!--头部导航 开始
 	<header class="bar bar-nav"  >
 		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
 	    <h1 class="title">购物车</h1>
 	</header>
-	<section class="space-header"   ></section>
+	<section class="space-header"   ></section>'-->
+	<header class="header"  >
+	    <a class="back c_back"  >返回</a>
+	    <div class="h_label"  >购物车</div>
+	</header>	
 	<!--头部导航结束-->
+	<!-- 购物车主体内容开始 -->
 	<div id="wrapper"  style="top: 2.2rem">
 	    <div>
 	        <section class="content">
-	        	<div class="block">
+	        	<!-- 循环输出商品内容 开始-->
+	        	<div class="block"  v-for="pro in cartPros">
 	            	<div class="cart_list">
-	                     <div class="cart_item"  v-for="pro in cartPros"  id="1100604422" item_id="1935345606" stock="195">
-	                        <input type="checkbox" class="fl c_checkbox" checked="">
+	                     <div class="cart_item">
+	                        <input type="checkbox" class="fl c_checkbox " >
 	                        <img v-bind:src="pro.pic" class="fl pro_pic">
 	                        <div class="detail">
 	                            <p class="fr prd_price">￥{{pro.price}}</p>
-	                            <p class="fl prd_tit"><a href="">{{pro.productName}}</a></p>
+	                            <p class="fl prd_tit"><a :href="'/page/product/detail.html?productId='+pro.productId">{{pro.productName}}</a></p>
 	                            <p class="clear tags">
 	                               <a  v-on:click="delCart(pro.productId)" class="garbage" style="display: inline;"></a>
 	                            </p>
+								<div class="number_con">
+									<span v-on:click="buy_num_minus(pro.productId)" class="minus">-</span>
+									<div class="input "><input   disabled="disabled"   :id="pro.productId" type="text"  v-model="pro.count"></div>
+									<span v-on:click="buy_num_plus(pro.productId)" class="plus on">+</span>
+								</div>
 	                        </div>
 	                         <div class="bottom_line"></div>
 	                    </div>
 	            	</div>
 	         	</div>
+	         	<!-- 循环输出商品内容 结束-->
 	         </section>
 	    </div>
+	    <!-- 金额计算开始-->
 	    <footer class="total_result">
 	        <div class="fl ">
-	            <input type="checkbox" class="c_checkbox" id="cart_check_all" style="">
-	            <span style="color:">全选</span>
+	            <input type="checkbox" class="c_checkbox" id="cart_check_all" >
+	            <span>全选</span>
 	        </div>
-	       
 	        <div class="fr"> 
 	            <a style="border:.1rem solid red;" class="c_btn payBtn" id="do_checkout" href="javascript:;">去结算(<span id="cart_quantity">1</span>)</a> 
 	        </div>
 	        <div class="fr totalPrice">
 	        	<span>商品金额总计</span>
-	            <p id="cart_price"> <span style="color:">￥{{totalPrice}}</span></p>
+	            <p id="cart_price"> <span style="color:red">￥{{totalPrice}}</span></p>
 	        </div>
 	        <form id="cart_form" action="" method="post">
-                 <input type="hidden" value="touch" name="user_client">
-                 <input type="hidden" value="1.0" name="client_version">
-                 <input type="hidden" value="get_order_flow" name="action">
-                 <input type="hidden" value="" name="union_id">
-                 <input type="hidden" value="20151007171938214237638454188786121" name="permanent_id">
-                 <input type="hidden" value="0" name="shop_id">
-                 <input type="hidden" value="d256b1d537fe186e53c0444399341c24" name="udid">
-                 <input type="hidden" value="1444445736" name="timestamp">
-                 <input type="hidden" value="12a421d5328d6fe614213acfd06f0442" name="time_code">
-                 <input type="hidden" value="ckadd" name="ref">
-             </form>
+                 
+            </form>
 	    </footer>
-		<div id="emptyCart">
+	    <!-- 金额计算结束-->
+	    <!-- 购物车为空时显示内容 -->
+		<div id="emptyCart" class="hide">
 			<div class="weui-msg">
 		      <div class="weui-msg__icon-area" > <img alt="" src="/static/images/icon/cart.empty.png"></div>
-		      <div class="weui-msg__text-area">
-		        <p class="weui-msg__desc"><a href="/index.html">您的购物车空空如也！赶快逛逛吧 </a></p>
+		      <div class="weui-msg__text-area" style="height: 153px">
+		        <p class="weui-msg__desc">亲、您的购物车还是空空的哦，快去装满它! </p>
+		        <a  style="width: 200px;top:10px" href="/index.html" class="weui-btn weui-btn_default">前去逛逛</a>
 		      </div>
-		       
 		    </div>
 	    </div>
 	</div>
+	<!-- 购物车主体内容开始 -->
 </div>
 <script src="/static/logic/product_cart.js"></script>
 <script type="text/javascript">
@@ -90,7 +109,24 @@ var app=new Vue({
   		 delCart:function(productId) {
   			CartUtils.delCart(productId);
   			CartUtils.init();
-  		 }
+  		 },
+  		  buy_num_plus:function(proId){
+  			  var buy_num=$("#"+proId);
+  			  var minus= buy_num.parent().prev();
+  			  var plus= buy_num.parent().next();
+  			  parseInt(buy_num.val()) <SysConfig.buy_num_limit_max && buy_num.val(parseInt(buy_num.val()) + 1);
+  			  1 < parseInt(buy_num.val()) && minus.addClass("on");
+  			  parseInt(buy_num.val()) == SysConfig.buy_num_limit_max && plus.removeClass("on");
+  		  },
+  		  buy_num_minus:function(proId){
+  			  var buy_num=$("#"+proId); 
+  			  var minus= buy_num.parent().prev();
+  			  var plus= buy_num.parent().next();
+  			  parseInt(buy_num.val()) > 1 && buy_num.val(parseInt(buy_num.val()) - 1);
+  		      parseInt(buy_num.val()) <= 1 && minus.removeClass("on");
+  		      parseInt(buy_num.val()) <SysConfig.buy_num_limit_max &&plus.addClass("on")
+  		  },
+  		  
   	},
   	watch:{  
   		cartPros:{  
@@ -106,7 +142,6 @@ var app=new Vue({
 
 $(document).ready(function(){
 	CartUtils.init();
-	alert(document.body.clientWidth);
 });
 
 </script>

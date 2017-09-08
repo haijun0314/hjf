@@ -5,22 +5,17 @@
   	<title>个人中心</title>
     <script src="/static/logic/common/head.js"></script>
 	<link rel="stylesheet" type="text/css" href="/static/css/ucenter.css" charset="gbk">
-	<link rel="stylesheet" type="text/css" href="/static/css/header.css" charset="utf-8">
   </head>
 <style type="text/css">
 	.current-half-width li{width:33.3% !important;}
 </style>
 <body id="body">
 	<!-- 通用头 div -->
-	<div id="m_common_header" style="min-height:45px;">
-		<header class="jd-header">    
-			<div class="jd-header-bar">        
-				<div id="m_common_header_goback" class="jd-header-icon-back"><a href=""><span></span></a></div>        
-				<div class="jd-header-title">个人中心</div>           
-			</div>   
-		</header>
-	</div>
-	<div class="common-wrapper" id="app_page">
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title">商品详情</h1>
+	</header>
+	<div class="common-wrapper" id="app_page"  style="top: 2.2rem">
    		<div class="head-img">
 			<span class="my-img" v-bind:style="{backgroundImage:'url('+account.headPic+')'}" 
 			 ></span>    		
@@ -90,13 +85,11 @@
 		      </div>
 		</div>
 	</div>
-<div style="height: 54px" id="content-padded"> </div>
+<div class="space"> </div>
 <script src="/static/logic/account.js"></script>
 <script src="/static/logic/common/foot.js"></script>
 <script type="text/javascript">
 AccountUtils.loadData();
-
-
 </script>
 
 
