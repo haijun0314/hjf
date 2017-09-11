@@ -5,21 +5,6 @@
 	<title>购物车</title>
 	<script src="/static/logic/common/head.js"></script>
 	<link rel="stylesheet" href="/static/css/product_cart.css">
-	<style type="text/css">
-
-/* 数量 */
-.number_con{display:table;border:1px solid #e5e5e5;border-radius:.15rem;}
-.number_con .minus,.number_con .plus{display:table-cell;vertical-align:middle;width:1.7rem;text-align:center;background-color:#f8f8f8;color:#ddd;height:1.4rem;font-size:1.4rem;line-height:1.4rem;overflow:hidden;text-indent:-999rem;}
-.number_con .minus{background:url(/static/images/control.png) #f8f8f8 0 -1.4rem no-repeat;background-size:200%;border-right:1px solid #e5e5e5;}
-.number_con .minus.on{background:url(/static/images/control.png) #f8f8f8 0 0 no-repeat;background-size:200%;}
-.number_con .plus{background:url(/static/images/control.png) #f8f8f8 -1.7rem -1.4rem no-repeat;background-size:200%;border-left:1px solid #e5e5e5;}
-.number_con .plus.on{background:url(/static/images/control.png) #f8f8f8 -1.7rem 0 no-repeat;background-size:200%;}
-.number_con .input{display:table-cell;-webkit-box-sizing:border-box;box-sizing:border-box;width:2rem;height:1.4rem;font-size:0;}
-.number_con .input input{text-align:center;width:100%;height:100%;color:black;font-size:.7rem;}
-	
-	
-	
-	</style>
 </head>
 <body>
 <div id="app_page">
@@ -30,53 +15,49 @@
 	</header>
 	<section class="space-header"   ></section>'-->
 	<header class="header"  >
-	    <a class="back c_back"  >返回</a>
+	    <a class="back c_back" href="javascript:history.back()" > </a>
 	    <div class="h_label"  >购物车</div>
 	</header>	
 	<!--头部导航结束-->
 	<!-- 购物车主体内容开始 -->
 	<div id="wrapper"  style="top: 2.2rem">
-	    <div>
-	        <section class="content">
-	        	<!-- 循环输出商品内容 开始-->
-	        	<div class="block"  v-for="pro in cartPros">
-	            	<div class="cart_list">
-	                     <div class="cart_item">
-	                        <input type="checkbox" class="fl c_checkbox " >
-	                        <img v-bind:src="pro.pic" class="fl pro_pic">
-	                        <div class="detail">
-	                            <p class="fr prd_price">￥{{pro.price}}</p>
-	                            <p class="fl prd_tit"><a :href="'/page/product/detail.html?productId='+pro.productId">{{pro.productName}}</a></p>
-	                            <p class="clear tags">
-	                               <a  v-on:click="delCart(pro.productId)" class="garbage" style="display: inline;"></a>
-	                            </p>
-								<div class="number_con">
-									<span v-on:click="buy_num_minus(pro.productId)" class="minus">-</span>
-									<div class="input "><input   disabled="disabled"   :id="pro.productId" type="text"  v-model="pro.count"></div>
-									<span v-on:click="buy_num_plus(pro.productId)" class="plus on">+</span>
-								</div>
-	                        </div>
-	                         <div class="bottom_line"></div>
-	                    </div>
-	            	</div>
-	         	</div>
-	         	<!-- 循环输出商品内容 结束-->
-	         </section>
-	    </div>
+        <section class="content">
+        	<!-- 循环输出商品内容 开始-->
+        	<div class="block"  v-for="pro in cartPros">
+                <div class="cart_item">
+                     <input type="checkbox" class="fl c_checkbox "   v-model="selectArr" >
+                     <img v-bind:src="pro.pic" class="fl pro_pic">
+                     <div class="detail">
+                         <p class="fr prd_price">￥{{pro.price}}</p>
+                         <p class="fl prd_tit"><a :href="'/page/product/detail.html?productId='+pro.productId">{{pro.productName}}</a></p>
+                         <p class="clear tags">
+                            <a  v-on:click="delCart(pro.productId)" class="garbage" style="display: inline;"></a>
+                         </p>
+					 <div class="number_con">
+						<span v-on:click="buy_num_minus(pro.productId)" class="minus">-</span>
+						<div class="input "><input   disabled="disabled"   :id="pro.productId" type="text"  v-model="pro.count"></div>
+						<span v-on:click="buy_num_plus(pro.productId)" class="plus on">+</span>
+					 </div>
+                     </div>
+                      <div class="bottom_line"></div>
+                 </div>
+         	</div>
+         	<!-- 循环输出商品内容 结束-->
+        </section>
 	    <!-- 金额计算开始-->
 	    <footer class="total_result">
 	        <div class="fl ">
-	            <input type="checkbox" class="c_checkbox" id="cart_check_all" >
+	            <input type="checkbox" class="c_checkbox"  v-on:click="checkAll">
 	            <span>全选</span>
 	        </div>
 	        <div class="fr"> 
-	            <a style="border:.1rem solid red;" class="c_btn payBtn" id="do_checkout" href="javascript:;">去结算(<span id="cart_quantity">1</span>)</a> 
+	            <a class="weui-btn weui-btn_warn" id="do_checkout" href="/page/cart/confirm.html">去结算(<span id="cart_quantity">1</span>)</a> 
 	        </div>
 	        <div class="fr totalPrice">
 	        	<span>商品金额总计</span>
-	            <p id="cart_price"> <span style="color:red">￥{{totalPrice}}</span></p>
+	            <p> <span id="price_total">￥{{totalPrice}}</span></p>
 	        </div>
-	        <form id="cart_form" action="" method="post">
+	        <form action="" method="post">
                  
             </form>
 	    </footer>
@@ -99,7 +80,8 @@
 
 var data={
 		cartPros:[],//商品评论 
-		totalPrice:100
+		totalPrice:null,
+		 
 	}
 	 
 var app=new Vue({
@@ -117,6 +99,7 @@ var app=new Vue({
   			  parseInt(buy_num.val()) <SysConfig.buy_num_limit_max && buy_num.val(parseInt(buy_num.val()) + 1);
   			  1 < parseInt(buy_num.val()) && minus.addClass("on");
   			  parseInt(buy_num.val()) == SysConfig.buy_num_limit_max && plus.removeClass("on");
+  			  CartUtils.updateCart(proId,'0');
   		  },
   		  buy_num_minus:function(proId){
   			  var buy_num=$("#"+proId); 
@@ -124,8 +107,16 @@ var app=new Vue({
   			  var plus= buy_num.parent().next();
   			  parseInt(buy_num.val()) > 1 && buy_num.val(parseInt(buy_num.val()) - 1);
   		      parseInt(buy_num.val()) <= 1 && minus.removeClass("on");
-  		      parseInt(buy_num.val()) <SysConfig.buy_num_limit_max &&plus.addClass("on")
+  		      parseInt(buy_num.val()) <SysConfig.buy_num_limit_max &&plus.addClass("on");
+  		      CartUtils.updateCart(proId,'1');
+  		      
   		  },
+  	    
+  	    /***********全选操作**************/
+  	    checkAll: function() {
+  	    	CartUtils.checkAll();
+  	    }
+  		  
   		  
   	},
   	watch:{  

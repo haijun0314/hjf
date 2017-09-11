@@ -1,0 +1,106 @@
+<!-- 确认订单页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>确认订单 </title>
+	<script src="/static/logic/common/head.js"></script>
+	<link rel="stylesheet" href="/static/css/product_cart.css">
+</head>
+<body style="overflow: scroll">
+<div id="app_page">
+	<!--头部导航 开始-->
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title"> 确认订单</h1>
+	</header>
+	<section class="space-header"   ></section>
+	<!--头部导航结束-->
+	<!-- 购物车主体内容开始 -->
+	<div   style="top: 2.2rem">	
+        <section class="content">
+        	<!-- 循环输出商品内容 开始-->
+        	<div class="block"  v-for="pro in confirmPros">
+                <div class="cart_item">
+                     <img v-bind:src="pro.pic" class="fl pro_pic">
+                     <div class="detail">
+                         <p class="fr prd_price">￥{{pro.price}}</p>
+                         <p class="fl prd_tit"><a :href="'/page/product/detail.html?productId='+pro.productId">{{pro.productName}}</a></p>
+					 <div class=" ">
+						<span>x{{pro.count}}</span>
+					 </div>
+                     </div>
+                 </div>
+         	</div>
+         	<!-- 循环输出商品内容 结束-->
+        </section>
+        <div class="weui-cells__title">备注说明</div>
+		<div class="weui-cells">
+	      <div class="weui-cell">
+	        <div class="weui-cell__bd">
+	          <input class="weui-input" placeholder="备注说明" type="text">
+	        </div>
+	      </div>
+	    </div>
+	    <div class="weui-cells__title">费用说明</div>
+		<div class="weui-form-preview">
+	      <div class="weui-form-preview__hd">
+	        <label class="weui-form-preview__label">商品总计</label>
+	        <em class="weui-form-preview__value price">￥{{totalPayPrice}}</em>
+	      </div>
+	      <div class="weui-form-preview__bd">
+	        <div class="weui-form-preview__item">
+	          <label class="weui-form-preview__label">运费</label>
+	          <span class="weui-form-preview__value  price_a">￥20</span>
+	        </div>
+	      </div>
+	    </div>
+        
+        
+        <section class="space-header"   ></section>
+        <section class="space-header"   ></section>
+	    <!-- 金额计算开始-->
+	    <footer class="total_result">
+	        <div class="fr"> 
+	            <a class="weui-btn weui-btn_warn"   href="javascript:;">提交订单</a> 
+	        </div>
+	        <div class="fl ">
+	        	<span>应付金额</span>
+	            <span class="price">￥{{totalPayPrice}}</span> 
+	        </div>
+	        <form action="" method="post">
+                 
+            </form>
+	    </footer> 
+	</div>       
+	<!-- 购物车主体内容开始 -->
+</div>
+
+
+
+<script src="/static/logic/order.js"></script>
+<script type="text/javascript">
+
+var data={
+		confirmPros:[],//商品确认
+		totalPayPrice:null,//支付金额
+	}
+	 
+var app=new Vue({
+  	el: '#app_page',
+  	data:data ,
+  	methods: { 
+  		 
+  	} 
+})
+
+
+$(document).ready(function(){
+	OrderUtils.init();
+});
+
+</script>
+
+</body>
+</html>
+
+

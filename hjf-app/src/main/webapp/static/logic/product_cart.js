@@ -23,10 +23,13 @@ var CartUtils = {
     	}
     	$("footer").show();
     	$("#emptyCart").hide();
-    	
+    	data.totalPrice=0;
     	var url="/product?loadCardProducts&cartPros="+cart_ck_pros;
    		AjaxUtils.httpGet(url,function(respData){
    			data.cartPros=respData;
+   			for(var i = 0, len = respData.length; i < len; i++) {
+   				data.totalPrice=data.totalPrice+respData[i].price*respData[i].count;
+   	    	}
    		});
     },
     
@@ -54,6 +57,9 @@ var CartUtils = {
      * count:购买数量
      */
     addCart:function(productId,count) {
+    	if(!count){
+    		count=1;
+    	}
     	  var pros =  this.getCart();
 	      if(this.checkCart(productId)){
 		    	for(var i = 0, len = pros.length; i < len; i++) {
@@ -76,6 +82,44 @@ var CartUtils = {
     },
     
     /**
+     * 更新cookie 购物车数据 
+     * productId:商品编号
+     * type:0 增加 1 减少
+     */
+    updateCart:function(productId,type) {
+    	var pros =  this.getCart();
+    	for(var i = 0, len = pros.length; i < len; i++) {
+    		if(pros[i].productId == productId) {
+    			if('0'==type){
+    				pros[i].count = pros[i].count + 1;
+    			}else{
+    				if(pros[i].count>1){
+    					pros[i].count = pros[i].count -1;
+    				}
+    			}
+    			break;
+    		}
+    	}
+    	var dataStr = JSON.stringify(pros);
+    	CookieUtil.set(SysConfig.proCartName,dataStr);
+    	/**************更新data 数据*************/
+    	for(var i = 0, len = data.cartPros.length; i < len; i++) {
+    		if(data.cartPros[i].productId == productId) {
+    			if('0'==type){
+    				data.totalPrice=data.totalPrice+data.cartPros[i].price;
+    				data.cartPros[i].count++;
+    			}else{
+    				if(data.cartPros[i].count>1){
+        				data.cartPros[i].count--;
+        				data.totalPrice=data.totalPrice-data.cartPros[i].price;
+    				}
+    			}
+    			
+    		}
+    	}
+    },   
+    
+    /**
      * 删除购物车商品
      * productId:商品编号
      */
@@ -87,9 +131,8 @@ var CartUtils = {
     			break;
     		}
     	}
-    	data.cartPros=pros;
     	var dataStr = JSON.stringify(pros);
-    	CookieUtil.set(SysConfig.proCartName,dataStr); 
+    	CookieUtil.set(SysConfig.proCartName,dataStr);
     	$.toast("删除成功");
     },    
      
@@ -113,20 +156,11 @@ var CartUtils = {
     },	
     
     /***********全选操作**************/
-    bindCheckAll: function() {
-//        var that = this;
-//        $('#cart_check_all').click(function(){
-//            $('input[type=checkbox]', $('.block')).prop('checked', $(this).prop('checked'));
-//            var item_ids = '';
-//            $('div.cart_item', $('.content')).each(function(k, elm){
-//                item_ids += $(elm).attr('item_id') +',';
-//            });
-//            if($(this).prop('checked')) {
-//                that.checkItems(item_ids.substr(0, item_ids.length-1), '');
-//            } else {
-//                that.unCheckItems(item_ids.substr(0, item_ids.length-1), '');
-//            }
-//        });
+	checkAll: function(event) {
+//		for(var i = 0, len = data.cartPros.length; i < len; i++) {
+//			 data.cartPros[i].checked=true;
+//			 console.log(data.cartPros[i]);
+//		}  
     },
     
     

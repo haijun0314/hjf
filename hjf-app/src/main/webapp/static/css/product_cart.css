@@ -102,21 +102,7 @@ a {
     display: block;
     margin:.575rem 1rem 0 0;
 }
-
-#wrapper{width: 100%;/* height: 100%; */}
-.viewport {
-    width: 100%;
-    min-height: 100%;
-}
-.viewport section {
-    width: 100%;
-    min-height: 100%;
-    overflow: auto;
-   /*  padding-bottom:5px; */
-}
-  
-/*main*/
-.viewport section:last-child{margin-bottom:5.8rem;}
+ 
 .block {
     border-top:1px solid #ebebeb;
     margin-top:.5rem;
@@ -139,10 +125,6 @@ a {
     background-image:url(../images/c_checkbox_on.png);
 }
  
- 
-.cart_list {
-    width:100%;
-}
 .cart_item .c_checkbox {
     margin:3rem 1rem 0 1.5rem;
 }
@@ -256,40 +238,11 @@ a {
     color:#ff463c;
     overflow:hidden;
 }
-.total_result .fr {
-    padding:0.85rem 1.5rem .75rem 0;
-}
+.total_result .fr {   padding:0.85rem 1.5rem .75rem 0;}
 .total_result .fr.totalPrice{padding:1.25rem 1.5rem .75rem 0;}
-.total_result .fr span img{
-    height:1.35rem;
-    vertical-align: middle;
-    margin-left: .35rem;}
-
-.total_result div:last-child {
-    text-align:right;
-    padding:1.15rem 1rem 0 0;
-}
-a.c_btn {
-    width:7.8rem;
-    height:3.9rem;
-    line-height:3.9rem;
-    color:#464646;
-    font-family:"����";
-    font-size:1.5rem;
-    display:block;
-    border-radius:6px;
-    text-align:center;
-    cursor:pointer;
-    border:.1rem solid #464646;
-}
-a.c_btn.orange{border:.1rem solid #ff463c;color:#fff; background:#ff463c}
-.prd_price .right_arrow {
-    height:1.2rem;
-    width:.65rem;
-    float:right;
-    margin-top:1rem
-}
- 
+.total_result .fr span img{    height:1.35rem;   vertical-align: middle;   margin-left: .35rem;}
+.total_result div:last-child {   text-align:right;   padding:1.15rem 1rem 0 0;}
+a.c_btn {    width:7.8rem;    height:3.9rem;    line-height:3.9rem;   color:#464646;    font-size:1.5rem;    display:block;    border-radius:6px;    text-align:center;    cursor:pointer;   border:.1rem solid #464646;}
 a.payBtn{background-color: #FB4741;color: #fff;}
 
 /** 顶部title*/
@@ -307,3 +260,13 @@ a.payBtn{background-color: #FB4741;color: #fff;}
 	.header .menu.active:after{height:14px;}
 	.header .h_label,.header h1{height:88px;font-size:34px;padding:0 80px;color: #fff}
 }
+/* 数量 */
+.number_con{display:table;border:1px solid #e5e5e5;border-radius:.15rem;}
+.number_con .minus,.number_con .plus{display:table-cell;vertical-align:middle;width:1.7rem;text-align:center;background-color:#f8f8f8;color:#ddd;height:1.4rem;font-size:1.4rem;line-height:1.4rem;overflow:hidden;text-indent:-999rem;}
+.number_con .minus{background:url(/static/images/control.png) #f8f8f8 0 -1.4rem no-repeat;background-size:200%;border-right:1px solid #e5e5e5;}
+.number_con .minus.on{background:url(/static/images/control.png) #f8f8f8 0 0 no-repeat;background-size:200%;}
+.number_con .plus{background:url(/static/images/control.png) #f8f8f8 -1.7rem -1.4rem no-repeat;background-size:200%;border-left:1px solid #e5e5e5;}
+.number_con .plus.on{background:url(/static/images/control.png) #f8f8f8 -1.7rem 0 no-repeat;background-size:200%;}
+.number_con .input{display:table-cell;-webkit-box-sizing:border-box;box-sizing:border-box;width:2rem;height:1.4rem;font-size:0;}
+.number_con .input input{text-align:center;width:100%;height:100%;color:black;font-size:.7rem;}
+	
