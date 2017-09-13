@@ -65,7 +65,12 @@ public class  MyUserDetails implements UserDetails {
 	 */
 	public static MyUserDetails userDetails=null;
 	public static MyUserDetails getCurUserDetails() {
-		userDetails = (MyUserDetails) SecurityContextHolder .getContext().getAuthentication().getPrincipal();
+		try {
+			userDetails = (MyUserDetails) SecurityContextHolder .getContext().getAuthentication().getPrincipal();
+		} catch (Exception e) {
+			 return null;
+		}
+		
 		return userDetails;
 	}	
 	

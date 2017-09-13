@@ -1,0 +1,102 @@
+<!-- 确认订单页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>订单支付 </title>
+	<script src="/static/logic/common/head.js"></script>
+</head>
+<body style="overflow: scroll">
+<div id="app_page">
+	<!--头部导航 开始-->
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title"> 订单支付</h1>
+	</header>
+	<section class="space-header"   ></section>
+	
+	<div class="weui-panel__bd">
+         <div class="weui-media-box weui-media-box_text">
+           <h4 class="weui-media-box__title">支付说明</h4>
+           <p class="weui-media-box__desc">订单提交成功，请您尽快付款：订单编号：{{orderId}}，您需要支付￥{{money}}，请您在提交订单后24小时内完成付款，否则订单将自动取消 </span></p>
+         </div>
+    </div>	
+	<div class="weui-form-preview">
+	    <div class="weui-form-preview__hd">
+		    <div class="weui-form-preview__item">
+		          <label class="weui-form-preview__label">付款金额</label>
+		          <em class="weui-form-preview__value price">¥{{money}}</em>
+		    </div>
+	    </div>
+		<div class="weui-cells weui-cells_radio">
+	      <label class="weui-cell weui-check__label" for="x13">
+	        <div class="weui-cell__bd">
+	        <img alt="" src="/static/images/icon/pay_zfb.jpg">
+	        </div>
+	        <div class="weui-cell__ft">
+	          <input name="payRoute" class="weui-check" id="x13"  type="radio"  value="1"  v-model="payRoute">
+	          <span class="weui-icon-checked"></span>
+	        </div>
+	      </label>
+	      <label class="weui-cell weui-check__label" for="x14">
+	        <div class="weui-cell__bd">
+	         <img alt="" src="/static/images/icon/pay_wx.jpg">
+	        </div>
+	        <div class="weui-cell__ft">
+	          <input name="payRoute" class="weui-check"  id="x14"  type="radio"  value="2" v-model="payRoute" >
+	          <span class="weui-icon-checked"></span>
+	        </div>
+	      </label>
+	    </div>
+		<div class="weui-btn-area">
+			<a href="#" @click="topay" class="weui-btn weui-btn_primary">确定支付</a>
+		</div>
+    </div>	
+	<form action="/pay?createPayOrder" method="post" id="dataForm"  name="dataForm" class="hide">
+		   <input id="money" 	name="money" 	  v-model="money">
+           <input id="orderId"  name="orderId"    v-model="orderId">
+           <input id="module"  name="module"      value="1">
+           <input id="dataId"  name="dataId"      v-model="orderId">
+           <input id="payRoute"  name="payRoute"  v-model="payRoute">
+          
+           
+                                 
+    </form>
+</div>
+<script src="/static/logic/order.js"></script>
+<script type="text/javascript">
+
+var data={
+		orderId:null,
+		money:null,
+		payRoute:null
+	}
+	 
+var app=new Vue({
+  	el: '#app_page',
+  	data:data ,
+  	methods: { 
+  		 topay:function(){
+  			 if(!data.payRoute){
+  				$.toast("请选择支付方式", "forbidden");
+  				 return;
+  			 }
+  			 AjaxUtils.formRequest("dataForm",function(respData){
+  				AjaxUtils.httpGet("/pay?payNotify&orderId="+respData.orderId+"&trade_status=9000",function(res){
+  					window.location.href="/page/order/index.html";
+  				});
+  			});
+  		 }
+  	} 
+})
+
+
+$(document).ready(function(){
+	OrderUtils.initPayOrder();
+});
+
+</script>
+
+</body>
+</html>
+
+

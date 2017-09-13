@@ -12,7 +12,7 @@ import com.hjf.base.LogUtil;
  */
 public class BaseReqBean {
 	private String   userToken; 
-	private Integer  accountId;		
+	public Integer  accountId;		
 	private String   versionNO;//版本编号
 	private String   telephone;//账户
 	private String   reqNO;//请求编号

@@ -1,0 +1,89 @@
+<!-- 订单详情页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>订单评价 </title>
+	<link rel="stylesheet" href="/static/star/css/star.css">
+	<script src="/static/logic/common/head.js"></script>
+	<script src="/static/star/js/jquery.barrating.js"></script>
+</head>
+ 
+<body>
+<div id="app_page">
+	<!--头部导航 开始-->
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title"> 订单评价</h1>
+	</header>
+	<section class="space-header"   ></section>
+   	<div class="weui-panel__bd" v-for="pro in pros">
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg"  >
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" :src="pro.pic"  >
+          </div>
+          <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__desc">{{pro.productName}}</h4>
+          </div>
+        </a>
+    </div>
+	<div class="weui-cells weui-cells_form">
+      <form action="/order?comment"  id="dataForm" name="dataForm">
+      <div class="weui-cell">
+        <div class="weui-cel__bd">
+          <textarea class="weui-textarea" placeholder="请输入商品评价" rows="3" name="content" v-model="content"></textarea>
+        </div>
+      </div>
+  	  <div class="weui-cell" style="height: 40px;">
+			<select id="score" name="score" v-model="score">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select> 
+  	   </div>
+  	   <input name="orderId" v-model="orderId" id="orderId" type="hidden">
+  	   </form>
+    </div>
+    <div class="weui-btn-area">
+       <a class="weui-btn weui-btn_primary"   @click="do_comment">提交评价</a>
+    </div>   
+  							
+    
+</div>
+
+	
+<script src="/static/logic/order.js"></script>
+<script type="text/javascript">
+
+var data={
+		orderId:null,
+		pros:[],
+		score:null,
+		content:null
+	}
+	 
+var app=new Vue({
+  	el: '#app_page',
+  	data:data ,
+  	methods: { 
+  		 do_comment:function(){
+  			OrderUtils.comment(); 
+  		 }
+  	} ,
+})
+
+$(document).ready(function(){
+	OrderUtils.waitCommentPros();
+	$('#score').barrating({
+        wrapperClass: 'br-wrapper-f',
+        showSelectedRating: false
+    });
+});
+
+</script>
+
+</body>
+</html>
+
+

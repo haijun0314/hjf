@@ -38,6 +38,14 @@ public class CodeUtil
 	public static String e_1009="1009";//缺失账户信息
 	public static String e_1010="1010";//session  过期
 	
+	public static String e_4101="4101";//  交易失败
+	public static String e_4102="4102";//微信支付  通信失败
+	public static String e_4103="4103";//微信支付  未支付	
+	
+	
+	
+	
+	
 	//后台代码
 	public static String e_1101="1101";
 	public static String e_1102="1102";
@@ -86,7 +94,10 @@ public class CodeUtil
 		codeMap.put("1201", "该角色名称不可以使用");
 		codeMap.put("1202", "该角色名称可以使用");
 		codeMap.put("1301", "对不起！该权限已经被使用 删除失败！");
-		 
+		
+		codeMap.put("4101", "交易失败");
+		codeMap.put("4102", "通信失败");
+		codeMap.put("4103", "未支付");
 	}
 	
 	

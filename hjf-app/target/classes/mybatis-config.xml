@@ -16,7 +16,11 @@
 		 <typeAlias alias="ProductBrand" type="com.hjf.app.entity.ProductBrand" />
 		 <typeAlias alias="ProductCategory" type="com.hjf.app.entity.ProductCategory" />		 
 		 <typeAlias alias="ProductComment" type="com.hjf.app.entity.ProductComment" />		 
-		 
+		 <typeAlias alias="OrderInfo" type="com.hjf.app.entity.OrderInfo" />
+		 <typeAlias alias="OrderProduct" type="com.hjf.app.entity.OrderProduct" />
+ 		 <typeAlias alias="FinanceBill" type="com.hjf.app.entity.FinanceBill" />		  
+		 <typeAlias alias="FinancePayOrder" type="com.hjf.app.entity.FinancePayOrder" />
+			
 		 
 		 
 	
@@ -46,6 +50,12 @@
 		 <mapper resource="com/hjf/app/sqlmap/product_category_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/product_comment_sqlMap.xml" />
 		 <mapper resource="com/hjf/app/sqlmap/product_sqlMap.xml" />
+		 <mapper resource="com/hjf/app/sqlmap/orderInfo_sqlMap.xml" />
+		 <mapper resource="com/hjf/app/sqlmap/order_product_sqlMap.xml" />
+ 		 <mapper resource="com/hjf/app/sqlmap/finance_bill_sqlMap.xml" />
+ 		 <mapper resource="com/hjf/app/sqlmap/finance_pay_order_sqlMap.xml" />
+			 
+		 
 	</mappers>
 
 </configuration>  

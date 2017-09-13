@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "OrderProduct">
+   
+	<!-- 增加 -->
+	<insert id="insert" parameterType="OrderProduct">
+		 insert into order_product (opId,orderId,count,productId,money)
+		 values(#{opId},#{orderId},#{count},#{productId},#{money})
+	</insert>
+	 
+	<select id="queryList" parameterType="Query" resultType="java.util.HashMap" >
+	    select opId, o.orderId,o.productId,o.money,o.count,p.productName,p.pic
+	    from order_product o,product p
+	    where o.delFlag=0 and  o.productId=p.productId
+		<if test="@MyOgnl@isNotEmpty(params.orderId)">
+			  and  orderId =#{params.orderId}
+		</if>
+		<if test="@MyOgnl@isNotEmpty(params.isComment)">
+			  and  isComment =#{params.isComment}
+		</if>
+	</select> 	 
+	 
+	<update id="updateById" parameterType="OrderProduct">
+		update order_product set updatedTime=#{updatedTime}
+		
+		<if test="@MyOgnl@isNotEmpty(isComment)">
+			,isComment=#{isComment}
+		</if>
+		
+		
+		where opId=#{opId}
+	</update>
+
+
+
+
+
+
+
+	 
+	 
+	 
+</mapper>

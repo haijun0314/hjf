@@ -29,7 +29,11 @@
 	 
 </select> 
 
-
+<!-- 增加 -->
+<insert id="insert" parameterType="ProductComment">
+	 insert into product_comment (commentId,productId,accountId,content,score)
+	 values(#{commentId},#{productId},#{accountId},#{content},#{score})
+</insert>
 
 
 </mapper>

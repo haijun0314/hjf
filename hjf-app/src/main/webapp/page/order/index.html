@@ -1,0 +1,195 @@
+<!-- 订单列表页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+ 	<title>订单列表</title>
+ 		<link rel="stylesheet" href="/static/css/order.css">
+    <script src="/static/logic/common/head.js"></script>
+</head>
+<body>
+<div id="app_page">
+	<!--头部导航 开始-->
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title">订单列表</h1>
+	</header>	
+	<!--头部导航结束-->
+	<div class="weui-tab" style="top: 2.2rem">
+      <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1" @click=" getOrders()"> 全部</a>
+        <a class="weui-navbar__item" href="#tab2" @click=" getOrders('1')">待付款 </a>
+        <a class="weui-navbar__item" href="#tab3" @click=" getOrders('2')">代收货 </a>
+        <a class="weui-navbar__item" href="#tab4" @click=" getOrders('3')">已完成 </a>
+      </div>
+      <div class="weui-tab__bd">
+      	<!-- 全部订单 -->
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active"  >
+			<div class="block" v-for="order in orders">
+			    <div class="order_list">
+		            <div class="shop_title">
+		                <!--店铺名称-->
+		                <div class="fl"> 订单号：{{order.orderId}}     订单时间：{{order.createdTime}}   </div>
+		            </div>
+			        <!--分包商品信息-->
+			        <div class="cart_item">
+				        <a @click="detail(order.orderId)">
+				                <!--电子书加签-->
+				                <!--包裹图片-->
+				                <img :src="order.descPic" class="fl pro_pic">
+				                <!--包裹详情-->
+				                <div class="detail">
+				                    <!--包裹状态-->
+				                    <div class="fr prd_state">
+				                        <!--状态文字-->
+				                        <div class="prd_state_title">{{order.statusDesc}} </div>
+				                    </div>
+					                <!--包裹名称显示，多件产品，显示包裹编号，一件产品显示产品名称-->
+					                <p class="fl prd_tit">   {{order.descContent}}      </p>
+				               </div>
+				    	</a>
+					    <!--数量价格信息-->
+					    <div class="detail2">
+					        <span>  共{{order.productCount}}件商品  实付款：</span><span class="order_price">￥{{order.money}}</span>
+					    </div>
+			        </div>
+			    </div>
+			</div>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item" >
+          			<div class="block" v-for="order in orders">
+			    <div class="order_list">
+		            <div class="shop_title">
+		                <!--店铺名称-->
+		                <div class="fl"> 订单号：{{order.orderId}}     订单时间：{{order.createdTime}}   </div>
+		            </div>
+			        <!--分包商品信息-->
+			        <div class="cart_item">
+				        <a @click="detail(order.orderId)">
+				                <!--电子书加签-->
+				                <!--包裹图片-->
+				                <img :src="order.descPic" class="fl pro_pic">
+				                <!--包裹详情-->
+				                <div class="detail">
+				                    <!--包裹状态-->
+				                    <div class="fr prd_state">
+				                        <!--状态文字-->
+				                        <div class="prd_state_title">{{order.statusDesc}} </div>
+				                    </div>
+					                <!--包裹名称显示，多件产品，显示包裹编号，一件产品显示产品名称-->
+					                <p class="fl prd_tit">   {{order.descContent}}      </p>
+				               </div>
+				    	</a>
+					    <!--数量价格信息-->
+					    <div class="detail2">
+					        <span>  共{{order.productCount}}件商品  实付款：</span><span class="order_price">￥{{order.money}}</span>
+					    </div>
+			        </div>
+			    </div>
+			</div>
+        </div>
+        <div id="tab3" class="weui-tab__bd-item">
+							<div class="block" v-for="order in orders">
+			    <div class="order_list">
+		            <div class="shop_title">
+		                <!--店铺名称-->
+		                <div class="fl"> 订单号：{{order.orderId}}     订单时间：{{order.createdTime}}   </div>
+		            </div>
+			        <!--分包商品信息-->
+			        <div class="cart_item">
+				        <a @click="detail(order.orderId)">
+				                <!--电子书加签-->
+				                <!--包裹图片-->
+				                <img src="http://47.94.205.255:8082//uploadFile/product/201708/fc706638-0191-43b3-b11d-99be3eb2901b.jpg" class="fl pro_pic">
+				                <!--包裹详情-->
+				                <div class="detail">
+				                    <!--包裹状态-->
+				                    <div class="fr prd_state">
+				                        <!--状态文字-->
+				                        <div class="prd_state_title">{{order.statusDesc}} </div>
+				                    </div>
+					                <!--包裹名称显示，多件产品，显示包裹编号，一件产品显示产品名称-->
+					                <p class="fl prd_tit">   {{order.descContent}}      </p>
+				               </div>
+				    	</a>
+					    <!--数量价格信息-->
+					    <div class="detail2">
+					        <span>  共{{order.productCount}}件商品  实付款：</span><span class="order_price">￥{{order.money}}</span>
+					    </div>
+			        </div>
+			    </div>
+			</div>
+        </div>
+         <div id="tab4" class="weui-tab__bd-item">
+							<div class="block" v-for="order in orders">
+			    <div class="order_list">
+		            <div class="shop_title">
+		                <!--店铺名称-->
+		                <div class="fl"> 订单号：{{order.orderId}}     订单时间：{{order.createdTime}}   </div>
+		            </div>
+			        <!--分包商品信息-->
+			        <div class="cart_item">
+				        <a @click="detail(order.orderId)">
+				                <!--电子书加签-->
+				                <!--包裹图片-->
+				                <img src="http://47.94.205.255:8082//uploadFile/product/201708/fc706638-0191-43b3-b11d-99be3eb2901b.jpg" class="fl pro_pic">
+				                <!--包裹详情-->
+				                <div class="detail">
+				                    <!--包裹状态-->
+				                    <div class="fr prd_state">
+				                        <!--状态文字-->
+				                        <div class="prd_state_title">{{order.statusDesc}} </div>
+				                    </div>
+					                <!--包裹名称显示，多件产品，显示包裹编号，一件产品显示产品名称-->
+					                <p class="fl prd_tit">   {{order.descContent}}      </p>
+				               </div>
+				    	</a>
+					    <!--数量价格信息-->
+					    <div class="detail2">
+					        <span>  共{{order.productCount}}件商品  实付款：</span><span class="order_price">￥{{order.money}}</span>
+					    </div>
+			        </div>
+			    </div>
+			</div>
+        </div>
+      </div>
+	</div>
+	<div class="space"> </div>
+	<div class="space"> </div>
+</div> 
+
+<script src="/static/logic/order.js"></script>
+<script src="/static/logic/common/foot.js"></script>
+
+<script type="text/javascript">
+
+var data={
+		 orders:[],
+		 searchType:''
+	}
+	 
+var app=new Vue({
+  	el: '#app_page',
+  	data:data ,
+  	methods: { 
+  		 detail:function(orderId){
+  			window.location.href="/page/order/detail.html?orderId="+orderId;
+  		 },
+  		 getOrders:function(searchType){
+  			OrderUtils.loadOrders(searchType);
+   		 }
+  	} 
+})
+
+
+$(document).ready(function(){
+	OrderUtils.loadOrders(data.searchType);
+});
+</script>
+
+
+
+
+</body>
+</html>
+
+

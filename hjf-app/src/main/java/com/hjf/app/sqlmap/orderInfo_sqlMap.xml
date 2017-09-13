@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "OrderInfo">
+ 
+	<select id="queryList" parameterType="Query" resultType="java.util.HashMap" >
+	    select  o.*
+	    from orderinfo o
+	    where o.delFlag=0 
+		<if test="@MyOgnl@isNotEmpty(params.status)">
+			and  status =#{params.status}
+		</if>
+		<if test="@MyOgnl@isNotEmpty(params.createdTime)">
+			<![CDATA[ 	and  createdTime <=#{params.createdTime}]]>
+		</if>
+	</select> 
+
+	<!-- 根据Id查询 -->
+	<select id="findById" parameterType="java.lang.Integer" resultType="OrderInfo" >
+	    select  *  from orderinfo  	    where   orderId=#{orderId}
+	</select> 	 
+	 
+	<!-- 订单查询 -->
+	<select id="queryPagelist" parameterType="PageBean" resultType="java.util.HashMap" >
+	    select    DATE_FORMAT(createdTime,'%Y-%m-%d %H:%i') as createdTime,o.*
+	    	    from orderinfo o  
+	    where  o.status>0  and  o.delFlag=0 
+		<if test="@MyOgnl@isNotEmpty(params.accountId)" >
+	   		 	and  o.accountId=#{params.accountId}
+	    </if>	    
+		<if test="@MyOgnl@isNotEmpty(params.status)" >
+	   		 	and  o.status=#{params.status}
+	    </if>	      
+		order  by   o.createdTime  desc 
+		limit #{startRow},#{pageSize}
+	</select> 
+	 
+	
+	<!-- 订单详情 -->
+	<select id="detail" parameterType="java.lang.Integer" resultType="java.util.HashMap" >
+	    select  o.*
+	    from orderinfo o   
+	    where   o.delFlag=0 and  orderId=#{orderId}  
+	</select> 
+	 
+	<!-- 增加 -->
+	<insert id="insertWithId" parameterType="OrderInfo">
+		 insert into orderinfo (orderId,status,statusDesc,accountId,money,expressMoney,productCount,linkUserName,createdTime,linkAddress,linkTelephone,payRoute,descContent,descPic)
+		 values(#{orderId},#{status},#{statusDesc},#{accountId},#{money},#{expressMoney},#{productCount},#{linkUserName},#{createdTime},#{linkAddress},#{linkTelephone},#{payRoute},#{descContent},#{descPic})
+		 <selectKey resultType="int" keyProperty="orderId" >
+            SELECT @@IDENTITY AS orderId
+         </selectKey> 
+	</insert>
+	
+	
+	
+	
+	<update id="logicDelete" parameterType="OrderInfo" >
+	   update orderinfo set delFlag=1
+	   where orderId = #{orderId}
+	</update>		
+	
+	<update id="updateById" parameterType="OrderInfo" >
+	   update orderinfo 
+	   	<trim prefix="set"  suffixOverrides="," >
+	   		 <if test="@MyOgnl@isNotEmpty(updatedTime)">
+	   		 	 updatedTime=#{updatedTime}, 
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(status)">
+	   		 	 status=#{status},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(statusDesc)">
+	   		 	 statusDesc=#{statusDesc},
+	   		 </if>
+			<if test="@MyOgnl@isNotEmpty(isComment)">
+				isComment=#{isComment},
+			</if>
+	   </trim>
+	   where orderId = #{orderId}
+	</update>	
+	 
+</mapper>

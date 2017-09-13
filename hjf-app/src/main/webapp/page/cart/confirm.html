@@ -37,7 +37,7 @@
 		<div class="weui-cells">
 	      <div class="weui-cell">
 	        <div class="weui-cell__bd">
-	          <input class="weui-input" placeholder="备注说明" type="text">
+	          <input class="weui-input" placeholder="备注说明" type="text"  v-model="remark" >
 	        </div>
 	      </div>
 	    </div>
@@ -61,13 +61,21 @@
 	    <!-- 金额计算开始-->
 	    <footer class="total_result">
 	        <div class="fr"> 
-	            <a class="weui-btn weui-btn_warn"   href="javascript:;">提交订单</a> 
+	            <a class="weui-btn weui-btn_warn"  @click="createOrder" href="#">提交订单</a> 
 	        </div>
 	        <div class="fl ">
 	        	<span>应付金额</span>
 	            <span class="price">￥{{totalPayPrice}}</span> 
 	        </div>
-	        <form action="" method="post">
+	        <form action="/order?create" method="post" id="dataForm"  name="dataForm" class="hide">
+                 <input id="money" 		   name="money" 	    v-model="totalPayPrice">
+                 <input id="productCount"  name="productCount"  v-model="productCount">
+                 <input id="linkUserName"  name="linkUserName"  v-model="link.linkUserName">
+                 <input id="linkAddress"   name="linkAddress"   v-model="link.linkAddress">
+                 <input id="linkTelephone" name="linkTelephone" v-model="link.linkTelephone">
+                 <input id="expressMoney"  name="expressMoney"  v-model="expressMoney">
+                 <input id="remark" 	   name="remark"   	    v-model="remark">
+                 <input id="pros" 	       name="pros"   	    v-model="pros">
                  
             </form>
 	    </footer> 
@@ -83,19 +91,30 @@
 var data={
 		confirmPros:[],//商品确认
 		totalPayPrice:null,//支付金额
+		productCount:0,//商品种类个数
+		link:{'linkUserName':'李海军','linkAddress':'北京','linkTelephone':'15010123247'},
+		expressMoney:20,
+		remark:'',
+		pros:[],
 	}
 	 
 var app=new Vue({
   	el: '#app_page',
   	data:data ,
   	methods: { 
-  		 
+  		 createOrder:function(){
+  			AjaxUtils.formRequest("dataForm",function(respData){
+  				OrderUtils.clearCart();//清空购物车
+  				window.location.href="/page/order/pay.html?orderId="+respData.data;
+  			});
+  			
+  		 }
   	} 
 })
 
 
 $(document).ready(function(){
-	OrderUtils.init();
+	OrderUtils.initConfirm();
 });
 
 </script>

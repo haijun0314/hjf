@@ -65,7 +65,4 @@ body{font-family: -apple-system-font,BlinkMacSystemFont,"Helvetica Neue","PingFa
 .price{
 	color: #ed394a;
 }
-.price_a{
-	color: #ed394a;
-}
- 
+.bottom_line {   height:1px;    background:#dcdcdc;    margin-left:4.5rem;} 

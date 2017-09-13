@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "FinancePayOrder">
+<!-- 添加 -->
+<insert id="insert" parameterType="FinancePayOrder" >
+	insert into finance_pay_order (payOrderId,money,accountId,createdTime,payRoute,module,trade_no,dataId)
+	values(#{payOrderId},#{money},#{accountId},#{createdTime},#{payRoute},#{module},#{trade_no},#{dataId})
+</insert>
+ 
+ 
+<update id="updateById" parameterType="FinancePayOrder">
+	update finance_pay_order  set updatedTime=#{updatedTime}
+	<if test="@MyOgnl@isNotEmpty(status)">
+		,status=#{status}
+	</if>
+	where payOrderId=#{payOrderId}
+</update> 
+
+ 
+
+ <!-- 通用查询 -->
+<select id="findById" parameterType="java.lang.String" resultType="FinancePayOrder">
+	 select *
+	 from finance_pay_order  
+	where payOrderId=#{payOrderId}
+</select> 	 
+	
+</mapper>

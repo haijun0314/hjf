@@ -1,0 +1,147 @@
+<!-- 订单详情页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>订单详情 </title>
+	<link rel="stylesheet" href="/static/css/order.css">
+	<script src="/static/logic/common/head.js"></script>
+ 
+
+</head>
+ 
+<body style=" color: #464646;">
+<div id="app_page">
+	<!--头部导航 开始-->
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title"> 订单详情</h1>
+	</header>
+	<section class="space-header"   ></section>
+	<div class="weui-form-preview">
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单号</label>
+          <span class="weui-form-preview__value">{{order.orderId}}</span>
+        </div>
+      </div>
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单金额</label>
+          <span class="weui-form-preview__value">￥{{order.money}}</span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单日期</label>
+          <span class="weui-form-preview__value">{{order.createdTime}}</span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单状态</label>
+          <span class="weui-form-preview__value">{{order.statusDesc}}</span>
+        </div>
+      </div>
+    </div>  
+    
+	<div class="weui-form-preview">
+     	<div class="weui-panel__bd">
+          <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="pro in pros">
+            <div class="weui-media-box__hd">
+              <img class="weui-media-box__thumb" :src="pro.pic"  >
+            </div>
+            <div class="weui-media-box__bd">
+              <h4 class="weui-media-box__desc">{{pro.productName}}</h4>
+              <p class="weui-media-box__desc price"> ￥{{pro.money}}</p>
+              <p class="weui-media-box__desc  "> 数量：{{pro.count}}</p>
+            </div>
+          </a>
+        </div>
+    </div>     
+    
+    
+      
+ 	<div class="weui-form-preview">
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">{{order.linkUserName}}</label>
+          <span class="weui-form-preview__value">{{order.linkTelephone}}</span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label" style="font-size: 0.42rem">地址：{{order.linkAddress}}</label>
+        </div>
+      </div>
+    </div>    
+ 	<div class="weui-form-preview">
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">付款方式</label>
+          <span class="weui-form-preview__value">{{order.payRoute}}</span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">商品金额</label>
+          <span class="weui-form-preview__value price">￥{{order.money}}</span>
+        </div>
+ 		<div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">运费</label>
+          <span class="weui-form-preview__value price" >￥{{order.expressMoney}}</span>
+        </div>
+      </div>
+    </div>   
+    
+    <div style="height: 2.2rem"></div> 
+		<div class="order_detail_btn "  >
+			<div class="btn_con">
+				<a href="#"  :class="class_btn_pay"    class="weui-btn weui-btn_mini weui-btn_default    ">继续付款</a>
+			 	<a href="#"  :class="class_btn_del"    class="weui-btn weui-btn_mini weui-btn_default    " @click="del(order.orderId)">删除</a>
+		        <a href="#"  :class="class_btn_comment" class="weui-btn weui-btn_mini weui-btn_default    " @click="comment(order.orderId)">评价</a>
+			</div>
+		</div> 
+</div>
+
+	
+<script src="/static/logic/order.js"></script>
+<script type="text/javascript">
+
+var data={
+		order:null,
+		pros:[],
+		class_btn_pay:'hide',
+		class_btn_del:'hide',
+		class_btn_comment:'hide'
+	}
+	 
+var app=new Vue({
+  	el: '#app_page',
+  	data:data ,
+  	methods: { 
+  		 del:function(orderId){
+  			OrderUtils.del(orderId);
+  		 },
+  		 comment:function(orderId){
+  			window.location.href="/page/order/comment.html?orderId="+orderId;
+   		 }
+  	} ,
+  	 
+  	watch:{  
+  		order:{  
+            handler:function(val,oldval){ 
+            	if(val.status==1){
+            		data.class_btn_pay='';
+            	}else if(val.status==6){
+            		data.class_btn_del='';
+            		data.class_btn_comment='';
+            	}
+            	 
+            },  
+        }
+    }, 
+})
+
+$(document).ready(function(){
+	OrderUtils.detail();
+	
+});
+
+</script>
+
+</body>
+</html>
+
+
