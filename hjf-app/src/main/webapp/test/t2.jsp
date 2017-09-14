@@ -10,7 +10,7 @@
 	<div class="weui-cells weui-cells_form"style="top: 2.2rem" >
 	  <div class="weui-cell">
 	    <div class="weui-cell__bd">
-	      <input class="weui-input"    name="orgPassword" id="orgPassword"   		type="text"  placeholder="请输入原密码" >
+	      <input class="weui-input "    name="orgPassword" id="orgPassword"   		type="text"  placeholder="请输入原密码" >
 	    </div>
 	  </div>
       <div class="weui-cell">

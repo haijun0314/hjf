@@ -9,6 +9,7 @@
 		 <typeAlias alias="Query"  type="com.hjf.base.mybatis.Query" />
 		 <typeAlias alias="PageBean" type="com.hjf.base.model.PageBean" />
 		 <typeAlias alias="Account" type="com.hjf.app.entity.Account" />
+		 <typeAlias alias="AccountAddress" type="com.hjf.app.entity.AccountAddress" />
 		 <typeAlias alias="Note" type="com.hjf.app.entity.Note" />
 		 <typeAlias alias="SysLogClient" type="com.hjf.app.entity.SysLogClient" />
 		 <typeAlias alias="MarketCarousel" type="com.hjf.app.entity.MarketCarousel" />
@@ -54,6 +55,7 @@
 		 <mapper resource="com/hjf/app/sqlmap/order_product_sqlMap.xml" />
  		 <mapper resource="com/hjf/app/sqlmap/finance_bill_sqlMap.xml" />
  		 <mapper resource="com/hjf/app/sqlmap/finance_pay_order_sqlMap.xml" />
+		 <mapper resource="com/hjf/app/sqlmap/account_address_sqlMap.xml" />
 			 
 		 
 	</mappers>

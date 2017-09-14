@@ -3,6 +3,7 @@ package com.hjf.app.core.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -93,16 +94,13 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
 		if (filterAuthorities==null||filterAuthorities.size()<1) {
 			loadSysFilterAuthorities();
 		}
-		if (filterAuthorities==null||filterAuthorities.size()<1) {
-			return false;
-		}
 		for (int i = 0; i <filterAuthorities.size(); i++) {
 			String filterAuthoritie=filterAuthorities.get(i);
 			if (url.indexOf(filterAuthoritie)>-1) {
-				return true;
+				return false;
 			};
 		}
-		return false;
+		return true;
 	}	
 	
 	/**
@@ -110,8 +108,8 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
 	 */
 	public  void loadSysFilterAuthorities() {
 		//静态资源
-		filterAuthorities.add("login");
-		filterAuthorities.add("test");
+		filterAuthorities.add("account");
+		filterAuthorities.add("order");
 	}	
 	
 }

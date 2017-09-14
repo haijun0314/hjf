@@ -17,6 +17,7 @@ import com.hjf.app.entity.Account;
 import com.hjf.app.service.LoginService;
 import com.hjf.base.exception.CodeUtil;
 import com.hjf.base.mybatis.BaseService;
+import com.hjf.common.bean.BaseRespBean;
 import com.hjf.common.util.web.CookieUtil;
 import com.hjf.common.util.web.SessionUtil;
 @Service
@@ -49,7 +50,16 @@ public class LoginServiceImpl extends BaseService  implements LoginService {
 		return r;
 	}
 	
-	 
+	/**
+	 * 【用户退出】
+	 */
+	public BaseRespBean weblogout(LoginReqBean q  ){
+		log.info("【用户退出】....账户"+AccountUtil.getMyId());
+		SessionUtil.clearSession(ConfigUtil.sys_session_isLocal);;
+		CookieUtil.removeCookie(q.getResponse(),ConfigUtil.Cookie_Login_User);
+		r.success();
+		return r;
+	}	 
 	
 
 }

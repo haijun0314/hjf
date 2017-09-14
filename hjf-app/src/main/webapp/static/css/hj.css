@@ -66,3 +66,16 @@ body{font-family: -apple-system-font,BlinkMacSystemFont,"Helvetica Neue","PingFa
 	color: #ed394a;
 }
 .bottom_line {   height:1px;    background:#dcdcdc;    margin-left:4.5rem;} 
+
+.address-default{
+	border: 1px solid #cc6916;
+	border-radius:5px;
+	margin:  20px 3%;
+}
+.address-default_{
+	border: 1px solid #ddd;
+	border-radius:5px;
+	margin:  20px 3%;
+}
+
+1px solid #cc6916

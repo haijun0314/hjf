@@ -52,14 +52,14 @@
 		</section>
 		<!-- 首页功能区 -->
 		<ul class="index-nav" >
-				<li><a href=""  ><img class="" src="/static/images/fenlei.png"><span>分类</span></a></li>
-				<li><a href="" dd_name="立减5元"><img class="" src="/static/images/xiazai-0605.png"><span>立减5元</span></a></li>
-				<li><a href="" dd_name="购物车"><img class="" src="/static/images/gouwuche.png"><span>购物车</span></a></li>
-				<li><a href="" dd_name=""><img class="" src="/static/images/wodedangdang-h5.png"><span>个人信息</span></a></li>
-				<li><a href="" dd_name="好书榜"><img class="" src="/static/images/haoshubang.png"><span>热卖榜</span></a></li>
-				<li><a href="" dd_name="童书榜"><img class="" src="/static/images/tognshubang-0604.png"><span>促销榜</span></a></li>
-				<li><a href="" dd_name="9块9"><img class="" src="/static/images/9.9.png"><span>优惠商品</span></a></li>
-				<li><a href="" dd_name="电子书"><img class="" src="/static/images/dianzihsu.png"><span>更多商品</span></a></li>
+				<li><a href=""><img class="" src="/static/images/fenlei.png"><span>分类</span></a></li>
+				<li><a href=""><img class="" src="/static/images/xiazai-0605.png"><span>立减5元</span></a></li>
+				<li><a href=""><img class="" src="/static/images/gouwuche.png"><span>购物车</span></a></li>
+				<li><a href=""><img class="" src="/static/images/wodedangdang-h5.png"><span>个人信息</span></a></li>
+				<li><a href=""><img class="" src="/static/images/haoshubang.png"><span>热卖榜</span></a></li>
+				<li><a href=""><img class="" src="/static/images/tognshubang-0604.png"><span>促销榜</span></a></li>
+				<li><a href=""><img class="" src="/static/images/9.9.png"><span>优惠商品</span></a></li>
+				<li><a href=""><img class="" src="/static/images/dianzihsu.png"><span>更多商品</span></a></li>
 		</ul>
 	    <section class="floor" dd_name="">
 	    	<h2>
@@ -94,7 +94,7 @@
 	         <a href="" class="more" dd_name="更多">更多</a>
 	    	</h2>
 			<dl>
-		   	     <dt  v-for="p_hot in  hotPrdsList"><a href=""><img :src="p_hot.pic"> </a></dt>
+		   	     <dt  v-for="p_hot in  hotPrdsList"><a href=""  v-bind:href="'/page/product/detail.html?productId='+p_hot.productId"><img :src="p_hot.pic"> </a></dt>
 		    </dl>
 		</section>
 	    
@@ -106,7 +106,7 @@
 		    <div class="seckilling-con" id="seckill_index"> 
 		        <ul class="clearfix">
 	                <li  v-for="pro in  prdsList">
-	                    <a href="" >
+	                    <a href="#"  v-bind:href="'/page/product/detail.html?productId='+pro.productId">
 	                        <p class="pic"><img :src="pro.pic"></p>
 	                        <p class="price">
 	                            <span class="rob">

@@ -42,6 +42,24 @@ public class LoginController extends BaseAction{
 			errorMsg(response,e);
 		}
 	}	
-	 
+	
+	
+	/**
+	 * 【用户退出】
+	 */
+	@RequestMapping(params = "weblogout")   
+	public void weblogout(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			log.info("【用户退出】...");
+			LoginReqBean     q =new LoginReqBean();
+			q.setResponse(response);
+			r=loginService.weblogout(q);
+			respMsgObj(response, r);
+		} catch (Exception e) {
+			log.error("【用户退出】...发生异常");
+			errorMsg(response,e);
+		}
+	}	
+	 	 
 	
 }

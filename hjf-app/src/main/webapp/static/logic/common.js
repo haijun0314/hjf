@@ -6,6 +6,25 @@ var  SysConfig={
 }
 
 
+
+var CommonUtil={
+		checkPhone:function(phone){
+			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+			if(!myreg.test(phone)) 
+			{ 
+			    return false; 
+			} 
+			return true;
+		}
+		
+		
+}
+
+
+
+
+
+
 var CookieUtil= {  
 	 /*******获取cookie *********/
      get:function(c_name) { 
@@ -374,7 +393,7 @@ var SecUtil= {
 }
 
 $(function() {
-	SecUtil.checkLogin();
+	//SecUtil.checkLogin();
 	FastClick.attach(document.body);
 });
 

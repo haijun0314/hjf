@@ -85,10 +85,39 @@
       </div>
     </div>   
     
+ 	<div class="weui-form-preview">
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">下单时间</label>
+          <span class="weui-form-preview__value">{{order.createdTime}}</span>
+        </div>
+        <div class="weui-form-preview__item" v-if="order.confirmTime!=''">
+          <label class="weui-form-preview__label">接单时间</label>
+          <span class="weui-form-preview__value">{{order.confirmTime}}</span>
+        </div>
+        <div class="weui-form-preview__item" v-if="order.expressTime!=''">
+          <label class="weui-form-preview__label">配送时间</label>
+          <span class="weui-form-preview__value ">{{order.expressTime}}</span>
+        </div>
+ 		<div class="weui-form-preview__item" v-if="order.signTime!=''">
+          <label class="weui-form-preview__label">签收时间</label>
+          <span class="weui-form-preview__value " >{{order.signTime}}</span>
+        </div>
+		<div class="weui-form-preview__item" v-if="order.completeTime!=''">
+          <label class="weui-form-preview__label">完成时间</label>
+          <span class="weui-form-preview__value " >{{order.completeTime}}</span>
+        </div>
+      </div>
+    </div>    
+    
+    
+    
+    
+    
     <div style="height: 2.2rem"></div> 
 		<div class="order_detail_btn "  >
 			<div class="btn_con">
-				<a href="#"  :class="class_btn_pay"    class="weui-btn weui-btn_mini weui-btn_default    ">继续付款</a>
+				<a v-bind:href="'pay.html?orderId='+order.orderId"  :class="class_btn_pay"    class="weui-btn weui-btn_mini weui-btn_default    ">继续付款</a>
 			 	<a href="#"  :class="class_btn_del"    class="weui-btn weui-btn_mini weui-btn_default    " @click="del(order.orderId)">删除</a>
 		        <a href="#"  :class="class_btn_comment" class="weui-btn weui-btn_mini weui-btn_default    " @click="comment(order.orderId)">评价</a>
 			</div>

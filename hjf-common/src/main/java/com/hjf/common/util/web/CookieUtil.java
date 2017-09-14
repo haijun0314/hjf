@@ -146,6 +146,7 @@ public class CookieUtil
 			for (int i = 0; i < cookies.length; i++) {
 				if (key.equalsIgnoreCase(cookies[i].getName())) {
 					Cookie cookie = new Cookie(key, null);
+					cookie.setPath("/");
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
 					break;

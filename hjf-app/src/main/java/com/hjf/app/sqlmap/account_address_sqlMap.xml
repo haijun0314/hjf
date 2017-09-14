@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "AccountAddress">
+
+	<select id="findById" parameterType="java.lang.Integer" resultType="AccountAddress" >
+	    select * from account_address  where    addressId=#{addressId}
+	</select>	
+
+
+	<!-- 查询id查询 -->
+	<select id="queryList" parameterType="Query" resultType="AccountAddress" >
+	    select * from account_address  where  delFlag=0  
+    	<if test="@MyOgnl@isNotEmpty(params.isDefault)">
+   		 	and  isDefault=#{params.isDefault}
+   		</if>
+    	<if test="@MyOgnl@isNotEmpty(params.accountId)">
+   		 	and  accountId=#{params.accountId}
+   		</if>
+	</select>	 
+	<!-- 增加 -->
+	<insert id="insert" parameterType="AccountAddress">
+		 insert into account_address (addressId,accountId,userName,cityCode,telephone,createdTime,cityName,provinceCode,provinceName,quCode,quName,address,addressDetail,cityNameFull)
+		 values(#{addressId},#{accountId},#{userName},#{cityCode},#{telephone},#{createdTime},#{cityName},#{provinceCode},#{provinceName},#{quCode},#{quName},#{address},#{addressDetail},#{cityNameFull})
+	    <selectKey resultType="int" keyProperty="addressId" >
+            SELECT @@IDENTITY AS addressId
+        </selectKey> 
+	</insert>
+  	 
+ 	<!-- 更新  -->
+	<update id="updateByAccountId" parameterType="AccountAddress" >
+	   update account_address  
+	    <trim prefix="set"  suffixOverrides="," >	 
+   		  <if test="@MyOgnl@isNotEmpty(isDefault)">
+   		 	isDefault=#{isDefault},
+   		  </if>
+   		</trim>
+	   where accountId = #{accountId}
+	</update> 
+  	 
+ 	<update id="logicDelete" parameterType="OrderInfo" >
+	   update account_address set delFlag=1
+	   where addressId = #{addressId}
+	</update> 	 
+  	 
+  	 
+  	 
+	<!-- 更新  -->
+	<update id="updateById" parameterType="AccountAddress" >
+	   update account_address 
+  	   	   <trim prefix="set"  suffixOverrides="," >
+  	   	   	 <if test="@MyOgnl@isNotEmpty(updatedTime)">
+	   		 	updatedTime=#{updatedTime},
+	   		 </if>
+	  	   	 <if test="@MyOgnl@isNotEmpty(telephone)">
+	   		 	telephone=#{telephone},
+	   		 </if>
+	   		  <if test="@MyOgnl@isNotEmpty(isDefault)">
+	   		 	isDefault=#{isDefault},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(cityCode)">
+	   		 	cityCode=#{cityCode},
+	   		 </if> 
+	   		 <if test="@MyOgnl@isNotEmpty(cityName)">
+	   		 	cityName=#{cityName},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(provinceCode)">
+	   		 	provinceCode=#{provinceCode},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(provinceName)">
+	   		 	provinceName=#{provinceName},
+	   		 </if>
+	   		  <if test="@MyOgnl@isNotEmpty(quCode)">
+	   		 	quCode=#{quCode},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(quName)">
+	   		 	quName=#{quName},
+	   		 </if>
+	   		 <if test="@MyOgnl@isNotEmpty(address)">
+	   		 	address=#{address},
+	   		 </if>
+	   		  <if test="@MyOgnl@isNotEmpty(addressDetail)">
+	   		 	addressDetail=#{addressDetail},
+	   		  </if>
+	   		  <if test="@MyOgnl@isNotEmpty(userName)">
+	   		 	userName=#{userName},
+	   		  </if> 
+	   		  <if test="@MyOgnl@isNotEmpty(cityNameFull)">
+	   		 	cityNameFull=#{cityNameFull},
+	   		  </if> 
+	   </trim>
+	   where addressId = #{addressId}
+	</update> 
+	
+</mapper>

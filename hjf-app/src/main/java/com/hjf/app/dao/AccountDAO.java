@@ -6,9 +6,9 @@ import com.hjf.app.entity.Account;
 import com.hjf.base.mybatis.BaseIbatisDAO;
 
 /**
- * 用户
- * lihaijun
- * 2014-12-01
+ * 功能说明:【账户持久类】
+ * 作    者：lihaijun
+ * 创建日期：2017-08-17
  */
 @Repository
 public class AccountDAO extends BaseIbatisDAO{

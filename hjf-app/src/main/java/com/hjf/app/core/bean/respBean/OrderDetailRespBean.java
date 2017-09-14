@@ -1,6 +1,5 @@
 package com.hjf.app.core.bean.respBean;
 
-import java.util.Date;
 import java.util.List;
 
 import com.hjf.common.bean.BaseRespBean;
@@ -22,69 +21,37 @@ private String      linkUserName; //联系人姓名
 private String      linkAddress; //联系地址
 private String  	linkTelephone;// 联系人电话
 private String    	payRoute; //支付路由0  支付宝 1  微信 
-private Date 		confirmTime;//订单确认时间【接单时间】
-private Date 		expressTime;//派送时间
-private Date 		signTime;//签收时间
+private String 		confirmTime;//订单确认时间【接单时间】
+private String 		expressTime;//派送时间
+private String 		signTime;//签收时间
 private String   	descContent;//单订描述文字
 private String   	descPic;//单订描述图片
 private String   	createdTime;//订单时间
+private String   	completeTime;//完成时间
 private String      isComment;
 private List   	     pros;//商品列表
 
-public String getIsComment() {
-	return isComment;
+
+
+
+
+public String getCompleteTime() {
+	return completeTime;
 }
-public void setIsComment(String isComment) {
-	this.isComment = isComment;
+public void setCompleteTime(String completeTime) {
+	this.completeTime = completeTime;
 }
-public List getPros() {
-	return pros;
-}
-public void setPros(List pros) {
-	this.pros = pros;
-}
-public String getCreatedTime() {
-	return createdTime;
-}
-public void setCreatedTime(String createdTime) {
-	this.createdTime = createdTime;
-}
-public String getDescContent() {
-	return descContent;
-}
-public void setDescContent(String descContent) {
-	this.descContent = descContent;
-}
-public String getDescPic() {
-	return descPic;
-}
-public void setDescPic(String descPic) {
-	this.descPic = descPic;
-}
-public Date getConfirmTime() {
-	return confirmTime;
-}
-public void setConfirmTime(Date confirmTime) {
-	this.confirmTime = confirmTime;
-}
-public Date getExpressTime() {
-	return expressTime;
-}
-public void setExpressTime(Date expressTime) {
-	this.expressTime = expressTime;
-}
-public Date getSignTime() {
-	return signTime;
-}
-public void setSignTime(Date signTime) {
-	this.signTime = signTime;
-}
-private String      remark;//下单备注
 public Integer getOrderId() {
 	return orderId;
 }
 public void setOrderId(Integer orderId) {
 	this.orderId = orderId;
+}
+public Integer getAccountId() {
+	return accountId;
+}
+public void setAccountId(Integer accountId) {
+	this.accountId = accountId;
 }
 public String getStatus() {
 	return status;
@@ -140,16 +107,62 @@ public String getPayRoute() {
 public void setPayRoute(String payRoute) {
 	this.payRoute = payRoute;
 }
-public Integer getAccountId() {
-	return accountId;
+public String getConfirmTime() {
+	return confirmTime;
 }
-public void setAccountId(Integer accountId) {
-	this.accountId = accountId;
+public void setConfirmTime(String confirmTime) {
+	this.confirmTime = confirmTime;
 }
-public String getRemark() {
-	return remark;
+public String getExpressTime() {
+	return expressTime;
 }
-public void setRemark(String remark) {
-	this.remark = remark;
+public void setExpressTime(String expressTime) {
+	this.expressTime = expressTime;
 }
+public String getSignTime() {
+	return signTime;
+}
+public void setSignTime(String signTime) {
+	this.signTime = signTime;
+}
+public String getDescContent() {
+	return descContent;
+}
+public void setDescContent(String descContent) {
+	this.descContent = descContent;
+}
+public String getDescPic() {
+	return descPic;
+}
+public void setDescPic(String descPic) {
+	this.descPic = descPic;
+}
+public String getCreatedTime() {
+	return createdTime;
+}
+public void setCreatedTime(String createdTime) {
+	this.createdTime = createdTime;
+}
+public String getIsComment() {
+	return isComment;
+}
+public void setIsComment(String isComment) {
+	this.isComment = isComment;
+}
+public List getPros() {
+	return pros;
+}
+public void setPros(List pros) {
+	this.pros = pros;
+}
+ 
+
+
+
+
+
+
+
+
+
  }

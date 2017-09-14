@@ -96,7 +96,10 @@ public class OrderServiceImpl extends BaseService implements OrderService {
 			r.setPayRoute("微信"); 
 		}
 		r.setCreatedTime(TimeUtil.formatDateYMDHMS(order.getCreatedTime()));
-		
+		r.setConfirmTime(TimeUtil.formatDateYMDHMS(order.getConfirmTime()));
+		r.setExpressTime(TimeUtil.formatDateYMDHMS(order.getExpressTime()));
+		r.setSignTime(TimeUtil.formatDateYMDHMS(order.getSignTime()));
+		r.setCompleteTime(TimeUtil.formatDateYMDHMS(order.getCompleteTime()));
 		Query q=new Query();
 		q.append("orderId", order.getOrderId());
 		List pros=orderProductDAO.queryList(q);

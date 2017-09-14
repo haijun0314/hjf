@@ -119,6 +119,10 @@ public class TimeUtil{
 	
 	 
 	public static String formatDateYMDHMS(Date date) {
+		if(date==null){
+			return "";
+		}
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time = sdf.format(date);
 		return time;

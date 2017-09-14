@@ -1,0 +1,105 @@
+<!-- 地址更新页面 -->
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>地址更新</title>
+    <meta name="charset" content="utf-8">
+    <script src="/static/logic/common/head.js"></script>
+    <script type="text/javascript" src="/static/js/city-picker.js" charset="utf-8"></script>
+    <script src="/static/js/jquery.validate.js"></script>
+  </head>
+<body>
+	<!--头部导航 开始-->
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title">地址更新</h1>
+	</header> 
+	<section class="space-header"   ></section>
+	<div id="app_page" >
+		<form action="/account?addressUpdate" name="dataForm"  id="dataForm" >
+		<input   type="hidden" name="addressId"    v-model="address.addressId" >
+	    <!-- 个人资料展示模块 -->
+		<div class="weui-cells weui-cells_form" >
+		  
+		  <div class="weui-cell">
+		    <div class="weui-cell__hd"><label class="weui-label">联系人</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input" type="text" name="userName" placeholder="请输入联系人姓名"  v-model="address.userName" >
+		    </div>
+		  </div>
+		 
+		  
+	      <div class="weui-cell">
+	     	 <div class="weui-cell__hd"><label for="" class="weui-label">联系电话</label></div>
+	          <div class="weui-cell__bd">
+	          <input class="weui-input telePhone" placeholder="请输入联系电话"    type="text" name="telephone" v-model="address.telephone">
+	        </div>
+	      </div>
+	      <div class="weui-cell">
+	        <div class="weui-cell__hd"><label for="name" class="weui-label">城市</label></div>
+	        <div class="weui-cell__bd">
+	          <input     v-model="address.cityNames" name="cityNames" id="cityNames"  type="hidden">
+	          <input     v-model="address.cityCodes" name="cityCodes" id="cityCodes"  type="hidden">
+	          <input class="weui-input" v-on:click="cityPicker_address"    v-model="address.cityNameFull"  name="cityNameFull" id="cityNameFull"    readonly="" data-code="" data-codes="" type="text">
+	        </div>
+	      </div>
+	      <div class="weui-cell">
+	      	<div class="weui-cell__hd"><label for="" class="weui-label">详细地址</label></div>
+	          <div class="weui-cell__bd">
+	          <input class="weui-input" placeholder="详细地址 如街道楼号门牌" type="text" name="address" v-model="address.address" >
+	        </div>
+	      </div>
+		</div>
+	
+	    <div class="weui-btn-area">
+	        <a href="#" onclick="AddressUtils.addressAdd()" class="weui-btn weui-btn_primary">保存</a>
+	    </div>
+	    </form>
+	</div>
+
+
+
+
+<div class="space"> </div>
+<script src="/static/logic/account.js"></script>
+<script src="/static/logic/common/foot.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	validate_Form(); //初始化表单验证
+	AddressUtils.initAddress();
+	
+});
+function validate_Form(){
+   var validateForm  = $('#dataForm');
+   validateForm.validate({
+      rules:{
+    	   userName:{required:true,minlength: 2,maxlength:10},
+    	   telephone:{required:true    },
+    	   address:{required:true    },
+    	   cityNameFull:{required:true },
+      },
+      messages:{
+    	  userName:{
+	   		    required: "请输入联系人姓名",
+	   		    minlength:"姓名最少2位",
+	   		    maxlength:"姓名不能超过10位"
+	   	  } ,
+	      telephone:{
+	   		    required: "请输入联系人电话",
+	   	  } ,
+	   	  cityNameFull:{
+	   		    required: "请选择城市",
+	   	  } ,
+	      address:{
+	    	  required: "请输入详细地址",
+	   	 }
+      }
+   });		
+}
+</script>
+
+
+</body>
+</html>
+

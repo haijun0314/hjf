@@ -1,5 +1,7 @@
 package com.hjf.app.service.impl;
 
+import java.util.List;
+
 /**
  * 功能说明:【账户信息】
  * 作    者：lihaijun
@@ -7,26 +9,127 @@ package com.hjf.app.service.impl;
  */
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hjf.app.core.bean.reqBean.AccountAddressReqBean;
 import com.hjf.app.core.bean.reqBean.AccountReqBean;
 import com.hjf.app.core.bean.respBean.AccountRespBean;
 import com.hjf.app.core.util.AccountUtil;
 import com.hjf.app.core.util.SecUtil;
+import com.hjf.app.dao.AccountAddressDAO;
 import com.hjf.app.dao.AccountDAO;
 import com.hjf.app.enmu.AccountLevel;
 import com.hjf.app.entity.Account;
+import com.hjf.app.entity.AccountAddress;
 import com.hjf.app.service.AccountService;
 import com.hjf.base.exception.CodeUtil;
 import com.hjf.base.mybatis.BaseService;
+import com.hjf.base.mybatis.Query;
 import com.hjf.common.bean.BaseRespBean;
+import com.hjf.common.enums.DefaultStatus;
+import com.hjf.common.util.JsonUtil;
 @Service
 @Transactional 
 public class AccountServiceImpl   extends BaseService implements AccountService {
 	@Resource AccountDAO accountDAO;
+	@Resource AccountAddressDAO accountAddressDAO;
 	
+	/**
+	 * 【查询地址】
+	 */
+	public AccountAddress getAddress(AccountAddress a)	{
+		a=(AccountAddress) accountAddressDAO.getObjById(a.getAddressId());
+		return a;
+	}
+	
+	/**
+	 * 查询地址
+	 */
+	public BaseRespBean 	addressList()	{
+		Query query=new Query();
+		query.append("accountId", AccountUtil.getMyId());
+		List datas=accountAddressDAO.queryList(query);
+		r.setDatas(datas);
+		r.success();
+		return r;
+	}
+
+	/**
+	 * 【设置默认地址】
+	 */
+	public BaseRespBean addressDefault(AccountAddress a)	{
+		a.setIsDefault(DefaultStatus.No.getValue());
+		a.setAccountId(AccountUtil.getMyId());
+		accountAddressDAO.update(a, "updateByAccountId");
+		a.setIsDefault(DefaultStatus.Yes.getValue());
+		accountAddressDAO.updateById(a);
+		r.success();
+		return r;
+	}	
+	
+	/**
+	 * 【删除地址】
+	 */
+	public BaseRespBean addressDelete(AccountAddress a)	{
+		accountAddressDAO.logicDelete(a);
+		r.success();
+		return r;
+	}	
+	
+		
+	
+	
+	/**
+	 * 添加地址
+	 */
+	public BaseRespBean addressAdd(AccountAddressReqBean q)	{
+		AccountAddress a=new AccountAddress ();
+		copyProperties(a, q);
+		List<String> codes=JsonUtil.json2List(q.getCityCodes(), String.class);
+		List<String> names=JsonUtil.json2List(q.getCityNames(), String.class);
+		a.setCityCode(codes.get(1));
+		a.setCityName(names.get(1));
+		a.setProvinceCode(codes.get(0));
+		a.setProvinceName(names.get(0));
+		a.setQuCode(codes.get(2));
+		a.setQuName(names.get(2));
+		a.setAddressDetail(q.getCityNameFull()+" "+q.getAddress());
+		a.setAccountId(AccountUtil.getMyId());
+		a.setCityNameFull(q.getCityNameFull());
+		accountAddressDAO.save(a);
+		r.success();
+		return r;
+	}
+	
+	
+	/**
+	 * 更新地址
+	 */
+	public BaseRespBean addressUpdate(AccountAddressReqBean q)	{
+		AccountAddress a=new AccountAddress ();
+		copyProperties(a, q);
+		List<String> codes=JsonUtil.json2List(q.getCityCodes(), String.class);
+		List<String> names=JsonUtil.json2List(q.getCityNames(), String.class);
+		if(codes!=null&&codes.size()>0){
+			a.setProvinceCode(codes.get(0));
+			a.setCityCode(codes.get(1));
+			a.setQuCode(codes.get(2));
+		}
+		if(names!=null&&names.size()>0){
+			a.setCityName(names.get(1));
+			a.setProvinceName(names.get(0));
+			a.setQuName(names.get(2));
+		}
+		a.setAddressDetail(q.getCityNameFull()+" "+q.getAddress());
+		a.setAccountId(AccountUtil.getMyId());
+		a.setCityNameFull(q.getCityNameFull());
+		a.setAddressId(q.getAddressId());
+		accountAddressDAO.updateById(a);
+		r.success();
+		return r;
+	}
+	 
 	/**
 	 * 【设置密码】
 	 */

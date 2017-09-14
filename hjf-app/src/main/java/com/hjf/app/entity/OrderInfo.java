@@ -26,8 +26,17 @@ public class OrderInfo extends BaseModel implements java.io.Serializable {
 	private String   	descContent;//单订描述文字
 	private String   	descPic;//单订描述图片
 	private String      isComment;//是否评价【0是1否】
+	private Date   	    completeTime;//完成时间
 	 
-	 
+	
+	
+	
+	public Date getCompleteTime() {
+		return completeTime;
+	}
+	public void setCompleteTime(Date completeTime) {
+		this.completeTime = completeTime;
+	}
 	public String getIsComment() {
 		return isComment;
 	}

@@ -1,0 +1,56 @@
+<!-- 收货地址页面 -->
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>收货地址</title>
+    <meta name="charset" content="utf-8">
+    <script src="/static/logic/common/head.js"></script>
+  </head>
+<body>
+<div  id="app_page" >
+	<!--头部导航 开始-->
+	<header class="bar bar-nav"  >
+		<a href="javascript:history.back()"><div  class="hj-header-icon-back"> </div></a>
+	    <h1 class="title" style="width:0%;left: 50%" >收货地址</h1>
+	    <h1  style="float: right;" @click="addressAdd">+</h1>
+	</header> 
+	<section class="space-header"   ></section>
+	<div style="top: 2.2rem;">
+		<div class="page__bd">
+	      <div class="weui-panel weui-panel_access">
+	        <div class="weui-panel__hd"> </div>
+	        <div class="weui-panel__bd">
+	          <div class="weui-media-box weui-media-box_text address-default" v-for="address in addressList" v-if="address.isDefault=='0'">
+	            <h4 class="weui-media-box__title">{{address.userName}} {{address.telephone}}</h4>
+	            <p class="weui-media-box__desc">{{address.addressDetail}}</p>
+	            <div class="btn_con">
+					<a href="#"      class="weui-btn weui-btn_mini  weui-btn_disabled weui-btn_default    ">设为默认</a>
+				 	<a href="#"      class="weui-btn weui-btn_mini weui-btn_default" @click="addressDelete(address.addressId)">删除</a>
+			       <a  v-bind:href="'/page/ucenter/address/update.html?addressId='+address.addressId" class="weui-btn weui-btn_mini weui-btn_default" >编辑</a>
+				</div>
+	          </div>
+	          <div class="weui-media-box weui-media-box_text address-default_" v-for="address in addressList" v-if="address.isDefault=='1'">
+	            <h4 class="weui-media-box__title">{{address.userName}} {{address.telephone}}</h4>
+	            <p class="weui-media-box__desc">{{address.addressDetail}}</p>
+	            <div class="btn_con">
+					<a href="#"      class="weui-btn weui-btn_mini weui-btn_default" @click="addressDefault(address.addressId)">设为默认</a>
+				 	<a href="#"      class="weui-btn weui-btn_mini weui-btn_default" @click="addressDelete(address.addressId)">删除</a>
+			        <a  v-bind:href="'/page/ucenter/address/update.html?addressId='+address.addressId" class="weui-btn weui-btn_mini weui-btn_default" >编辑</a>
+				</div>
+	          </div>
+	        </div>
+	      </div>
+		</div>
+	</div>
+</div>
+<script src="/static/logic/account.js"></script>
+<script src="/static/logic/common/foot.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	AddressUtils.loadAddressList();
+});
+</script>
+</body>
+</html>
+
+
