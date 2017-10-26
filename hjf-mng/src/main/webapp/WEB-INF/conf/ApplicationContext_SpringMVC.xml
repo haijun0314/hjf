@@ -20,6 +20,9 @@
 	 <mvc:resources mapping="/test/**" location="/test/"/>
 	 <mvc:resources mapping="/download/**" location="/download/"/>
 	 <mvc:resources mapping="/files/**" location="/files/"/>
+	 <mvc:resources mapping="/druid/**" location="/druid/"/>
+	 
+	 
 	 <!-- 视图解释类 -->  
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
 	    <property name="prefix" value="/jsp/"/>  

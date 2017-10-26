@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="static/js/mui.min.js"></script>
+		 <link  href="static/css/mui.min.css" rel="stylesheet"/>
+	</head>
+	<body>
+				<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">登录</h1>
+		</header>
+		<div class="mui-content">	 
+			<div class="mui-card" id="info">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						这是一个最简单的卡片视图控件；卡片视图常用来显示完整独立的一段信息，比如一篇文章的预览图、作者信息、点赞数量等
+					</div>
+				</div>
+			</div>		 
+ </div>
+ 
+ <script>
+ document.getElementById('info').addEventListener('tap', function() {
+	  //打开关于页面
+	  
+	  mui.openWindow({
+	    url: 't.html', 
+	    id:'info',
+	    extras:{
+	        name:'mui'  //扩展参数
+	    }
+	  });
+	});
+ </script>
+ 
+ 
+	</body>
+</html>

@@ -10,8 +10,6 @@
 <script type="text/javascript" charset="utf-8" src="/static/umeditor/umeditor.min.js"></script>
 <script type="text/javascript" src="/static/umeditor/lang/zh-cn/zh-cn.js"></script>
 
-
-
 <script type="text/javascript">
 $(document).ready(function(){
 	validate_Form();//初始化表单验证
@@ -19,7 +17,6 @@ $(document).ready(function(){
 	selectPicd('${pc.pid}');
 	ProductUtil.initBrands();
 	var um = UM.getEditor('detailDesc');
-	
 });
  
 /******************表单验证****************************/
@@ -53,14 +50,7 @@ function selectPicd(pid){
 	
 	ProductUtil.initCategorys('categoryId',null,pid);
 } 
- 
-
-
-
-
 </script>
- 
-
 <div class="row">
 	<div class="col-xs-12">
 		<form action="${contextPath}/product?update&ajax=true&reqType=2" class="form-horizontal" role="form"  id="dataForm" name="dataForm">
@@ -156,7 +146,7 @@ function selectPicd(pid){
 				<div class="col-md-offset-3 col-md-9">
 					<button class="btn btn-danger" type="button" style="width: 300px"  onclick="update_do()">
 						<i class="icon-ok bigger-110"></i>
-						确定添加
+						确定修改
 					</button>
 					<button class="btn btn-info" type="button" style="width: 300px"  onclick="ProductUtil.return_list()">
 						<i class="icon-ok info-110"></i>

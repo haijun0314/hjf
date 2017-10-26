@@ -18,6 +18,7 @@ import com.hjf.common.enums.ResultType;
 import com.hjf.common.util.JsonUtil;
 import com.hjf.common.util.web.MsgUtil;
 import com.hjf.common.util.web.ResponseUtils;
+import com.hjf.mng.common.security.MySecurityMetadataSource;
 import com.hjf.mng.common.util.SysLogUtil;
 import com.hjf.mng.sys.entity.SysRole;
 import com.hjf.mng.sys.service.SysRoleService;
@@ -35,6 +36,7 @@ public class RoleAction extends BaseAction {
 	String update	   ="framework/sysmanage/role/update";
 	String permission  ="framework/sysmanage/role/permission";
 	String detail      ="framework/sysmanage/role/detail";
+	@Resource   MySecurityMetadataSource mySecurityMetadataSource;
 	/**
 	 *  角色查询页面【页面显示】
 	 */
@@ -153,6 +155,7 @@ public class RoleAction extends BaseAction {
 					SysLogUtil.addlSysLog(request,"分配权限【"+roleId+"】失败",ResultType.Fail);
 					MsgUtil.operFail(response);
 				}
+				mySecurityMetadataSource.loadResourceDefine();
 			 }catch (Exception e) {
 				 SysLogUtil.addlSysLog(request,"分配权限【"+roleId+"】失败",ResultType.Fail);
 				 MsgUtil.operFail(response,e);
