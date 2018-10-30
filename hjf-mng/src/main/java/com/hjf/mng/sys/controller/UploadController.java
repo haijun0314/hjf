@@ -20,6 +20,8 @@ import com.hjf.common.bean.UploadRespBean;
 import com.hjf.common.util.TimeUtil;
 import com.hjf.mng.common.util.ConfigUtil;
 
+import test.OSSClientUtil;
+
 /**
  * 文件上传 
  * author lihaijun 
@@ -87,5 +89,37 @@ public class UploadController extends BaseAction {
 	}	
 	
  
-
+	/**
+	 * 文件上传
+	 */
+	@RequestMapping(method = RequestMethod.POST, params = "upload_oss")
+	public void upload_oss(HttpServletRequest request,HttpServletResponse response) {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String dataName = request.getParameter("dataName");
+		UploadRespBean rb   = new UploadRespBean();
+		 
+		/** 页面控件的文件流 **/
+		MultipartFile multipartFile = null;
+		if (StringUtils.isNotBlank(dataName)) {
+			multipartFile = multipartRequest.getFile(dataName);
+		}else{
+			multipartFile = multipartRequest.getFile("file");
+		}
+		String fileName="";
+		
+		try {
+			fileName=OSSClientUtil.uploadImg2Oss("product/", multipartFile) ;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LogUtil.getLogger().error("【文件上传】....发生异常 ");
+			rb.fail(CodeUtil.e_9999);
+			respMsgObj(response, rb);
+			return;
+		}
+		LogUtil.getLogger().error("【文件上传】....上传成功 文件名 fileName=" + fileName);
+		rb.setFileName(fileName);
+		rb.success();
+		respMsgObj(response, rb);
+	}	
+	
 }

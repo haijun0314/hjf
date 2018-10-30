@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hjf.app.core.bean.respBean.ProductCommentRespBean;
 import com.hjf.app.core.bean.respBean.ProductRespBean;
 import com.hjf.app.core.bean.vo.ProductCart;
+import com.hjf.app.core.util.ConfigUtil;
 import com.hjf.app.dao.ProductBrandDAO;
 import com.hjf.app.dao.ProductCategoryDAO;
 import com.hjf.app.dao.ProductCommentDAO;
@@ -23,6 +24,7 @@ import com.hjf.app.entity.ProductCategory;
 import com.hjf.app.service.ProductService;
 import com.hjf.base.model.PageBean;
 import com.hjf.base.mybatis.BaseService;
+import com.hjf.base.mybatis.Query;
 import com.hjf.common.util.JsonUtil;
 import com.hjf.common.util.StringUtil;
 @Service
@@ -67,7 +69,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 			Double commentScoreRate=(Double) productCommentDAO.getObjById(productId, "scoreRate");
 			if (commentScoreRate!=null) {
 				commentScoreRate=commentScoreRate*100;
-				r.setCommentScoreRate(commentScoreRate+"%");
+				r.setCommentScoreRate("好评率"+commentScoreRate+"%");
 			}else{
 				r.setCommentScoreRate("");
 			}
@@ -77,6 +79,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		pb =productCommentDAO.queryPageList(pb);
 		List list=pb.getDatas();
 		r.setDatas(list);
+		r.setLastPage(pb.isLastPage());
 		r.success();
 		return r;
 	}	
@@ -111,10 +114,18 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	/**
 	 * 商品类型
 	 */
-	public  List  categorys(){
-		return productCategoryDAO.queryList(null);
+	public  List  categorys(Query query){
+		return productCategoryDAO.queryList(query);
 	}	
-	 
+	
+	
+	/**
+	 * 商品品牌
+	 */
+	public  List  brands(Query query){
+		return productBrandDAO.queryList(query);
+	}		
+	
 	public  ProductCategory  getProductCategory(Integer categoryId){
 		return (ProductCategory) productCategoryDAO.getObjById(categoryId);
 	}	
@@ -164,7 +175,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		Product  p=(Product) productDAO.getObjById(r.getProductId());
 		copyProperties(r, p);
 		String pic=p.getPics();
-		r.setPicList(StringUtil.convertToToList(pic, "_"));
+		r.setPicList(StringUtil.convertToToList(pic, "_",ConfigUtil.server_app_host_url));
 		ProductBrand pb=getProductBrand(p.getBrandId());
 		if (pb!=null) {
 			r.setBrandName(pb.getBrandName());

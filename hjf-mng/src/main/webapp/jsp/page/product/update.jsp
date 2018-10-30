@@ -17,6 +17,9 @@ $(document).ready(function(){
 	selectPicd('${pc.pid}');
 	ProductUtil.initBrands();
 	var um = UM.getEditor('detailDesc');
+	um.ready(function() {
+		um.setContent('${p.detailDesc}');
+	});
 });
  
 /******************表单验证****************************/
@@ -129,7 +132,7 @@ function selectPicd(pid){
 			</div>
 			<div class="form-group" >
 				<label for="select_role" class="col-sm-3 control-label no-padding-right"> <b class="star_red">*</b>所属品牌</label>
-				<div class="col-sm-9" >
+				<div class="col-sm-6" >
 					 <select name="brandId" id="brandId" class="required">
 						 
 					 </select>
@@ -137,11 +140,20 @@ function selectPicd(pid){
 			</div>
 		 
 			<div class="form-group">
-				<label for="remark" class="col-sm-2 control-label no-padding-right">商品介绍</label>
-				<div class="col-sm-10">
-					<textarea maxlength="500"   rows="10" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions">${p.descriptions }</textarea>
+				<label for="remark" class="col-sm-3 control-label no-padding-right">商品介绍</label>
+				<div class="col-sm-9">
+					<textarea maxlength="500"   rows="5" id="form-field-9" class="form-control limited" placeholder="" id="descriptions" name="descriptions">${p.descriptions }</textarea>
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="remark" class="col-sm-3 control-label no-padding-right">详细介绍</label>
+				<div class="col-sm-5">
+					<!--style给定宽度可以影响编辑器的最终宽度-->
+						<script type="text/plain" id="detailDesc"  name="detailDesc"   style="width:700px;height:240px;">
+    
+						</script>
+				</div>
+			</div>	
 			<div class="clearfix form-actions">
 				<div class="col-md-offset-3 col-md-9">
 					<button class="btn btn-danger" type="button" style="width: 300px"  onclick="update_do()">

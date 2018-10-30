@@ -15,13 +15,29 @@ public class BaseRespBean {
 	private List   datas;//返回数据
 	private Object data;  //返回特定数据
 	private boolean   fail;// 操作是否失败  true  失败   false  成功
-	 	
+	private  boolean lastPage; 	
+	private  boolean noData; 
+	private  boolean success; 
 	
+	
+	public boolean isNoData() {
+		return noData;
+	}
+	public void setNoData(boolean noData) {
+		this.noData = noData;
+	}
+	public boolean isLastPage() {
+		return lastPage;
+	}
+	public void setLastPage(boolean lastPage) {
+		this.lastPage = lastPage;
+	}
 	public boolean isFail() {
 		return fail;
 	}
 	public void setFail(boolean fail) {
 		this.fail = fail;
+		this.setSuccess(false);
 	}
 	public BaseRespBean() {
 		 
@@ -38,6 +54,7 @@ public class BaseRespBean {
 	public void success() {
 		this.code="0000";
 		this.msg="成功";
+		this.setSuccess(true);
 	}
 	public void fail(String code) {
 		this.code=code;
@@ -48,6 +65,7 @@ public class BaseRespBean {
 		this.code=CodeUtil.error;
 		this.msg=CodeUtil.getCodeMsg(code);
 		this.fail=true;
+		this.setSuccess(false);
 	}
 	
 	
@@ -88,6 +106,12 @@ public class BaseRespBean {
 	public List initDatas() {
 		this.datas=new ArrayList();
 		return datas;
+	}
+	public boolean isSuccess() {
+		return success;
+	}
+	public void setSuccess(boolean success) {
+		this.success = success;
 	}
 	 
 	

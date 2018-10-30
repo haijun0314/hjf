@@ -7,7 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 public class PageBean {
-	
+	private  boolean noData; 	
+	private  boolean lastPage;
+	private  Integer startRow;
+	private  Integer endRow;
+	private  Integer pageSize;
+	private  List datas;
+	private Map<String, Object> params = new HashMap<String, Object>();
+
+	public PageBean (HttpServletRequest request) {
+		initPage(request);
+	}
 	public static PageModel getPageInfo(HttpServletRequest request,PageModel pm){
 			String pageNum=request.getParameter("page");
 			String numPerPage=request.getParameter("rows");
@@ -47,17 +57,22 @@ public class PageBean {
 			return pm;
 	}
 	
-	
-	
-	private  Integer startRow;
-	private  Integer endRow;
-	private  Integer pageSize;
-	private  List datas;
-	private Map<String, Object> params = new HashMap<String, Object>();
 
-	public PageBean (HttpServletRequest request) {
-		initPage(request);
+	public boolean isLastPage() {
+		return lastPage;
 	}
+	public void setLastPage(boolean lastPage) {
+		this.lastPage = lastPage;
+	}
+
+
+	public boolean isNoData() {
+		return noData;
+	}
+	public void setNoData(boolean noData) {
+		this.noData = noData;
+	}
+
 	/**
 	 * 单条加入查询条件
 	 * @param key 字段名称

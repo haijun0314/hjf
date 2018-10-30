@@ -12,11 +12,19 @@ import com.hjf.base.LogUtil;
  */
 public class BaseReqBean {
 	private String   userToken; 
-	public Integer  accountId;		
+	public Integer   accountId;		
 	private String   versionNO;//版本编号
 	private String   telephone;//账户
 	private String   reqNO;//请求编号
-
+	private String   sortBy;// 排序字段
+	
+	 
+	public String getSortBy() {
+		return sortBy;
+	}
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
+	}
 
 	public Logger    log = LogUtil.getLogger(); 
 

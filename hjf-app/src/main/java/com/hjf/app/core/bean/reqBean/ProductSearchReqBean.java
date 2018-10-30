@@ -7,8 +7,6 @@ public class ProductSearchReqBean extends BaseReqBean {
 	private Integer   		categoryId;//搜索类别
 	private String    		keyWord;//搜索关键词
 	private String    		productType;//商品类型  1、普通商品 2 推荐商品  3 热卖商品
-	
-	 
 	public String getProductType() {
 		return productType;
 	}

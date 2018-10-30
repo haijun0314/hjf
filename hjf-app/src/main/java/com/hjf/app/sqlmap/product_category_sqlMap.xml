@@ -4,7 +4,7 @@
 
 <mapper namespace="ProductCategory" >
 <select id="queryList" parameterType="Query" resultType="java.util.HashMap">
-	select categoryId,categoryName
+	select categoryId,categoryName,pic
 	from product_category  
 	where  delFlag=0
 	order  by sortNum  desc

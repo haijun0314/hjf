@@ -6,13 +6,16 @@
 
 <!-- 分页查询商品评论 -->
 <select id="queryPagelist" parameterType="PageBean" resultType="java.util.HashMap">
-	select c.content,c.score,a.accountName ,date_format(c.createdTime,'%Y-%m-%d %H:%i')  as createdTime
+	select c.commentId,c.content,c.score,c.level,a.headPic,a.accountName ,date_format(c.createdTime,'%Y-%m-%d %H:%i')  as createdTime
 	from product_comment c ,account a
 	where  c.delFlag=0 and a.accountId=c.accountId
 	<if test="@MyOgnl@isNotEmpty(params.productId)">
 		and  productId=#{params.productId}
 	</if>
-	order  by createdTime  desc
+	<if test="@MyOgnl@isNotEmpty(params.level)">
+		and  c.level=#{params.level}
+	</if>	
+	order  by commentId   
 	limit #{startRow},#{pageSize}
 </select>
 

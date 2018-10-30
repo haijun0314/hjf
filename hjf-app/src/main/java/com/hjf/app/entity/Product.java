@@ -22,8 +22,21 @@ public class Product extends BaseModel implements java.io.Serializable {
 	private Double 			marketPrice;//市场价
 	private String   		detailDesc;//详细描述
 	private String   		promotion;//促销内容
+	private Integer         countComment;//评论数量
+	private Integer         countSale;//销量
 	
-	
+	public Integer getCountSale() {
+		return countSale;
+	}
+	public void setCountSale(Integer countSale) {
+		this.countSale = countSale;
+	}
+	public Integer getCountComment() {
+		return countComment;
+	}
+	public void setCountComment(Integer countComment) {
+		this.countComment = countComment;
+	}
 	public String getPromotion() {
 		return promotion;
 	}

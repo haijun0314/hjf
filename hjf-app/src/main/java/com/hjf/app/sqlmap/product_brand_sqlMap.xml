@@ -5,10 +5,10 @@
 <mapper namespace="ProductBrand" >
    
 <select id="queryList" parameterType="Query" resultType="java.util.HashMap">
-	select brandId,brandName
+	select brandId,brandName,pic
 	from product_brand  
 	where  delFlag=0
-		order  by sortNum  desc
+	order  by sortNum  desc
 </select>
 <select id="findById" parameterType="java.lang.Integer" resultType="ProductBrand">
 	select * 

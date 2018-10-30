@@ -25,7 +25,7 @@
 	</update>
 	<!-- 搜索商品 -->
 	<select id="search" parameterType="PageBean" resultType="java.util.HashMap">
-		select  p.productId,p.productName,p.productNO,p.pic,p.pics,price, marketPrice
+		select  p.productId,p.productName,p.productNO,p.pic,p.pics,p.price, p.marketPrice,p.countComment, p.countSale,date_format(p.createdTime,'%Y-%m-%d %H:%i') as createdTime
 		from  product p 
 		where    p.delFlag=0 and status=0 and store>0
 		<if test="@MyOgnl@isNotEmpty(params.productType)">
@@ -37,11 +37,12 @@
 		<if test="@MyOgnl@isNotEmpty(params.categoryId)">
 			and  categoryId =#{params.categoryId}
 		</if>
-		 
 		<if test="@MyOgnl@isNotEmpty(params.keyWord)">
 			and  productName like CONCAT('%',#{params.keyWord},'%')  
 		</if>
-		order  by  p.createdTime desc
+		<if test="@MyOgnl@isNotEmpty(params.sortBy)">
+			order  by  ${params.sortBy } 
+		</if>
 		limit #{startRow},#{pageSize}
 	</select>   
   

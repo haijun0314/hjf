@@ -89,12 +89,17 @@ public class StringUtil {
 	 * String str 被分解的字符串
 	 * String type 分解类型 当传入","时就按逗号分解
 	 */
-	public static List convertToToList(String str,String type){
+	public static List convertToToList(String str,String type,String  prefix){
 		List<String> list=CollectUtil.newArrayList();
 		if(str!=null&&str.length()>0){
 			String[] getString =str.split(type);
 			for(int k=0;k<getString.length;k++){
-				list.add(getString[k]);
+				if(StringUtils.isNotBlank(prefix)){
+					list.add(prefix+getString[k]);
+				}else{
+					list.add(getString[k]);
+				}
+				
 			}
 		}
 		return list;

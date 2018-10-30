@@ -8,6 +8,7 @@ import com.hjf.app.entity.Product;
 import com.hjf.app.entity.ProductBrand;
 import com.hjf.app.entity.ProductCategory;
 import com.hjf.base.model.PageBean;
+import com.hjf.base.mybatis.Query;
 
 public interface ProductService {
 	
@@ -28,7 +29,9 @@ public interface ProductService {
 	//商品搜索
 	public  PageBean  search(PageBean pb);
 	//商品类型
-	public  List  categorys();
+	public  List  categorys(Query query);
+	//商品品牌
+	public  List  brands(Query query);	
 	//减少库存
 	public  void  reduceStore(Integer productId);
 	//增加库存

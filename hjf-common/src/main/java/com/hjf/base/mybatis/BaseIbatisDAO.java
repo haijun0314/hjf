@@ -487,6 +487,11 @@ public class BaseIbatisDAO {
 	public PageBean queryPageList(PageBean pm) {
 		String  listSqlId = this.getNamespace()+POSTFIX_QUERYPAGELIST;
 		List datas=this.sqlSessionTemplate.selectList(listSqlId, pm);
+		if (pm.getPageSize()>datas.size()) {
+			pm.setLastPage(true);
+		}else{
+			pm.setLastPage(false);
+		}
 		pm.setDatas(datas);
 		return pm;	
 	}	
@@ -496,6 +501,17 @@ public class BaseIbatisDAO {
 	 */
 	public PageBean queryPageList(PageBean pm,String  sqlId) {
 		List datas=this.sqlSessionTemplate.selectList(this.getNamespace()+"."+sqlId, pm);
+		if (pm.getPageSize()>datas.size()) {
+			pm.setLastPage(true);
+		}else{
+			pm.setLastPage(false);
+		}
+		if (datas==null||datas.size()==0) {
+			pm.setNoData(true);
+		}else{
+			pm.setNoData(false);
+		}
+		
 		pm.setDatas(datas);
 		return pm;	
 	}		

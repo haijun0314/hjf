@@ -12,6 +12,14 @@ public class ProductComment extends BaseModel implements java.io.Serializable {
 	private String  content;//评论内容
 	private Integer productId;//商品编号
 	private Integer score;//分数
+	private String  level;//价评等级好评0 中评1 差评2
+	
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
 	public Integer getCommentId() {
 		return commentId;
 	}
