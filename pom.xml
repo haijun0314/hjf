@@ -217,13 +217,8 @@
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi</artifactId>
 		    <version>3.0.1-FINAL</version>
-		</dependency>
-		<dependency>
-			 <groupId>QRCode</groupId>
-			 <artifactId>QRCode</artifactId>
-			 <version>3.0</version>
-		</dependency>
-		
+		</dependency> 
+		 
         <!-- ActiveMQ -->
 		<dependency>
 		    <groupId>org.apache.activemq</groupId>
@@ -273,10 +268,11 @@
 		    <version>1.6</version>
 		</dependency>
 		<dependency>
-			<groupId>org.csource</groupId>
-			<artifactId>fastdfs-client-java</artifactId>
-			<version>1.25</version>
-		</dependency> 		
+		    <groupId>com.github.tobato</groupId>
+		    <artifactId>fastdfs-client</artifactId>
+		    <version>1.26.2</version>
+		</dependency>
+		
 		<dependency>
 		    <groupId>com.alibaba</groupId>
 		    <artifactId>druid</artifactId>
